@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="ForgetPassword">هل نسيت كلمة المرور ؟</string>
+    <string name="login">دخول</string>
+    <string name="showUniversity">الجامعات</string>
+    <string name="addFaculty">إضافة كلية</string>
+    <string name="addSpecialization">إضافة تخصص</string>
+    <string name="place">أماكن التدريب</string>
+    <string name="userName">اسم المتدرب</string>
+    <string name="IDNumber">الرقم الجامعي</string>
+    <string name="universityName">اسم الجامعة</string>
+    <string name="trainerName">اسم المدرب</string>
+    <string name="save">حفظ</string>
+    <string name="phoneNumber">رقم الجوال</string>
+    <string name="mobileNumber">رقم الهاتف</string>
+    <string name="IDPersonNumber">رقم الهوية</string>
+</resources>

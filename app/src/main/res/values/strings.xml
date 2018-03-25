@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">برنامج التدريب الميداني</string>
+    <string name="title_activity_navigation_menu">navigationMenuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="password">كلمة المرور</string>
+    <string name="addTrainee">إضافة متدرب</string>
+    <string name="showTrainee">المتدربين الحاليين</string>
+    <string name="showOldTrainee">المتدربين القدامي</string>
+    <string name="addUniversity">إضافة جامعة</string>
+    <string name="university">الجامعات</string>
+    <string name="ForgetPassword">هل نسيت كلمة المرور ؟</string>
+    <string name="login">دخول</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="showUniversity">الجامعات</string>
+    <string name="addFaculty">إضافة كلية</string>
+    <string name="addSpecialization">إضافة تخصص</string>
+    <string name="place">أماكن التدريب</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="userName">اسم المتدرب</string>
+    <string name="IDNumber">الرقم الجامعي</string>
+    <string name="universityName">اسم الجامعة</string>
+    <string name="trainerName">اسم المدرب</string>
+    <string name="save">حفظ</string>
+    <string name="phoneNumber">رقم الجوال</string>
+    <string name="mobileNumber">رقم الهاتف</string>
+    <string name="IDPersonNumber">رقم الهوية</string>
+
+</resources>

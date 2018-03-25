@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context="duaa.traineeproject.Activity.MainActivity">
+
+
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/trainee"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/imageSplash"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="20dp"
+
+    />
+
+    <duaa.traineeproject.view.FontTextViewRegular
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/imageSplash"
+        android:layout_marginTop="30dp"
+        android:text="تدريب وزراة الصحة"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+
+</RelativeLayout>

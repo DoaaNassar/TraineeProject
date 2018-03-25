@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_gravity="bottom">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:padding="16dp">
+
+
+
+        <duaa.traineeproject.view.FontTextViewRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="تعديل الصورة الشخصية"
+            android:textSize="18sp"
+            android:textColor="#4a4c46"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="right"
+            android:layout_marginBottom="12dp"/>
+
+
+        <duaa.traineeproject.view.FontButtonRegular
+            android:id="@+id/camera"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/rec_fill"
+            android:textColor="@color/white"
+            android:text="تصوير بالكاميرا"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"/>
+
+
+        <duaa.traineeproject.view.FontButtonRegular
+            android:id="@+id/album"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/rec_fill"
+            android:textColor="@color/white"
+            android:text="صورة من المكتبة"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"/>
+
+
+        <duaa.traineeproject.view.FontTextViewRegular
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/rec"
+            android:textColor="@color/white"
+            android:text="إلغاء"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

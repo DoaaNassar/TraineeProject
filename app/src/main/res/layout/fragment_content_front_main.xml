@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+        <duaa.traineeproject.view.FontTextViewRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shadow_background"
+            android:paddingRight="10dp"
+            android:text="الأخرى"
+            android:textColor="#FFF"
+            android:textSize="17sp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text="الصفحة الشخصية"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/profile"
+
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right"
+
+                >
+
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text="الإحصائية"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/statistics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/tableee"
+
+                    />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <duaa.traineeproject.view.FontTextViewRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shadow_background"
+            android:paddingRight="10dp"
+            android:text="المتدربون"
+            android:textColor="#FFF"
+            android:textSize="17sp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    android:text="إضافة متدربين"
+                    android:textSize="15sp" />
+                <ImageView
+                    android:id="@+id/addTraineeImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/add_user"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text="المتدربين الحالين"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/showTraineeImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/show_user"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    android:text="المتدربين المنتهيين"
+                    android:textSize="15sp" />
+
+
+                <ImageView
+                    android:id="@+id/showDeletedTraineeImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/delete_user" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <duaa.traineeproject.view.FontTextViewRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shadow_background"
+            android:paddingRight="10dp"
+            android:text="المستخدمين"
+            android:textColor="#FFF"
+            android:textSize="17sp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+
+                >
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:text="إضافة مستخدمين"
+                    android:textSize="15sp" />
+
+
+                <ImageView
+                    android:id="@+id/addUserImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/add_user" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    android:text="المستخدمين الحالين"
+                    android:textSize="15sp" />
+
+
+                <ImageView
+                    android:id="@+id/showUserImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/showuser" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <duaa.traineeproject.view.FontTextViewRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shadow_background"
+            android:paddingRight="10dp"
+            android:text="المدربين"
+            android:textColor="#FFF"
+            android:textSize="17sp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text="إضافة مدربين"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/addTrainerImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/add_user"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    android:text="المدربين الحالين"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/showTrainerImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/show_user"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    android:text="المدربين المنتهيين"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/showDeletedTrainerImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/delete_user" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <duaa.traineeproject.view.FontTextViewRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shadow_background"
+            android:paddingRight="10dp"
+            android:text="الجامعات"
+            android:textColor="#FFF"
+            android:textSize="17sp"
+
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+
+                >
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:text="إضافة مدربين"
+                    android:layout_weight="1"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/addUniversityImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/add_user"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/addFaculty"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/facultyImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/show_user"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text="@string/addSpecialization"
+                    android:textSize="15sp" />
+
+
+                <ImageView
+                    android:id="@+id/specImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/delete_user" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <duaa.traineeproject.view.FontTextViewRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shadow_background"
+            android:paddingRight="10dp"
+            android:text="الأماكن"
+            android:textColor="#FFF"
+            android:textSize="17sp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:gravity="right"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text="@string/place"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/addPlaceImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/add_user"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:text="إضافة مكان التدريب"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/showPlaceImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/show_user"
+
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+
