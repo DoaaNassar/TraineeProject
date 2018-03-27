@@ -1,4 +1,4 @@
-package duaa.traineeproject;
+package duaa.traineeproject.API;
 
 import android.app.Activity;
 import android.content.Context;

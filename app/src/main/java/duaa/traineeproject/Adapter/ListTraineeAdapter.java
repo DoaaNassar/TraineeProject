@@ -4,25 +4,18 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import duaa.traineeproject.Fragment.EditTraineeFragment;
-import duaa.traineeproject.JavaObject.TraineeObject;
+import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
 
@@ -33,10 +26,10 @@ import duaa.traineeproject.view.FontTextViewRegular;
 public class ListTraineeAdapter extends BaseAdapter {
 
     Activity con;
-    ArrayList<TraineeObject> arrayList;
+    ArrayList<TrainerObject> arrayList;
     boolean selectAll ;
 
-    public ListTraineeAdapter(Activity con, ArrayList<TraineeObject> arrayList) {
+    public ListTraineeAdapter(Activity con, ArrayList<TrainerObject> arrayList) {
         this.con = con;
         this.arrayList = arrayList;
 
@@ -83,7 +76,7 @@ public class ListTraineeAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        final TraineeObject item = arrayList.get(i);
+        final TrainerObject item = arrayList.get(i);
         viewHolder.name.setText(item.getTrainer_name());
 
         viewHolder.checkBox.setChecked(selectAll);

@@ -1,30 +1,27 @@
-package duaa.traineeproject;
+package duaa.traineeproject.API;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import duaa.traineeproject.Constants;
 import duaa.traineeproject.Interface.UniversalCallBack;
-import duaa.traineeproject.JavaObject.TraineeObject;
+import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.Model.LoginModel;
 import duaa.traineeproject.Model.ResponseAddTrainee;
-import duaa.traineeproject.Model.University;
 import duaa.traineeproject.Model.UniversityListModel;
 
 /**
@@ -32,7 +29,7 @@ import duaa.traineeproject.Model.UniversityListModel;
  */
 
 public class UserAPI {
-    public void AddTrainee(final TraineeObject item, final UniversalCallBack callBack) {
+    public void AddTrainee(final TrainerObject item, final UniversalCallBack callBack) {
         String url = Constants.addTrainee;
         Log.d("AddItem: ", url);
         VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.POST,

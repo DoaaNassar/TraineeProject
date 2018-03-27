@@ -3,7 +3,7 @@ package duaa.traineeproject.JavaObject;
 
 import java.io.Serializable;
 
-public class TraineeObject implements Serializable {
+public class TrainerObject implements Serializable {
 
     String  trainer_name;
     String  email;
@@ -14,7 +14,7 @@ public class TraineeObject implements Serializable {
     String  collage;
 
 
-    public TraineeObject(String trainer_name, String email,
+    public TrainerObject(String trainer_name, String email,
                          String mobile, String specialization, String university, String phone, String collage) {
         this.trainer_name = trainer_name;
         this.email = email;

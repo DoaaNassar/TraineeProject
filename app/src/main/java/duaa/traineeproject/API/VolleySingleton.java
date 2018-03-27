@@ -1,4 +1,4 @@
-package duaa.traineeproject;
+package duaa.traineeproject.API;
 
 import android.text.TextUtils;
 
@@ -11,6 +11,8 @@ import com.android.volley.toolbox.Volley;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
+
+import duaa.traineeproject.Application.ApplicationController;
 
 /**
  * Created by AL-Qema on 08/03/18.

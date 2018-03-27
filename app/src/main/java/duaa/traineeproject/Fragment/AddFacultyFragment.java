@@ -1,9 +1,6 @@
 package duaa.traineeproject.Fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,11 +19,10 @@ import duaa.traineeproject.JavaObject.Specification;
 import duaa.traineeproject.Model.University;
 import duaa.traineeproject.Model.UniversityListModel;
 import duaa.traineeproject.R;
-import duaa.traineeproject.ResponseError;
-import duaa.traineeproject.UserAPI;
+import duaa.traineeproject.API.ResponseError;
+import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
-import duaa.traineeproject.view.FontTextViewRegular;
 
 
 public class AddFacultyFragment extends android.app.Fragment {
