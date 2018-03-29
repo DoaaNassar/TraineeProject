@@ -1,4 +1,4 @@
-package duaa.traineeproject.Fragment;
+package duaa.traineeproject.Page;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

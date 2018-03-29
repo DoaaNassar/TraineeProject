@@ -19,7 +19,7 @@ import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
 
-public class AddTrainerFragment extends Fragment {
+public class AddTrainerFragment extends android.app.Fragment {
 
     View view;
     FontEditTextViewRegular name, email, phoneNumber, mobileNumber;
@@ -55,8 +55,11 @@ public class AddTrainerFragment extends Fragment {
                     String emailTxt = email.getText().toString();
                     String phoneTxt = phoneNumber.getText().toString();
                     String mobileTxt = mobileNumber.getText().toString();
+                    loadingLayout.setVisibility(View.VISIBLE);
+                    contentLayout.setEnabled(false);
                     AddItem(new TrainerObject(nameTxt, emailTxt, mobileTxt, "5", "1"
                             , phoneTxt, "15"));
+
                 } else {
                     Toast.makeText(getActivity(), "أضف جميع البيانات", Toast.LENGTH_SHORT).show();
                 }
@@ -91,6 +94,8 @@ public class AddTrainerFragment extends Fragment {
                 String ss = responseItem.getMessage();
 
                 if (responseItem.isStatus()) {
+                    loadingLayout.setVisibility(View.VISIBLE);
+                    contentLayout.setEnabled(false);
 
                 }
 

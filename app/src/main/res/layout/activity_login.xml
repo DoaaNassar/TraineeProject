@@ -1,100 +1,87 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Bluee"
     android:gravity="center"
     android:orientation="vertical"
     tools:ignore="RtlCompat">
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_gravity="end|bottom"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="200dp"
-            android:translationX="160dp"
-            android:translationY="80dp"
-            app:srcCompat="@drawable/ic_user" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="RtlCompat">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.design.widget.AppBarLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent">
-                <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+                android:background="@drawable/background"
+                android:layout_height="190dp">
 
-                <FrameLayout
+                <duaa.traineeproject.view.FontTextViewRegular
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingRight="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    />
 
-                    >
+            </FrameLayout>
 
-                    <android.support.v7.widget.Toolbar
-                        android:id="@+id/toolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp" />
-
-
-                    <duaa.traineeproject.view.FontTextViewRegular
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:text="@string/app_name"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-
-                        />
-
-
-                </FrameLayout>
-            </android.support.design.widget.AppBarLayout>
-
-            <duaa.traineeproject.view.FontTextViewRegular
+            <duaa.traineeproject.view.FontEditTextViewRegular
                 android:id="@+id/mobileNumber"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="100dp"
-                android:background="@mipmap/input"
-                android:gravity="center|start"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/background_edittext"
+                android:gravity="center|right"
                 android:hint="@string/email"
-                android:paddingEnd="25dp"
-                android:paddingStart="25dp"
-                android:textSize="15sp"
+                android:padding="12dp"
+                android:textSize="13sp"
+                android:singleLine="true"
 
                 />
 
 
-            <duaa.traineeproject.view.FontTextViewRegular
+            <duaa.traineeproject.view.FontEditTextViewRegular
                 android:id="@+id/password"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@mipmap/input"
-                android:gravity="center|start"
+                android:background="@drawable/background_edittext"
+                android:gravity="center|right"
                 android:hint="@string/password"
-                android:paddingEnd="25dp"
-                android:paddingStart="25dp"
-                android:textSize="15sp"
+                android:padding="12dp"
+                android:inputType="textPassword"
+                android:textSize="13sp"
+                android:singleLine="true"
+
 
                 />
 
+
+
+            <duaa.traineeproject.view.FontButtonRegular
+                android:id="@+id/loginBtn"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="25dp"
+                android:background="@drawable/background_button"
+                android:gravity="center"
+                android:text="@string/login"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+
+                />
             <duaa.traineeproject.view.FontTextViewRegular
                 android:id="@+id/forgetPassword"
                 android:layout_width="match_parent"
@@ -103,20 +90,8 @@
                 android:layout_marginRight="35dp"
                 android:text="@string/ForgetPassword"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
-
-            <duaa.traineeproject.view.FontButtonRegular
-                android:id="@+id/loginBtn"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_margin="25dp"
-                android:background="@color/colorAccent"
                 android:gravity="center"
-                android:text="@string/login"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-
-                />
+                android:textSize="14sp" />
 
 
             <!--<duaa.traineeproject.view.FontTextViewRegular-->
@@ -140,5 +115,5 @@
 
 
         </LinearLayout>
-    </FrameLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

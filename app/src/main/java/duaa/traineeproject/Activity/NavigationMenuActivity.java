@@ -16,7 +16,7 @@ import duaa.traineeproject.Page.TraineeViewPager;
 import duaa.traineeproject.Page.UniversityViewPager;
 import duaa.traineeproject.R;
 
-public class navigationMenuActivity extends AppCompatActivity
+public class NavigationMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Fragment fragment;
@@ -28,8 +28,7 @@ public class navigationMenuActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction().replace(R.id.containerLayout, new ContentFrontMain()).commit();
 
         //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-   //     setSupportActionBar(toolbar);
-
+        //     setSupportActionBar(toolbar);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -52,45 +51,22 @@ public class navigationMenuActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.navigation_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.trainee) {
-            fragment =new TraineeViewPager();
-            Fragment(fragment);
-                 }else if (id == R.id.university){
-            fragment =new UniversityViewPager();
-            Fragment(fragment);
-
-
-        }
-
-
+//
+//        if (id == R.id.trainee) {
+//            fragment = new TraineeViewPager();
+//            Fragment(fragment);
+//        } else if (id == R.id.university) {
+//            fragment = new UniversityViewPager();
+//            Fragment(fragment);
+//
+//
+//        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -98,14 +74,14 @@ public class navigationMenuActivity extends AppCompatActivity
         return true;
     }
 
-    public void Fragment(Fragment fragment){
+    public void Fragment(Fragment fragment) {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Bundle bundle = new Bundle();
-        bundle.putInt("numberViewPager",0);
+        bundle.putInt("numberViewPager", 0);
         fragment.setArguments(bundle);
-        fragmentTransaction.addToBackStack(null).replace(R.id.containerLayout,fragment).commit();
+        fragmentTransaction.addToBackStack(null).replace(R.id.containerLayout, fragment).commit();
 
     }
 

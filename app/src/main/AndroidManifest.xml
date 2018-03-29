@@ -27,7 +27,7 @@
 
         </activity>
         <activity
-            android:name=".Activity.navigationMenuActivity"
+            android:name=".Activity.NavigationMenuActivity"
             android:label="@string/title_activity_navigation_menu"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|adjustPan|stateHidden"

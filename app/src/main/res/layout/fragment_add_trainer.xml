@@ -17,12 +17,13 @@
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:orientation="vertical"
+
             >
 
             <duaa.traineeproject.view.FontTextViewRegular
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/cardview_shadow_start_color"
+                android:textColor="@color/cardview_dark_background"
                 android:text="تسجيل مشرف جديد "
                 android:textStyle="bold"
                 android:textSize="14sp"
@@ -30,12 +31,11 @@
                 />
 
 
-
             <duaa.traineeproject.view.FontEditTextViewRegular
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
+                android:padding="10dp"
                 android:hint="اسم المشرف"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
@@ -47,7 +47,7 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
+                android:padding="10dp"
                 android:hint="@string/email"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/background_edittext"
@@ -63,7 +63,7 @@
                 android:id="@+id/mobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
+                android:padding="10dp"
                 android:hint="@string/phoneNumber"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/background_edittext"
@@ -79,12 +79,13 @@
                 android:id="@+id/phoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
+                android:padding="10dp"
                 android:background="@drawable/background_edittext"
                 android:textSize="13sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/mobileNumber"
+                android:inputType="number"
 
                 />
 
@@ -98,14 +99,14 @@
                 android:focusable="true"
                 android:orientation="horizontal"
                 android:background="@drawable/background_edittext"
-                android:padding="12dp">
+                android:padding="10dp">
 
                 <ImageView
                     android:id="@+id/iconChooseUniversity"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_arrow_drop_down_black_24dp" />
+                    app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
 
 
                 <duaa.traineeproject.view.FontTextViewRegular
@@ -135,14 +136,14 @@
                 android:focusable="true"
                 android:orientation="horizontal"
                 android:background="@drawable/background_edittext"
-                android:padding="12dp">
+                android:padding="10dp">
 
                 <ImageView
                     android:id="@+id/facultyImage"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_arrow_drop_down_black_24dp" />
+                    app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
 
 
                 <duaa.traineeproject.view.FontTextViewRegular
@@ -171,9 +172,10 @@
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="30dp"
-
+                android:textSize="13sp"
 
                 />
+
         </LinearLayout>
 
 
