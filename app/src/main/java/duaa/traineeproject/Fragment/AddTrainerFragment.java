@@ -19,7 +19,7 @@ import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
 
-public class AddTrainerFragment extends android.app.Fragment {
+public class AddTrainerFragment extends Fragment {
 
     View view;
     FontEditTextViewRegular name, email, phoneNumber, mobileNumber;

@@ -1,4 +1,4 @@
-package duaa.traineeproject.Fragment;
+package duaa.traineeproject.Page;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,8 +11,10 @@ import android.view.ViewGroup;
 import duaa.traineeproject.R;
 
 
-public class EditTraineeFragment extends Fragment {
-    View view;
+public class UserFragmentPager extends Fragment {
+
+    View view ;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,13 +25,14 @@ public class EditTraineeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_edit_trainee, container, false);
 
-        return view;
+        view = inflater.inflate(R.layout.fragment_user_fragment_pager, container, false);
 
-
+        return view ;
     }
+
     public void bindView (){
+
 
 
     }

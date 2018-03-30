@@ -2,8 +2,9 @@ package duaa.traineeproject.Adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -98,9 +99,9 @@ public class ListTraineeAdapter extends BaseAdapter {
                 Bundle args =new Bundle();
                 args.putSerializable("namee", item);
                 fragment.setArguments(args);
-                FragmentTransaction fragmentTransaction =  con.getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.containerTrainee, fragment);
-                fragmentTransaction.commit();
+//                FragmentTransaction fragmentTransaction =  con.getFragmentManager().beginTransaction();
+//                fragmentTransaction.replace(R.id.containerTrainee, fragment);
+//                fragmentTransaction.commit();
 
             }
         });

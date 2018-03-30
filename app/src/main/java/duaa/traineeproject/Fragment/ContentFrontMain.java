@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,8 +59,7 @@ public class ContentFrontMain extends Fragment {
         ImageView addSpecBtn = view.findViewById(R.id.specImage);
         ImageView addFacultyBtn = view.findViewById(R.id.facultyImage);
 
-
-
+        final DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
 
         addTraineeBtn.setOnClickListener(new View.OnClickListener() {
             @Override

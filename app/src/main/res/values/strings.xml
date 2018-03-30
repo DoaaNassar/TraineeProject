@@ -31,5 +31,9 @@
     <string name="phoneNumber">رقم الجوال</string>
     <string name="mobileNumber">رقم الهاتف</string>
     <string name="IDPersonNumber">رقم الهوية</string>
+    <string name="addUser">إضافة مستخدم</string>
+    <string name="showUser">المستخدمين</string>
+    <string name="addPlace">إضافة مكان</string>
+    <string name="showPlace">الأماكن</string>
 
 </resources>

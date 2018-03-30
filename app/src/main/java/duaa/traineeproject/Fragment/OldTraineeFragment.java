@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import duaa.traineeproject.R;
 
 
-public class OldTraineeFragment extends android.app.Fragment {
+public class OldTraineeFragment extends Fragment {
 
 
 

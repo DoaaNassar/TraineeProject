@@ -1,11 +1,11 @@
 package duaa.traineeproject.Page;
 
 import android.annotation.SuppressLint;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +35,8 @@ public class TraineeViewPager extends Fragment {
 
         addTrainee();
 
-        android.app.Fragment con = new AddTrainees();
-        FragmentManager fm = getActivity().getFragmentManager();
+        Fragment con = new AddTrainees();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.containerTrainee, con).commit();
 
@@ -44,8 +44,8 @@ public class TraineeViewPager extends Fragment {
             @Override
             public void onClick(View v) {
 
-                android.app.Fragment con = new AddTrainees();
-                FragmentManager fm = getActivity().getFragmentManager();
+                Fragment con = new AddTrainees();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.containerTrainee, con).commit();
                 addTrainee();
@@ -58,8 +58,8 @@ public class TraineeViewPager extends Fragment {
             @Override
             public void onClick(View v) {
 
-                android.app.Fragment con = new ShowTrainees();
-                FragmentManager fm = getActivity().getFragmentManager();
+                Fragment con = new ShowTrainees();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.containerTrainee, con).commit();
                 showTrainee();
@@ -70,8 +70,8 @@ public class TraineeViewPager extends Fragment {
             @Override
             public void onClick(View v) {
 
-                android.app.Fragment con = new ShowTrainees();
-                FragmentManager fm = getActivity().getFragmentManager();
+                Fragment con = new ShowTrainees();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.containerTrainee, con).commit();
                 oldTrainee();
@@ -83,8 +83,8 @@ public class TraineeViewPager extends Fragment {
             @Override
             public void onClick(View v) {
 
-                android.app.Fragment con = new ShowTrainees();
-                FragmentManager fm = getActivity().getFragmentManager();
+                Fragment con = new ShowTrainees();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.containerTrainee, con).commit();
                 oldTrainee();

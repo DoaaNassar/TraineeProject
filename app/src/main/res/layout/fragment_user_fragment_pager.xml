@@ -3,14 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="duaa.traineeproject.Page.TrainerFragment">
+    tools:context="duaa.traineeproject.Page.UserFragmentPager">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/main.appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <FrameLayout
+            android:id="@+id/main.framelayout.title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|center_horizontal"
+            >
+            <duaa.traineeproject.view.FontTextViewRegular
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="المستخدمين"
+                android:gravity="center_vertical"
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:paddingRight="10dp"
+                />
+
+        </FrameLayout>
+    </android.support.design.widget.AppBarLayout>
 
 
     <FrameLayout
-        android:id="@+id/containerTrainer"
+        android:id="@+id/containerUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        />
 
 
     <LinearLayout
@@ -20,8 +46,8 @@
         android:layout_alignParentBottom="true"
         android:background="#ffffff"
         android:gravity="center"
-        android:orientation="vertical"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        android:orientation="vertical">
 
         <View
             android:layout_width="match_parent"
@@ -34,42 +60,36 @@
             android:orientation="horizontal">
 
             <duaa.traineeproject.view.FontTextViewRegular
-                android:id="@+id/addTrainee"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/addTrainee"
+                android:text="@string/addUser"
                 android:textColor="#bdbdbd"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_weight="1"
+                android:id="@+id/addUniversity"
+                />
 
             <duaa.traineeproject.view.FontTextViewRegular
-                android:id="@+id/showTrainee"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
+                android:id="@+id/addFaculty"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/showTrainee"
+                android:text="@string/showUser"
                 android:textColor="#bdbdbd"
+                android:layout_weight="1"
                 android:textSize="12sp" />
 
-            <duaa.traineeproject.view.FontTextViewRegular
-                android:id="@+id/showDeletedTrainee"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/showOldTrainee"
-                android:textColor="#bdbdbd"
-                android:textSize="12sp" />
+
+
 
 
         </LinearLayout>
 
     </LinearLayout>
+
 
 
 </LinearLayout>

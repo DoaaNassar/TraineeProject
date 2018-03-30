@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="duaa.traineeproject.Page.TrainerFragment">
-
+    tools:context="duaa.traineeproject.Page.PlaceFragmentPager">
 
     <FrameLayout
-        android:id="@+id/containerTrainer"
+        android:id="@+id/containerPlace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        />
 
 
     <LinearLayout
@@ -20,8 +20,8 @@
         android:layout_alignParentBottom="true"
         android:background="#ffffff"
         android:gravity="center"
-        android:orientation="vertical"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        android:orientation="vertical">
 
         <View
             android:layout_width="match_parent"
@@ -34,42 +34,33 @@
             android:orientation="horizontal">
 
             <duaa.traineeproject.view.FontTextViewRegular
-                android:id="@+id/addTrainee"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/addTrainee"
+                android:text="@string/addPlace"
                 android:textColor="#bdbdbd"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_weight="1"
+                android:id="@+id/addPlace"
+                />
 
             <duaa.traineeproject.view.FontTextViewRegular
-                android:id="@+id/showTrainee"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
+                android:id="@+id/place"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/showTrainee"
+                android:text="@string/showPlace"
                 android:textColor="#bdbdbd"
-                android:textSize="12sp" />
-
-            <duaa.traineeproject.view.FontTextViewRegular
-                android:id="@+id/showDeletedTrainee"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/showOldTrainee"
-                android:textColor="#bdbdbd"
                 android:textSize="12sp" />
 
 
         </LinearLayout>
 
     </LinearLayout>
+
 
 
 </LinearLayout>

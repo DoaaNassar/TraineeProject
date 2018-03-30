@@ -1,6 +1,7 @@
 package duaa.traineeproject.Fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,7 +26,7 @@ import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
 
 
-public class AddFacultyFragment extends android.app.Fragment {
+public class AddFacultyFragment extends Fragment {
     View view;
     SpecAdapter specAdapter;
     ShowUniversityAdapter showUniversityAdapter ;

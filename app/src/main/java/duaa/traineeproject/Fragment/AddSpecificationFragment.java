@@ -22,7 +22,7 @@ import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
 
 
-public class AddSpecificationFragment extends android.app.Fragment {
+public class AddSpecificationFragment extends Fragment {
 
     View view;
     List<Specification> specificationList;

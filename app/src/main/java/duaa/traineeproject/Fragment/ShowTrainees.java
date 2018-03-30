@@ -1,6 +1,7 @@
 package duaa.traineeproject.Fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.R;
 
 
-public class ShowTrainees extends android.app.Fragment {
+public class ShowTrainees extends Fragment {
 
 
     @Override

@@ -19,7 +19,7 @@ import duaa.traineeproject.Model.University;
 import duaa.traineeproject.R;
 
 
-public class Unviersity extends android.app.Fragment {
+public class Unviersity extends Fragment {
     RecyclerView recyclerView;
     View view;
     UniversityAdapter universityAdapter;

@@ -1,5 +1,6 @@
 package duaa.traineeproject.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -8,8 +9,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import duaa.traineeproject.Fragment.ContentFrontMain;
 import duaa.traineeproject.Page.TraineeViewPager;
@@ -31,11 +34,22 @@ public class NavigationMenuActivity extends AppCompatActivity
         //     setSupportActionBar(toolbar);
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                drawer.openDrawer(GravityCompat.END);
+
+            }
+        });
+
 //        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 //                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 //        drawer.addDrawerListener(toggle);
 //        toggle.syncState();
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -44,8 +58,8 @@ public class NavigationMenuActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (drawer.isDrawerOpen(GravityCompat.END)) {
+            drawer.closeDrawer(GravityCompat.END);
         } else {
             super.onBackPressed();
         }
@@ -84,5 +98,14 @@ public class NavigationMenuActivity extends AppCompatActivity
         fragmentTransaction.addToBackStack(null).replace(R.id.containerLayout, fragment).commit();
 
     }
+
+//    @Override
+//    public void onActivityResult (int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+//            Log.d("ffffff",requestCode+"");
+//            fragment.onActivityResult(requestCode, resultCode, data);
+//        }
+//    }
 
 }
