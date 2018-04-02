@@ -9,8 +9,7 @@
         android:id="@+id/containerPlace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1" />
 
 
     <LinearLayout
@@ -20,8 +19,8 @@
         android:layout_alignParentBottom="true"
         android:background="#ffffff"
         android:gravity="center"
-        android:paddingBottom="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
 
         <View
             android:layout_width="match_parent"
@@ -34,33 +33,31 @@
             android:orientation="horizontal">
 
             <duaa.traineeproject.view.FontTextViewRegular
+                android:id="@+id/addPlace"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/addPlace"
                 android:textColor="#bdbdbd"
-                android:textSize="12sp"
-                android:layout_weight="1"
-                android:id="@+id/addPlace"
-                />
+                android:textSize="12sp" />
 
             <duaa.traineeproject.view.FontTextViewRegular
+                android:id="@+id/place"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:id="@+id/place"
                 android:layout_gravity="center"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/showPlace"
                 android:textColor="#bdbdbd"
-                android:layout_weight="1"
                 android:textSize="12sp" />
 
 
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

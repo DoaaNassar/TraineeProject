@@ -45,8 +45,6 @@ public class AddTrainees extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_add_trainees, container, false);
         bindView();
-
-        imageView.setVisibility(View.VISIBLE);
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

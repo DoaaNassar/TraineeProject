@@ -9,55 +9,58 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import duaa.traineeproject.Interface.CustomItemClickListener;
+import duaa.traineeproject.Model.PlaceModel;
 import duaa.traineeproject.Model.TrainerModel;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontEditTextViewRegular;
+import duaa.traineeproject.view.FontTextViewRegular;
 
 /**
- * Created by AL-Qema on 28/03/18.
+ * Created by AL-Qema on 30/03/18.
  */
 
-public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.MyViewHolder> {
+public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder> {
 
-    private List<TrainerModel> trainerList;
+    private List<PlaceModel> placeList;
     CustomItemClickListener listener;
     Context context;
     UniversityAdapter.MyRecyclerViewListener myRecyclerViewListener;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        FontEditTextViewRegular remove,edit;
+        FontTextViewRegular name , number;
+
 
 
         public MyViewHolder(View view) {
             super(view);
-//            edit = itemView.findViewById(R.id.edit);
-//            remove=itemView.findViewById(R.id.delete);
+            name = itemView.findViewById(R.id.name);
+            number=itemView.findViewById(R.id.number);
         }
 
 
     }
 
-    public TrainerAdapter(Context context, List<TrainerModel> trainerList, CustomItemClickListener listener,
-                             UniversityAdapter.MyRecyclerViewListener myRecyclerViewListener) {
+    public PlaceAdapter(Context context, List<PlaceModel> placeList, CustomItemClickListener listener,
+                          UniversityAdapter.MyRecyclerViewListener myRecyclerViewListener) {
         this.context = context;
-        this.trainerList = trainerList;
+        this.placeList = placeList;
         this.listener = listener;
         this.myRecyclerViewListener = myRecyclerViewListener ;
 
     }
 
-    public List<TrainerModel> getItems() {
-        return trainerList;
+    public List<PlaceModel> getItems() {
+        return placeList;
     }
 
     @Override
-    public TrainerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PlaceAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.university_item, parent, false);
+                .inflate(R.layout.place_item, parent, false);
 
-        final TrainerAdapter.MyViewHolder mViewHolder = new TrainerAdapter.MyViewHolder(itemView);
+        final PlaceAdapter.MyViewHolder mViewHolder = new PlaceAdapter.MyViewHolder(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -72,8 +75,12 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.MyViewHo
 
 
     @Override
-    public void onBindViewHolder(TrainerAdapter.MyViewHolder holder, final int position) {
-//        TrainerObject item = specification.get(position);
+    public void onBindViewHolder(PlaceAdapter.MyViewHolder holder, final int position) {
+
+        PlaceModel item = placeList.get(position);
+
+        holder.name.setText(item.getName());
+        holder.number.setText(item.getNumber());
 
 //        holder.remove.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -86,7 +93,7 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return trainerList.size();
+        return placeList.size();
     }
 
 

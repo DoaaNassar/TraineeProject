@@ -34,42 +34,41 @@
             android:orientation="horizontal">
 
             <duaa.traineeproject.view.FontTextViewRegular
-                android:id="@+id/addTrainee"
+                android:id="@+id/addTrainer"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/addTrainee"
+                android:text="إضافة مشرف"
                 android:textColor="#bdbdbd"
-                android:textSize="12sp" />
+                android:textStyle="bold"
+                android:textSize="13sp" />
 
             <duaa.traineeproject.view.FontTextViewRegular
-                android:id="@+id/showTrainee"
+                android:id="@+id/showTrainer"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/showTrainee"
+                android:text="المشرفين"
                 android:textColor="#bdbdbd"
-                android:textSize="12sp" />
+                android:textStyle="bold"
+                android:textSize="13sp"  />
 
             <duaa.traineeproject.view.FontTextViewRegular
-                android:id="@+id/showDeletedTrainee"
+                android:id="@+id/showDeletedTrainer"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/showOldTrainee"
+                android:text="المشرفين القدامى"
                 android:textColor="#bdbdbd"
-                android:textSize="12sp" />
-
+                android:textStyle="bold"
+                android:textSize="13sp"  />
 
         </LinearLayout>
-
     </LinearLayout>
-
-
 </LinearLayout>

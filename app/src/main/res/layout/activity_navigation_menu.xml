@@ -262,7 +262,7 @@
                     android:id="@+id/imageAddComplaint"
                     android:layout_gravity="center"
                     android:layout_marginRight="7dp"
-                    android:src="@drawable/place"
+                    android:src="@drawable/place_"
                     android:layout_marginLeft="5dp"
 
                     />

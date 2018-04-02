@@ -1,6 +1,8 @@
 package duaa.traineeproject.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,8 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import duaa.traineeproject.Activity.EditTrainee;
+import duaa.traineeproject.Page.PlaceFragmentPager;
 import duaa.traineeproject.Page.TraineeViewPager;
+import duaa.traineeproject.Page.TrainerFragment;
 import duaa.traineeproject.Page.UniversityViewPager;
 import duaa.traineeproject.R;
 
@@ -20,6 +26,11 @@ import duaa.traineeproject.R;
 public class ContentFrontMain extends Fragment {
 
     Fragment fragment =null;
+    LinearLayout addTraineeBtn,showNowTraineeBtn,showOldTraineeBtn,
+            addTrainerBtn,showNowTrainerBtn,showOldTrainerBtn,addPlaceBtn,showPlaceBtn,showUniversityBtn,
+            facultyBtn,addFacultyBtn,university,profileLayout;
+
+    View view ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,32 +43,12 @@ public class ContentFrontMain extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_content_front_main, container, false);
+       view =inflater.inflate(R.layout.fragment_content_front_main, container, false);
 
-        ////Trainee ImageButton
-        ImageView addTraineeBtn = view.findViewById(R.id.addTraineeImage);
-        ImageView showNowTraineeBtn = view.findViewById(R.id.showTraineeImage);
-        ImageView showOldTraineeBtn = view.findViewById(R.id.showDeletedTraineeImage);
 
-        ////Trainer ImageButton
-        ImageView addTrainerBtn = view.findViewById(R.id.addTrainerImage);
-        ImageView showNowTrainerBtn = view.findViewById(R.id.showTrainerImage);
-        ImageView showOldTrainerBtn = view.findViewById(R.id.showDeletedTrainerImage);
 
-        ////User ImageButton
-        ImageView addUserBtn = view.findViewById(R.id.addUserImage);
-        ImageView showNowUserBtn = view.findViewById(R.id.showUserImage);
 
-        ////Place ImageButton
 
-        ImageView addPlaceBtn = view.findViewById(R.id.addTraineeImage);
-        ImageView showPlaceBtn = view.findViewById(R.id.showTraineeImage);
-
-        ////UniversityImageButton
-
-        ImageView showUniversityBtn = view.findViewById(R.id.addUniversityImage);
-        ImageView addSpecBtn = view.findViewById(R.id.specImage);
-        ImageView addFacultyBtn = view.findViewById(R.id.facultyImage);
 
         final DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
 
@@ -98,7 +89,7 @@ public class ContentFrontMain extends Fragment {
 
             }});
 
-        addSpecBtn.setOnClickListener(new View.OnClickListener() {
+        facultyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -116,6 +107,60 @@ public class ContentFrontMain extends Fragment {
 
             }});
 
+        university.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fragment = new UniversityViewPager();
+                Fragment(3,fragment);
+            }
+        });
+
+        addPlaceBtn .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new PlaceFragmentPager();
+                Fragment(0,fragment);
+            }
+        });
+
+        showPlaceBtn .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new PlaceFragmentPager();
+                Fragment(1,fragment);
+            }
+        });
+
+        addTrainerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fragment = new TrainerFragment();
+                Fragment(0,fragment);
+
+            }
+        });
+
+        showNowTraineeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fragment = new TrainerFragment();
+                Fragment(1,fragment);
+            }
+        });
+
+        profileLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(), EditTrainee.class);
+                startActivity(intent);
+            }
+        });
+
+
         return view;
     }
 
@@ -129,6 +174,33 @@ public class ContentFrontMain extends Fragment {
         fragment.setArguments(bundle);
         fragmentTransaction.addToBackStack("").replace(R.id.containerLayout,fragment).commit();
 
+    }
+
+    public void bindView (){
+
+        ////Trainee ImageButton
+        addTraineeBtn = view.findViewById(R.id.addTrainee);
+         showNowTraineeBtn = view.findViewById(R.id.showTrainee);
+         showOldTraineeBtn = view.findViewById(R.id.showDeletedTrainee);
+
+        ////Trainer ImageButton
+         addTrainerBtn = view.findViewById(R.id.addTrainer);
+         showNowTrainerBtn = view.findViewById(R.id.showTrainer);
+         showOldTrainerBtn = view.findViewById(R.id.showDeletedTrainer);
+
+        ////Place ImageButton
+
+         addPlaceBtn = view.findViewById(R.id.addPlace);
+         showPlaceBtn = view.findViewById(R.id.place);
+
+        ////UniversityImageButton
+
+         showUniversityBtn = view.findViewById(R.id.addUniversity);
+         addFacultyBtn = view.findViewById(R.id.addFaculty);
+         facultyBtn = view.findViewById(R.id.faculty);
+         university = view.findViewById(R.id.university);
+
+         profileLayout  = view.findViewById(R.id.profile);
     }
 
 }

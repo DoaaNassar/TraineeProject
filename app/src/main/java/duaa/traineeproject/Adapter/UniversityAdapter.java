@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 
 import java.util.List;
 
@@ -56,7 +55,7 @@ public class UniversityAdapter  extends RecyclerView.Adapter<UniversityAdapter.M
     public UniversityAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.place_item, parent, false);
+                .inflate(R.layout.university_item, parent, false);
 
         final UniversityAdapter.MyViewHolder mViewHolder = new UniversityAdapter.MyViewHolder(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {

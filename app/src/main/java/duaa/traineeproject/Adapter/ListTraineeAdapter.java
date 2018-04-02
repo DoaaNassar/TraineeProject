@@ -3,8 +3,6 @@ package duaa.traineeproject.Adapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -60,7 +58,7 @@ public class ListTraineeAdapter extends BaseAdapter {
 
         if (view == null) {
 
-            row = con.getLayoutInflater().inflate(R.layout.card_view_layout, viewGroup, false);
+            row = con.getLayoutInflater().inflate(R.layout.new_trainee_item, viewGroup, false);
             viewHolder = new ViewHolder();
 
             viewHolder.name= row.findViewById(R.id.nameTraineeCard);

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import duaa.traineeproject.Fragment.AddTrainees;
+import duaa.traineeproject.Fragment.OldTraineeFragment;
 import duaa.traineeproject.Fragment.ShowTrainees;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
@@ -66,24 +67,12 @@ public class TraineeViewPager extends Fragment {
 
             }
         });
-        oldTrainee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Fragment con = new ShowTrainees();
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                fragmentTransaction.replace(R.id.containerTrainee, con).commit();
-                oldTrainee();
-
-            }
-        });
 
         oldTrainee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Fragment con = new ShowTrainees();
+                Fragment con = new OldTraineeFragment();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.containerTrainee, con).commit();

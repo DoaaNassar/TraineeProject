@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="duaa.traineeproject.Activity.EditTrainee">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:ignore="RtlCompat">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                tools:context="com.example.duaa.boxpoint.Fragment.AddClientFragment">
+
+
+                <duaa.traineeproject.view.FontTextViewRegular
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawablePadding="5dp"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+                <duaa.traineeproject.view.FontEditTextViewRegular
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/background_edittext"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="دعاء نصار"
+                    android:textColor="@color/silver"
+
+                    android:textSize="13sp"
+
+
+                    />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+
+                    <duaa.traineeproject.view.FontEditTextViewRegular
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/background_edittext"
+                        android:enabled="false"
+                        android:padding="12dp"
+                        android:singleLine="true"
+                        android:text="******"
+                        android:textColor="@color/silver"
+                        android:textSize="13sp"
+                        android:gravity="right"
+
+
+                        />
+
+                    <duaa.traineeproject.view.FontTextViewRegular
+                        android:id="@+id/changePassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|left"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:padding="5dp"
+                        android:text="تغير"
+                        android:textColor="@color/colorAccent"
+
+                        />
+
+
+
+                </FrameLayout>
+
+
+                <duaa.traineeproject.view.FontEditTextViewRegular
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_edittext"
+                    android:inputType="textEmailAddress"
+                    android:padding="12dp"
+                    android:singleLine="true"
+                    android:text="example@gmail.com"
+                    android:textColor="@color/silver"
+                    android:textSize="13sp"
+
+                    />
+
+
+
+
+                    <duaa.traineeproject.view.FontTextViewRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:drawablePadding="5dp"
+                        android:drawableEnd="@drawable/ic_place"
+                        android:paddingStart="10dp"
+                        android:text="العنوان"
+                        android:layout_gravity="right"
+                        android:textColor="@color/black"
+                        tools:ignore="RtlCompat" />
+
+
+                <duaa.traineeproject.view.FontEditTextViewRegular
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_edittext"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:singleLine="true"
+                    android:text="95451566"
+                    android:textColor="@color/silver"
+                    android:textSize="13sp" />
+
+                <duaa.traineeproject.view.FontEditTextViewRegular
+                    android:id="@+id/phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_edittext"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:singleLine="true"
+                    android:text="95451566"
+                    android:textColor="@color/silver"
+                    android:textSize="13sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp">
+
+                    <duaa.traineeproject.view.FontButtonRegular
+                        android:id="@+id/backData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/back_button"
+                        android:text="رجوع"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+
+
+                        />
+
+                    <duaa.traineeproject.view.FontButtonRegular
+                        android:id="@+id/saveUpdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_button"
+                        android:text="@string/save"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+
+
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A0000000"
+        android:id="@+id/loadingLayout"
+        android:visibility="gone"
+
+        >
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi"
+            style="@style/AVLoadingIndicatorView.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:indicatorColor="@color/colorAccent"
+            app:indicatorName="BallClipRotatePulseIndicator"
+
+
+            />
+    </FrameLayout>
+</FrameLayout>

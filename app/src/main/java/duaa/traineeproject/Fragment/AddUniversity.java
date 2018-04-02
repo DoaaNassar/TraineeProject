@@ -44,8 +44,6 @@ public class AddUniversity extends Fragment {
         view = inflater.inflate(R.layout.fragment_add_university, container, false);
         bindView();
 
-        image.setVisibility(View.GONE);
-
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
