@@ -13,9 +13,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import duaa.traineeproject.Fragment.ContentFrontMain;
+import duaa.traineeproject.Page.PlaceFragmentPager;
 import duaa.traineeproject.Page.TraineeViewPager;
+import duaa.traineeproject.Page.TrainerFragment;
 import duaa.traineeproject.Page.UniversityViewPager;
 import duaa.traineeproject.R;
 
@@ -32,8 +35,11 @@ public class NavigationMenuActivity extends AppCompatActivity
 
         //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //     setSupportActionBar(toolbar);
-
-
+        LinearLayout trainee = findViewById(R.id.trainee);
+        LinearLayout trainer = findViewById(R.id.trainer);
+        LinearLayout university = findViewById(R.id.university);
+        LinearLayout out = findViewById(R.id.out);
+        LinearLayout place = findViewById(R.id.place);
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
@@ -44,6 +50,52 @@ public class NavigationMenuActivity extends AppCompatActivity
 
             }
         });
+
+        trainee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new TraineeViewPager();
+                Fragment(fragment);
+                drawer.closeDrawer(GravityCompat.END);
+
+            }
+        });
+
+        trainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new TrainerFragment();
+                Fragment(fragment);
+                drawer.closeDrawer(GravityCompat.END);
+
+
+            }
+        });
+
+        university.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new UniversityViewPager();
+                Fragment(fragment);
+                drawer.closeDrawer(GravityCompat.END);
+
+
+            }
+        });
+
+        place.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new PlaceFragmentPager();
+                Fragment(fragment);
+                drawer.closeDrawer(GravityCompat.END);
+
+            }
+        });
+
+
+//        fragment = new TraineeViewPager();
+//        Fragment(fragment);
 
 //        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 //                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -107,5 +159,7 @@ public class NavigationMenuActivity extends AppCompatActivity
 //            fragment.onActivityResult(requestCode, resultCode, data);
 //        }
 //    }
+
+
 
 }

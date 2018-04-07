@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.multidex.MultiDex;
 import android.support.v4.content.ContextCompat;
 
 import java.io.ByteArrayOutputStream;
@@ -26,6 +27,7 @@ public class  ApplicationController extends Application {
     Locale myLocale;
 
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -41,7 +43,7 @@ public class  ApplicationController extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-//        MultiDex.install(this);
+        MultiDex.install(this);
     }
 
     public static synchronized ApplicationController getInstance() {

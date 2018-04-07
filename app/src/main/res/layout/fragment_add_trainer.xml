@@ -181,27 +181,27 @@
 
     </ScrollView>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#A0000000"
-        android:id="@+id/loadingLayout"
-        android:visibility="gone"
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#A0000000"-->
+        <!--android:id="@+id/loadingLayout"-->
+        <!--android:visibility="gone"-->
 
-        >
-        <com.wang.avi.AVLoadingIndicatorView
-            android:id="@+id/avi"
-            style="@style/AVLoadingIndicatorView.Large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="visible"
-            app:indicatorColor="@color/colorAccent"
-            app:indicatorName="BallClipRotatePulseIndicator"
+        <!--&gt;-->
+        <!--<com.wang.avi.AVLoadingIndicatorView-->
+            <!--android:id="@+id/avi"-->
+            <!--style="@style/AVLoadingIndicatorView.Large"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:visibility="visible"-->
+            <!--app:indicatorColor="@color/colorAccent"-->
+            <!--app:indicatorName="BallClipRotatePulseIndicator"-->
 
 
-            />
-    </FrameLayout>
+            <!--/>-->
+    <!--</FrameLayout>-->
 </FrameLayout>
 
 

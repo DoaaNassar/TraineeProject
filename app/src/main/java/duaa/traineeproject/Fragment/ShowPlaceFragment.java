@@ -27,7 +27,7 @@ public class ShowPlaceFragment extends Fragment {
 
     View view;
     RecyclerView recyclerView;
-    PlaceAdapter placeAdapter ;
+    PlaceAdapter placeAdapter;
 
 
     @Override
@@ -41,7 +41,7 @@ public class ShowPlaceFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_show_place, container, false);
 
-bindView();
+        bindView();
         ArrayList<PlaceModel> arrayList = new ArrayList<>();
         arrayList.add(new PlaceModel("مستشفى الأقصى", "20"));
         arrayList.add(new PlaceModel("مستشفى الشفا", "50"));

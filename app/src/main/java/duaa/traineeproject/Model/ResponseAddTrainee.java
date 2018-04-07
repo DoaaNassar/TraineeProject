@@ -8,20 +8,20 @@ import java.io.Serializable;
 
 public class ResponseAddTrainee implements Serializable
 
-    {
-        private String message;
-        private boolean status;
+{
+    private String message;
+    private boolean status;
 
 
     public ResponseAddTrainee() {
     }
 
-        public ResponseAddTrainee(String message, boolean status) {
-            this.message = message;
-            this.status = status;
-        }
+    public ResponseAddTrainee(String message, boolean status) {
+        this.message = message;
+        this.status = status;
+    }
 
-        public String getMessage() {
+    public String getMessage() {
         return message;
     }
 
@@ -29,11 +29,11 @@ public class ResponseAddTrainee implements Serializable
         this.message = message;
     }
 
-        public boolean isStatus() {
-            return status;
-        }
-
-        public void setStatus(boolean status) {
-            this.status = status;
-        }
+    public boolean isStatus() {
+        return status;
     }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+}

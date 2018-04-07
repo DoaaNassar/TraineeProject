@@ -17,10 +17,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.impl.GlideEngine;
 import com.zhihu.matisse.engine.impl.PicassoEngine;
 
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontButtonRegular;
+import duaa.traineeproject.view.MyGlideEngine;
+//import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.LOCATION_SERVICE;
@@ -55,7 +58,7 @@ public class AddTrainees extends Fragment {
                         .maxSelectable(1)
                         .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                         .thumbnailScale(0.85f)
-                        .imageEngine(new PicassoEngine())
+                        .imageEngine(new MyGlideEngine())
                         .forResult(REQUEST_CODE_CHOOSE);
 
             }

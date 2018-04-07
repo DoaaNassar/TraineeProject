@@ -23,11 +23,10 @@
 
             <duaa.traineeproject.view.FontTextViewRegular
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/colorAccent"
+                android:layout_height="wrap_content"
                 android:paddingRight="10dp"
-                android:text="الأخرى"
-                android:textColor="#FFF"
+                android:text="الأخرى "
+                android:textColor="@color/blueee"
                 android:textSize="17sp"
 
                 />
@@ -101,11 +100,10 @@
 
             <duaa.traineeproject.view.FontTextViewRegular
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/colorAccent"
+                android:layout_height="wrap_content"
                 android:paddingRight="10dp"
                 android:text="المتدربون"
-                android:textColor="#FFF"
+                android:textColor="@color/blueee"
                 android:textSize="17sp"
 
                 />
@@ -288,11 +286,10 @@
 
             <duaa.traineeproject.view.FontTextViewRegular
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/colorAccent"
+                android:layout_height="wrap_content"
                 android:paddingRight="10dp"
                 android:text="المدربين"
-                android:textColor="#FFF"
+                android:textColor="@color/blueee"
                 android:textSize="17sp"
 
                 />
@@ -397,11 +394,10 @@
 
             <duaa.traineeproject.view.FontTextViewRegular
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/colorAccent"
+                android:layout_height="wrap_content"
                 android:paddingRight="10dp"
                 android:text="الجامعات"
-                android:textColor="#FFF"
+                android:textColor="@color/blueee"
                 android:textSize="17sp"
 
                 />
@@ -457,7 +453,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/Faculty"
+                    android:id="@+id/faculty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -550,11 +546,10 @@
 
             <duaa.traineeproject.view.FontTextViewRegular
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/colorAccent"
+                android:layout_height="wrap_content"
                 android:paddingRight="10dp"
                 android:text="الأماكن"
-                android:textColor="#FFF"
+                android:textColor="@color/blueee"
                 android:textSize="17sp"
 
                 />

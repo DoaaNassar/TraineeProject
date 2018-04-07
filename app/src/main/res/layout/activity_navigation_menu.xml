@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
@@ -21,30 +20,28 @@
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-    android:background="#303030"
+        android:background="#303030"
         android:fitsSystemWindows="true"
         app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        >
+        app:itemTextColor="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="30dp"
-                >
+                android:orientation="vertical">
 
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
 
-                    android:layout_gravity="center">
+                    android:layout_marginTop="10dp">
 
                     <ImageView
                         android:id="@+id/circle"
@@ -75,8 +72,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="دعاء بسام نصار"
-                    android:textColor="@color/white"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/white"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -86,8 +83,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="مسؤول"
-                    android:textColor="@color/white"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/white"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -96,33 +93,33 @@
 
 
             <LinearLayout
-                android:id="@+id/home"
+                android:id="@+id/trainee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:orientation="horizontal"
                 android:paddingStart="40dp"
-                android:layout_marginTop="40dp"
                 tools:ignore="RtlCompat">
 
 
                 <duaa.traineeproject.view.FontTextViewRegular
+                    android:id="@+id/textHome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="المتدربين"
-                    android:layout_weight="1"
-                    android:textSize="14.5sp"
                     android:layout_gravity="center"
-                    android:id="@+id/textHome"
+                    android:layout_weight="1"
+                    android:text="المتدربين"
                     android:textColor="@color/white"
-                    android:textStyle="normal"
-                    />
+                    android:textSize="14.5sp"
+                    android:textStyle="normal" />
+
                 <ImageView
                     android:id="@+id/imageHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginRight="7dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="7dp"
                     app:srcCompat="@drawable/ic_person_black_24dp"
 
                     />
@@ -130,184 +127,142 @@
 
 
             <LinearLayout
-                android:id="@+id/fav"
+                android:id="@+id/trainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:paddingStart="40dp"
-                android:layout_marginTop="5dp"
                 tools:ignore="RtlCompat">
 
 
                 <duaa.traineeproject.view.FontTextViewRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:text="المشرفين"
-                    android:layout_weight="1"
-                    android:textSize="14.5sp"
-                    android:layout_gravity="center"
-                    android:id="@+id/favText"
                     android:textColor="@color/white"
-                    android:textStyle="normal"
-                    />
+                    android:textSize="14.5sp"
+                    android:textStyle="normal" />
+
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/favImage"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="7dp"
-                    android:layout_marginLeft="5dp"
-                    app:srcCompat="@drawable/ic_person_black_24dp"
-
-
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/editProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="40dp"
-                android:layout_marginTop="5dp"
-                tools:ignore="RtlCompat">
-
-
-                <duaa.traineeproject.view.FontTextViewRegular
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="المستخدمين"
-                    android:layout_weight="1"
-                    android:textSize="14.5sp"
-                    android:layout_gravity="center"
-                    android:id="@+id/textEditProfile"
-                    android:textColor="@color/white"
-                    android:textStyle="normal"
-
-                    />
-
-                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageEditProfile"
                     android:layout_gravity="center"
-                    android:layout_marginRight="7dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="7dp"
                     app:srcCompat="@drawable/ic_person_black_24dp"
+
 
                     />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/packageMe"
+                android:id="@+id/university"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:paddingStart="40dp"
-                android:layout_marginTop="5dp"
                 tools:ignore="RtlCompat">
 
 
                 <duaa.traineeproject.view.FontTextViewRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:text="الجامعات"
-                    android:layout_weight="1"
-                    android:textSize="14.5sp"
-                    android:layout_gravity="center"
-                    android:id="@+id/textPackageMe"
                     android:textColor="@color/white"
-                    android:textStyle="normal"
-                    />
+                    android:textSize="14.5sp"
+                    android:textStyle="normal" />
 
                 <ImageView
+                    android:id="@+id/imagePackageMe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imagePackageMe"
-                    android:layout_marginRight="7dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/university"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/university"
 
                     />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/addComplaint"
+                android:id="@+id/place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:paddingStart="40dp"
-                android:layout_marginTop="5dp"
                 tools:ignore="RtlCompat">
 
 
                 <duaa.traineeproject.view.FontTextViewRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="الأماكن"
-                    android:layout_weight="1"
-                    android:textSize="14.5sp"
                     android:layout_gravity="center"
-                    android:id="@+id/textAddComplaint"
+                    android:layout_weight="1"
+                    android:text="الأماكن"
                     android:textColor="@color/white"
+                    android:textSize="14.5sp"
                     android:textStyle="normal"
 
                     />
 
                 <ImageView
+                    android:id="@+id/imageAddComplaint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageAddComplaint"
                     android:layout_gravity="center"
-                    android:layout_marginRight="7dp"
-                    android:src="@drawable/place_"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="7dp"
+                    android:src="@drawable/place"
 
                     />
             </LinearLayout>
 
 
             <LinearLayout
+                android:id="@+id/out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/out"
                 android:layout_marginTop="20dp"
+                android:orientation="horizontal"
                 tools:ignore="RtlCompat">
 
 
                 <duaa.traineeproject.view.FontTextViewRegular
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="خروج"
-                    android:textSize="14.5sp"
                     android:layout_gravity="center"
-                    android:textColor="@color/white"
-                    android:textStyle="normal"
                     android:layout_weight="1"
-                    />
+                    android:text="خروج"
+                    android:textColor="@color/white"
+                    android:textSize="14.5sp"
+                    android:textStyle="normal" />
+
                 <ImageView
+                    android:id="@+id/image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/image"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
-                    android:src="@drawable/logout"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-
+                    android:src="@drawable/logout"
 
 
                     />
             </LinearLayout>
-
 
 
         </LinearLayout>
     </android.support.design.widget.NavigationView>
-
 
 
 </android.support.v4.widget.DrawerLayout>

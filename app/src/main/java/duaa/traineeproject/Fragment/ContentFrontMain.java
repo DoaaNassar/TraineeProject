@@ -26,9 +26,6 @@ import duaa.traineeproject.R;
 public class ContentFrontMain extends Fragment {
 
     Fragment fragment =null;
-    LinearLayout addTraineeBtn,showNowTraineeBtn,showOldTraineeBtn,
-            addTrainerBtn,showNowTrainerBtn,showOldTrainerBtn,addPlaceBtn,showPlaceBtn,showUniversityBtn,
-            facultyBtn,addFacultyBtn,university,profileLayout;
 
     View view ;
 
@@ -44,11 +41,29 @@ public class ContentFrontMain extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
        view =inflater.inflate(R.layout.fragment_content_front_main, container, false);
+        ////Trainee layout
+        LinearLayout  addTraineeBtn = view.findViewById(R.id.addTrainee);
+        LinearLayout  showNowTraineeBtn = view.findViewById(R.id.showTrainee);
+        LinearLayout  showOldTraineeBtn = view.findViewById(R.id.showDeletedTrainee);
 
+        ////Trainer layout
+        LinearLayout  addTrainerBtn = view.findViewById(R.id.addTrainer);
+        LinearLayout  showNowTrainerBtn = view.findViewById(R.id.showTrainer);
+        LinearLayout  showOldTrainerBtn = view.findViewById(R.id.showDeletedTrainer);
 
+        ////Place layout
 
+        LinearLayout addPlaceBtn = view.findViewById(R.id.addPlace);
+        LinearLayout showPlaceBtn = view.findViewById(R.id.place);
 
+        ////University layout
 
+        LinearLayout showUniversityBtn = view.findViewById(R.id.addUniversity);
+        LinearLayout addFacultyBtn = view.findViewById(R.id.addFaculty);
+        LinearLayout facultyBtn = view.findViewById(R.id.faculty);
+        LinearLayout university = view.findViewById(R.id.university);
+
+        LinearLayout profileLayout  = view.findViewById(R.id.profile);
 
         final DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
 
@@ -142,7 +157,7 @@ public class ContentFrontMain extends Fragment {
             }
         });
 
-        showNowTraineeBtn.setOnClickListener(new View.OnClickListener() {
+        showNowTrainerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -150,6 +165,16 @@ public class ContentFrontMain extends Fragment {
                 Fragment(1,fragment);
             }
         });
+
+        showOldTrainerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fragment = new TrainerFragment();
+                Fragment(2,fragment);
+            }
+        });
+
 
         profileLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,7 +184,6 @@ public class ContentFrontMain extends Fragment {
                 startActivity(intent);
             }
         });
-
 
         return view;
     }
@@ -178,29 +202,7 @@ public class ContentFrontMain extends Fragment {
 
     public void bindView (){
 
-        ////Trainee ImageButton
-        addTraineeBtn = view.findViewById(R.id.addTrainee);
-         showNowTraineeBtn = view.findViewById(R.id.showTrainee);
-         showOldTraineeBtn = view.findViewById(R.id.showDeletedTrainee);
 
-        ////Trainer ImageButton
-         addTrainerBtn = view.findViewById(R.id.addTrainer);
-         showNowTrainerBtn = view.findViewById(R.id.showTrainer);
-         showOldTrainerBtn = view.findViewById(R.id.showDeletedTrainer);
-
-        ////Place ImageButton
-
-         addPlaceBtn = view.findViewById(R.id.addPlace);
-         showPlaceBtn = view.findViewById(R.id.place);
-
-        ////UniversityImageButton
-
-         showUniversityBtn = view.findViewById(R.id.addUniversity);
-         addFacultyBtn = view.findViewById(R.id.addFaculty);
-         facultyBtn = view.findViewById(R.id.faculty);
-         university = view.findViewById(R.id.university);
-
-         profileLayout  = view.findViewById(R.id.profile);
     }
 
 }

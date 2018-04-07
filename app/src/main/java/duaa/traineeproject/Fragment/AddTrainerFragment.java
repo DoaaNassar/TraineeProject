@@ -55,8 +55,7 @@ public class AddTrainerFragment extends Fragment {
                     String emailTxt = email.getText().toString();
                     String phoneTxt = phoneNumber.getText().toString();
                     String mobileTxt = mobileNumber.getText().toString();
-                    loadingLayout.setVisibility(View.VISIBLE);
-                    contentLayout.setEnabled(false);
+
                     AddItem(new TrainerObject(nameTxt, emailTxt, mobileTxt, "5", "1"
                             , phoneTxt, "15"));
 
@@ -87,6 +86,10 @@ public class AddTrainerFragment extends Fragment {
 
 
     public void AddItem(final TrainerObject item) {
+
+        loadingLayout.setVisibility(View.VISIBLE);
+        contentLayout.setEnabled(false);
+
         new UserAPI().AddTrainee(item, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
@@ -94,9 +97,8 @@ public class AddTrainerFragment extends Fragment {
                 String ss = responseItem.getMessage();
 
                 if (responseItem.isStatus()) {
-                    loadingLayout.setVisibility(View.VISIBLE);
-                    contentLayout.setEnabled(false);
-
+                    loadingLayout.setVisibility(View.GONE);
+                    contentLayout.setEnabled(true);
                 }
 
 
@@ -138,7 +140,7 @@ public class AddTrainerFragment extends Fragment {
         chooseFaculty = view.findViewById(R.id.faculty);
         save = view.findViewById(R.id.save);
         contentLayout = view.findViewById(R.id.contentLayout);
-        loadingLayout = view.findViewById(R.id.loadingLayout);
+        loadingLayout = getActivity().findViewById(R.id.loadingLayout);
 
 
     }

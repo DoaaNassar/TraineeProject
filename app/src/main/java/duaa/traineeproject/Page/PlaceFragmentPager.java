@@ -20,12 +20,15 @@ import duaa.traineeproject.view.FontTextViewRegular;
 public class PlaceFragmentPager extends Fragment {
 
     View view;
-    FontTextViewRegular addPlace, place;
+    FontTextViewRegular addPlace, place ,co;
+    int number ;
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        number = getArguments().getInt("numberViewPager");
 
     }
 
@@ -36,12 +39,21 @@ public class PlaceFragmentPager extends Fragment {
 
 
         bindView();
-        addPlace();
-        Fragment con = new AddPlaceFragment();
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.containerPlace, con).commit();
 
+        if (number==1){
+            showPlace();
+            Fragment con = new ShowPlaceFragment();
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.containerPlace, con).commit();
+
+        }else {
+            addPlace();
+            Fragment con = new AddPlaceFragment();
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.containerPlace, con).commit();
+        }
         addPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

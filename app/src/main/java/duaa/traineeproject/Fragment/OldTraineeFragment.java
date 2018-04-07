@@ -52,21 +52,6 @@ View view ;
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
 
-        CheckBox checkBox =view.findViewById(R.id.checkAll);
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    adapter.toggleSelectAll();
-                    adapter.notifyDataSetChanged();
-
-                }
-                else {
-                    adapter.toggleSelectAll();
-                    adapter.notifyDataSetChanged();
-                }
-            }
-        });
 
 
         // Inflate the layout for this fragment

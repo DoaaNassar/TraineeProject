@@ -35,6 +35,8 @@
                     android:layout_marginBottom="10dp"
                     android:drawablePadding="5dp"
                     android:textSize="15sp"
+                    android:textColor="@color/Blue"
+                    android:text="تعديل الملف الشخصي "
                     android:textStyle="bold" />
 
 
@@ -49,9 +51,8 @@
                     android:singleLine="true"
                     android:text="دعاء نصار"
                     android:textColor="@color/silver"
-
                     android:textSize="13sp"
-
+                    android:gravity="right"
 
                     />
 
@@ -74,7 +75,6 @@
                         android:textColor="@color/silver"
                         android:textSize="13sp"
                         android:gravity="right"
-
 
                         />
 
@@ -108,6 +108,8 @@
                     android:text="example@gmail.com"
                     android:textColor="@color/silver"
                     android:textSize="13sp"
+                    android:gravity="right"
+
 
                     />
 
@@ -135,10 +137,9 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/background_edittext"
-                    android:inputType="number"
                     android:padding="12dp"
                     android:singleLine="true"
-                    android:text="95451566"
+                    android:text="غزة"
                     android:textColor="@color/silver"
                     android:textSize="13sp" />
 
@@ -151,6 +152,22 @@
                     android:background="@drawable/background_edittext"
                     android:inputType="number"
                     android:padding="12dp"
+                    android:singleLine="true"
+                    android:text="95451566"
+                    android:gravity="right"
+                    android:textColor="@color/silver"
+                    android:textSize="13sp" />
+
+                <duaa.traineeproject.view.FontEditTextViewRegular
+                    android:id="@+id/mobileNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_edittext"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:gravity="right"
                     android:singleLine="true"
                     android:text="95451566"
                     android:textColor="@color/silver"
