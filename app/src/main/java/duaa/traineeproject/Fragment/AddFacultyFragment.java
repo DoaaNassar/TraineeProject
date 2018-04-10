@@ -56,34 +56,34 @@ public class AddFacultyFragment extends Fragment {
         bindView();
 
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        specAdapter = new SpecAdapter(getActivity(), specificationList, new CustomItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-
-            }
-        }, new SpecAdapter.MyRecyclerViewListener() {
-            @Override
-            public void RemoveImage(View v, int position) {
-                specificationList.remove(position);
-                specAdapter.notifyItemRemoved(position);
-                specAdapter.notifyDataSetChanged();
-            }
-        });
-
-        recyclerView.setAdapter(specAdapter);
-        specAdapter.notifyDataSetChanged();
-        addSpec.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                specificationList.add(new Specification(spec.getText().toString(),spec.getText().toString()));
-                specAdapter.notifyDataSetChanged();
-
-            }
-        });
-
-        university();
+//        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+//        specAdapter = new SpecAdapter(getActivity(), specificationList, new CustomItemClickListener() {
+//            @Override
+//            public void onItemClick(View v, int position) {
+//
+//            }
+//        }, new SpecAdapter.MyRecyclerViewListener() {
+//            @Override
+//            public void RemoveImage(View v, int position) {
+//                specificationList.remove(position);
+//                specAdapter.notifyItemRemoved(position);
+//                specAdapter.notifyDataSetChanged();
+//            }
+//        });
+//
+//        recyclerView.setAdapter(specAdapter);
+//        specAdapter.notifyDataSetChanged();
+//        addSpec.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                specificationList.add(new Specification(spec.getText().toString(),spec.getText().toString()));
+//                specAdapter.notifyDataSetChanged();
+//
+//            }
+//        });
+//
+//        university();
 
 
         return view ;
@@ -93,7 +93,7 @@ public class AddFacultyFragment extends Fragment {
     public void bindView (){
         addSpec = view.findViewById(R.id.addSpec);
         recyclerView =view.findViewById(R.id.specificationList);
-        universityRecyclerView=view.findViewById(R.id.universityList);
+//        universityRecyclerView=view.findViewById(R.id.universityList);
         spec =view.findViewById(R.id.textSpec);
 
     }

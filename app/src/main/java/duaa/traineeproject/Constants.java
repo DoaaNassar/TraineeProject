@@ -13,6 +13,7 @@ public class Constants {
     public static final String login= baseUrl +"api/login";
     public static final String ADD_COLLAGE = baseUrl +"api/add-collage";
     public static final String ADD_UNIVERSITY = baseUrl +"api/add-university";
+    public static final String PHOTO_PATH = baseUrl +"uploads/book_images/";
 
 
 }

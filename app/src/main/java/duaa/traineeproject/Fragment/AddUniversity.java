@@ -124,6 +124,7 @@ public class AddUniversity extends Fragment {
 //        contentLayout = getActivity().findViewById(R.id.contentLayout);
         loadingLayout = getActivity().findViewById(R.id.loadingLayout);
 
+
     }
 
 

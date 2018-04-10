@@ -20,7 +20,7 @@ import duaa.traineeproject.view.FontTextViewRegular;
 public class PlaceFragmentPager extends Fragment {
 
     View view;
-    FontTextViewRegular addPlace, place ,co;
+    FontTextViewRegular addPlace, place ,title;
     int number ;
 
 
@@ -85,6 +85,7 @@ public class PlaceFragmentPager extends Fragment {
 
         addPlace = view.findViewById(R.id.addPlace);
         place = view.findViewById(R.id.place);
+        title = getActivity().findViewById(R.id.title);
     }
     public void addPlace(){
 
@@ -98,6 +99,7 @@ public class PlaceFragmentPager extends Fragment {
 
         addPlace.setTextColor(getResources().getColor(R.color.silver));
         place.setTextColor(getResources().getColor(R.color.colorPrimary));
+
 
     }
 }
