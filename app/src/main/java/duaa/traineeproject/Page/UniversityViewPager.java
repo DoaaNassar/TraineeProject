@@ -23,10 +23,12 @@ public class UniversityViewPager extends Fragment {
 
     FontTextViewRegular addUniversity, addFaculty, addSpecification, university;
     View view;
+    int number = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        number = getArguments().getInt("numberViewPager");
 
     }
 
@@ -37,13 +39,35 @@ public class UniversityViewPager extends Fragment {
         view = inflater.inflate(R.layout.fragment_university_view_pager, container, false);
         bindView();
 
-        addUniversity();
+        if (number == 3) {
+            university();
+            Fragment con = new Unviersity();
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.containerUniversity, con).commit();
 
-        Fragment con = new AddUniversity();
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.containerUniversity, con).commit();
+        } else if (number == 2) {
 
+            Fragment con = new AddSpecificationFragment();
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.containerUniversity, con).commit();
+            addSpec();
+
+        } else if (number == 1) {
+            Fragment con = new AddFacultyFragment();
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.containerUniversity, con).commit();
+            addFaculty();
+        } else {
+            addUniversity();
+            Fragment con = new AddUniversity();
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.containerUniversity, con).commit();
+
+        }
         addUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

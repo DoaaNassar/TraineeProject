@@ -153,7 +153,7 @@ public class NavigationMenuActivity extends AppCompatActivity
 
 //    @Override
 //    public void onActivityResult (int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
+//        super_.onActivityResult(requestCode, resultCode, data);
 //        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
 //            Log.d("ffffff",requestCode+"");
 //            fragment.onActivityResult(requestCode, resultCode, data);

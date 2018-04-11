@@ -15,4 +15,6 @@
     <string name="phoneNumber">رقم الجوال</string>
     <string name="mobileNumber">رقم الهاتف</string>
     <string name="IDPersonNumber">رقم الهوية</string>
+    <string name="please_wait">الرجاء الانتظار</string>
+
 </resources>

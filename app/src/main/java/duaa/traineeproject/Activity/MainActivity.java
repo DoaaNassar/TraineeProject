@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
+import android.text.TextUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import duaa.traineeproject.Application.ApplicationController;
 import duaa.traineeproject.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,17 +20,30 @@ public class MainActivity extends AppCompatActivity {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_main);
 
-        TimerTask task =new TimerTask() {
-            @Override
-            public void run() {
+        if (!TextUtils.isEmpty(ApplicationController.getInstance().token())){
 
-                finish();
-                Intent intent =new Intent(MainActivity.this,Login.class);
-                startActivity(intent);
+            Intent refresh = new Intent(this, NavigationMenuActivity.class);
+            startActivity(refresh);
 
-            }
-        };
-        Timer opening = new Timer();
-        opening.schedule(task,4000);
+
+        }else {
+            TimerTask task =new TimerTask() {
+                @Override
+                public void run() {
+
+                    finish();
+                    Intent intent =new Intent(MainActivity.this,Login.class);
+                    startActivity(intent);
+
+                }
+            };
+            Timer opening = new Timer();
+            opening.schedule(task,4000);
+        }
+
+
+
+
+
     }
 }

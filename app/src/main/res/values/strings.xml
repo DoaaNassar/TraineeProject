@@ -35,5 +35,7 @@
     <string name="showUser">المستخدمين</string>
     <string name="addPlace">إضافة مكان</string>
     <string name="showPlace">الأماكن</string>
+    <string name="please_wait">الرجاء الانتظار</string>
+
 
 </resources>

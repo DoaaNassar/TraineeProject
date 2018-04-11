@@ -45,6 +45,30 @@ public class TrainerFragment extends Fragment {
             oldTrainer();
         }
 
+        addTrainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment(new AddTrainerFragment());
+                addTrainer();
+            }
+        });
+
+        showTrainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment(new ShowTrainerFragment());
+                showTrainer();
+            }
+        });
+
+        oldTrainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment(new OldTraineeFragment());
+                oldTrainer();
+            }
+        });
+
 
         return view;
     }

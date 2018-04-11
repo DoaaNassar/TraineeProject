@@ -3,6 +3,7 @@ package duaa.traineeproject.Application;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -10,11 +11,15 @@ import android.graphics.drawable.Drawable;
 import android.support.multidex.MultiDex;
 import android.support.v4.content.ContextCompat;
 
+import com.google.gson.Gson;
+
 import java.io.ByteArrayOutputStream;
 import java.util.Locale;
 
 import duaa.traineeproject.API.SharedPrefSingleton;
 import duaa.traineeproject.API.VolleySingleton;
+import duaa.traineeproject.Activity.Login;
+import duaa.traineeproject.Model.UserDataResponse;
 
 /**
  * Created by AL-Qema on 08/03/18.
@@ -25,17 +30,19 @@ public class  ApplicationController extends Application {
     private static ApplicationController mInstance;
     private static Context context;
     Locale myLocale;
-
+    SharedPreferences sharedPreferences ;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        sharedPreferences = getSharedPreferences("db",MODE_PRIVATE);
 
         mInstance = this;
         SharedPrefSingleton.init(this);
         VolleySingleton.getInstance();
+
 //        loadLocale();
 
     }
@@ -43,7 +50,7 @@ public class  ApplicationController extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        MultiDex.install(this);
+//        MultiDex.install(this);
     }
 
     public static synchronized ApplicationController getInstance() {
@@ -54,13 +61,6 @@ public class  ApplicationController extends Application {
     }
 
 
-    /**
-     * Turn drawable resource into byte array.
-     *
-     * @param context parent context
-     * @param id      drawable resource id
-     * @return byte array
-     */
     public static byte[] getFileDataFromDrawable(Context context, int id) {
         Drawable drawable = ContextCompat.getDrawable(context, id);
         Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
@@ -111,7 +111,7 @@ public class  ApplicationController extends Application {
 //        return bReturn;
 //    }
 
-//    public static byte[] readBytes(Uri uri) throws IOException {
+    //    public static byte[] readBytes(Uri uri) throws IOException {
 //        // this dynamically extends to take the bytes you read
 //        InputStream inputStream = getAppContext().getContentResolver().openInputStream(uri);
 //        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
@@ -134,42 +134,43 @@ public class  ApplicationController extends Application {
     }
 
 
-//    public User getUser() {
-//        return Realm.getDefaultInstance().where(User.class).findFirst();
-//    }
+    public String token(){
+        SharedPreferences sharedPreferences = getSharedPreferences("access_token",MODE_PRIVATE);
+        String token = sharedPreferences.getString("access_token","");
+        return token ;
 
-//    public void loginUser(final User user) {
-//        SharedPreferences.Editor editor = ApplicationController.getAppContext().getSharedPreferences("access_token", Context.MODE_PRIVATE).edit();
-//        editor.putString("access_token", user.getAccess_token());
-//        Gson gson = new Gson();
-//        String json = gson.toJson(user);
-//        editor.putString("User", json);
-//
-//
-//        editor.commit();
-//        if (Realm.getDefaultInstance().where(User.class).findFirst() == null) {
-//
-//            Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
-//                @Override
-//                public void execute(Realm realm) {
-//                    realm.copyToRealm(user);
-//                }
-//            });
-//        } else {
-//            logout();
-//            loginUser(user);
-//        }
-//    }
+    }
 
-//    public void logout() {
-//        Logout(ApplicationController.getInstance().getUser().getAccess_token());
-//        Realm.getDefaultInstance().executeTransaction(new Realm.Transaction() {
-//            @Override
-//            public void execute(Realm realm) {
-//                realm.delete(User.class);
-//            }
-//        });
-//    }
+
+    public  void  login_token(String access_token){
+
+        SharedPreferences.Editor editor = ApplicationController.getAppContext().
+                getSharedPreferences("access_token", Context.MODE_PRIVATE).edit();
+        editor.putString("access_token", access_token);
+        editor.commit();
+
+    }
+
+    public void userLogin(final UserDataResponse user){
+
+        SharedPreferences.Editor editor = ApplicationController.getAppContext().
+                getSharedPreferences("access_token", Context.MODE_PRIVATE).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        editor.putString("User", json);
+        editor.commit();
+
+    }
+
+    public UserDataResponse getLoginUser (){
+        SharedPreferences sharedPreferences = getSharedPreferences("access_token",MODE_PRIVATE);
+        String response = sharedPreferences.getString("User","");
+        Gson gson = new Gson();
+        UserDataResponse user =gson.fromJson(response ,UserDataResponse.class);
+
+        return user;
+    }
+
 
 
 //    public boolean IsUserLoggedIn() {
@@ -180,48 +181,14 @@ public class  ApplicationController extends Application {
 //        }
 //    }
 
-//    public void RefreshToken(ResponseToken responseToken) {
-//        User toEdit = Realm.getDefaultInstance().where(User.class)
-//                .findFirst();
-//        Realm.getDefaultInstance().beginTransaction();
-//        toEdit.setAccess_token(responseToken.getAccess_token());
-//        toEdit.setRefresh_token(responseToken.getRefresh_token());
-//        toEdit.setExpires_in(responseToken.getExpires_in());
-//        toEdit.setToken_type(responseToken.getToken_type());
-//        Realm.getDefaultInstance().commitTransaction();
-//    }
 
 
-//    public void Logout() {
+    public void Logout() {
 //        logout();
-//        Intent intent = new Intent(this, LoginActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        startActivity(intent);
-//    }
-
-//    public void Logout(final String token) {
-//        new UserAPI().Logout(token, new UniversalCallBack() {
-//            @Override
-//            public void onResponse(Object UniversityListModel) {
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Object UniversityListModel) {
-//
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//
-//            }
-//
-//            @Override
-//            public void OnError(String message) {
-//
-//            }
-//        });
-//    }
+        Intent intent = new Intent(this, Login.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
 
     public void loadLocale() {
         String langPref = "Language";
@@ -251,4 +218,5 @@ public class  ApplicationController extends Application {
         editor.putString(langPref, lang);
         editor.commit();
     }
+
 }

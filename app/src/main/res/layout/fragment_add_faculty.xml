@@ -29,7 +29,7 @@
             android:id="@+id/nameFaculty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="13dp"
+            android:padding="10dp"
             android:hint="اسم الكلية"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -37,11 +37,6 @@
             android:textSize="13sp"
 
             />
-
-
-
-
-
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -54,8 +49,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/background_edittext"
-                android:padding="13dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
                 android:textSize="13sp"
+                android:paddingLeft="70dp"
                 android:hint="التخصص"
 
                 />
@@ -63,7 +61,7 @@
             <duaa.traineeproject.view.FontButtonRegular
                 android:id="@+id/addSpec"
                 android:layout_width="70dp"
-                android:layout_height="35dp"
+                android:layout_height="31dp"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
                 android:text="إضافة"

@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+
         android:name=".Application.ApplicationController"
         android:allowBackup="true"
         android:configChanges="locale"
@@ -29,8 +30,10 @@
             android:name=".Activity.NavigationMenuActivity"
             android:label="@string/title_activity_navigation_menu"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize|adjustPan|stateHidden" />
-        <activity android:name=".Activity.EditTrainee"></activity>
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"  />
+        <activity android:name=".Activity.EditTrainee">
+
+        </activity>
     </application>
 
 </manifest>

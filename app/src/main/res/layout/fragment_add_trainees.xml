@@ -1,5 +1,4 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,31 +7,30 @@
     tools:context="duaa.traineeproject.Fragment.AddTrainees"
 
     >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16dp"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <duaa.traineeproject.view.FontTextViewRegular
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/silver"
             android:text="تسجيل متدرب جديد "
-            android:textStyle="bold"
+            android:textColor="@color/silver"
             android:textSize="15sp"
-            />
+            android:textStyle="bold" />
 
         <duaa.traineeproject.view.FontEditTextViewRegular
             android:id="@+id/traineeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:hint="@string/userName"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/background_edittext"
+            android:hint="@string/userName"
+            android:padding="10dp"
             android:textSize="13sp"
 
             />
@@ -41,61 +39,51 @@
             android:id="@+id/idNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:hint="@string/IDPersonNumber"
             android:layout_marginBottom="10dp"
             android:background="@drawable/background_edittext"
-            android:textSize="13sp"
+            android:hint="@string/IDPersonNumber"
             android:inputType="number"
+            android:padding="10dp"
+            android:textSize="13sp"
 
             />
+
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="end"
-            android:id="@+id/radioGroup"
+            android:orientation="horizontal"
 
             >
+
             <duaa.traineeproject.view.FontRadioButton
                 android:id="@+id/radio1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ذكر"
-                />
+                android:text="ذكر" />
 
             <duaa.traineeproject.view.FontRadioButton
                 android:id="@+id/radio2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="أنثى"
-                />
+                android:text="أنثى" />
         </RadioGroup>
 
 
-        <duaa.traineeproject.view.FontEditTextViewRegular
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:hint="@string/password"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/background_edittext"
-            android:textSize="13sp"
 
-            />
 
 
         <duaa.traineeproject.view.FontEditTextViewRegular
             android:id="@+id/phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:hint="@string/phoneNumber"
             android:layout_marginBottom="10dp"
             android:background="@drawable/background_edittext"
-            android:textSize="13sp"
+            android:hint="@string/phoneNumber"
             android:inputType="number"
+            android:padding="10dp"
+            android:textSize="13sp"
 
             />
 
@@ -103,12 +91,12 @@
             android:id="@+id/mobileNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:hint="@string/mobileNumber"
             android:layout_marginBottom="10dp"
             android:background="@drawable/background_edittext"
-            android:textSize="13sp"
+            android:hint="@string/mobileNumber"
             android:inputType="number"
+            android:padding="10dp"
+            android:textSize="13sp"
 
             />
 
@@ -119,12 +107,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:padding="10dp"
+            android:background="@drawable/background_edittext"
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal"
-            android:background="@drawable/background_edittext"
-            >
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/iconType"
@@ -150,15 +137,35 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/typeSpinnerLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="right"
+            android:visibility="gone"
+
+            >
+
+            <ListView
+                android:id="@+id/typeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foregroundGravity="right">
+
+            </ListView>
+        </LinearLayout>
+
         <duaa.traineeproject.view.FontEditTextViewRegular
+            android:id="@+id/studentID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:hint="@string/IDNumber"
             android:layout_marginBottom="10dp"
             android:background="@drawable/background_edittext"
-            android:textSize="13sp"
+            android:hint="@string/IDNumber"
             android:inputType="number"
+            android:padding="10dp"
+            android:textSize="13sp"
 
 
             />
@@ -169,12 +176,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:padding="10dp"
+            android:background="@drawable/background_edittext"
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal"
-            android:background="@drawable/background_edittext"
-            >
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/iconChooseUniversity"
@@ -201,17 +207,35 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/universitySpinnerLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="right"
+            android:visibility="gone"
+
+            >
+
+            <ListView
+                android:id="@+id/universitySpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foregroundGravity="right">
+
+            </ListView>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/faculty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/background_edittext"
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal"
-            android:background="@drawable/background_edittext"
-            android:padding="10dp"
-            >
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/iconFaculty"
@@ -238,17 +262,35 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/facultySpinnerLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="right"
+            android:visibility="gone"
+
+            >
+
+            <ListView
+                android:id="@+id/facultySpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foregroundGravity="right">
+
+            </ListView>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/spec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/background_edittext"
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal"
-            android:background="@drawable/background_edittext"
-            android:padding="10dp"
-            >
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/iconSpec"
@@ -273,7 +315,24 @@
 
 
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/specificationSpinnerLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="right"
+            android:visibility="gone"
 
+            >
+
+            <ListView
+                android:id="@+id/specificationSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foregroundGravity="right">
+
+            </ListView>
+        </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -285,10 +344,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/background_edittext"
-                android:padding="10dp"
-                android:textSize="13sp"
                 android:enabled="false"
                 android:hint="صورة الكتاب"
+                android:paddingBottom="10dp"
+                android:paddingLeft="70dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:textSize="13sp"
 
                 />
 
@@ -298,10 +360,10 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
-                android:textColor="@color/white"
-                android:src="@drawable/upload"
-                android:padding="8dp"
                 android:background="@drawable/background_buttonn"
+                android:padding="8dp"
+                android:src="@drawable/upload"
+                android:textColor="@color/white"
 
                 />
 
@@ -311,8 +373,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            app:cardCornerRadius="10dp"
             android:layout_marginRight="10dp"
+            app:cardCornerRadius="10dp"
 
             >
 
@@ -320,59 +382,61 @@
                 android:id="@+id/image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:visibility="gone"
                 android:scaleType="fitXY"
+                android:visibility="gone"
 
                 />
         </android.support.v7.widget.CardView>
-            <duaa.traineeproject.view.FontTextViewRegular
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_place"
-                android:text="العنوان"
-                android:textColor="@color/black"
-                android:paddingStart="10dp"
-                android:drawablePadding="5dp"
-                android:gravity="center_vertical"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                tools:ignore="RtlCompat" />
 
-
-
-            <duaa.traineeproject.view.FontEditTextViewRegular
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:background="@drawable/background_edittext"
-                android:textSize="13sp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="10dp"
-
-                />
+        <duaa.traineeproject.view.FontTextViewRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableEnd="@drawable/ic_place"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="العنوان"
+            android:textColor="@color/black"
+            tools:ignore="RtlCompat" />
 
 
         <duaa.traineeproject.view.FontEditTextViewRegular
+            android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:hint="@string/email"
+            android:layout_gravity="center_vertical"
             android:layout_marginBottom="10dp"
             android:background="@drawable/background_edittext"
+            android:padding="10dp"
             android:textSize="13sp"
+
+            />
+
+
+        <duaa.traineeproject.view.FontEditTextViewRegular
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_edittext"
+            android:hint="@string/email"
+            android:padding="10dp"
+            android:textSize="13sp"
 
             />
 
         <duaa.traineeproject.view.FontButtonRegular
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/background_button"
             android:text="@string/login"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
 
 
             />
