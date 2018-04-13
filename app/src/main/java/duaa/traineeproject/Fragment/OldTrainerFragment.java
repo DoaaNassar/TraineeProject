@@ -12,16 +12,10 @@ import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
 
 
-public class addUniversityFragment extends Fragment {
+public class OldTrainerFragment extends Fragment {
 
-    View view;
+    View view ;
     FontTextViewRegular title ;
-
-    public static addUniversityFragment newInstance(String param1, String param2) {
-        addUniversityFragment fragment = new addUniversityFragment();
-
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,19 +26,15 @@ public class addUniversityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        view = inflater.inflate(R.layout.fragment_add_university2, container, false);
-
-
+        view = inflater.inflate(R.layout.fragment_old_trainer, container, false);
         bindView();
-        title.setText(getString(R.string.universityPart));
+        title.setText(getString(R.string.trainerPart));
+        // Inflate the layout for this fragment
         return view;
     }
 
-    public void bindView() {
+    public void bindView(){
         title = getActivity().findViewById(R.id.title);
-
-
     }
 
 }

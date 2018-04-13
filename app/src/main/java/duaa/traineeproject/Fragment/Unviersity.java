@@ -24,6 +24,7 @@ import duaa.traineeproject.Interface.UniversalCallBack;
 import duaa.traineeproject.Model.University;
 import duaa.traineeproject.Model.UniversityListModel;
 import duaa.traineeproject.R;
+import duaa.traineeproject.view.FontTextViewRegular;
 
 
 public class Unviersity extends Fragment {
@@ -33,6 +34,7 @@ public class Unviersity extends Fragment {
     ArrayList<University> universityList;
     UniversityAdapter showUniversityAdapter;
     LinearLayout loading, noInternet;
+    FontTextViewRegular title ;
 
 
     @Override
@@ -50,6 +52,7 @@ public class Unviersity extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_unviersity, container, false);
         bindView();
+        title.setText(getString(R.string.universityPart));
         university();
 
         return view;
@@ -58,6 +61,7 @@ public class Unviersity extends Fragment {
     public void bindView() {
         universityRecyclerView = view.findViewById(R.id.listUniversityShow);
         loading = view.findViewById(R.id.loading);
+        title = getActivity().findViewById(R.id.title);
 
 
     }

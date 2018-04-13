@@ -17,11 +17,13 @@ import duaa.traineeproject.Adapter.ListTraineeAdapter;
 import duaa.traineeproject.Adapter.OldTraineeAdapter;
 import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.R;
+import duaa.traineeproject.view.FontTextViewRegular;
 
 
 public class OldTraineeFragment extends Fragment {
 
 View view ;
+FontTextViewRegular title ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ View view ;
                              Bundle savedInstanceState) {
 
         view =inflater.inflate(R.layout.fragment_old_trainee, container, false);
+        bindView();
+        title.setText(getString(R.string.traineePart));
 
         ArrayList<TrainerObject> arrayList = new ArrayList<>();
         arrayList.add(new TrainerObject("دعاء  نصار","","","","","",""));
@@ -56,6 +60,10 @@ View view ;
 
         // Inflate the layout for this fragment
         return view ;
+    }
+
+    public void bindView (){
+        title = getActivity().findViewById(R.id.title);
     }
 
 

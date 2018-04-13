@@ -3,6 +3,7 @@ package duaa.traineeproject.Fragment;
 import android.app.NativeActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -43,20 +45,26 @@ import duaa.traineeproject.view.MyGlideEngine;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.LOCATION_SERVICE;
+import static duaa.traineeproject.Constants.FONTS_APP;
 
 public class AddTrainees extends Fragment {
 
     View view;
     Uri SelectedImage;
     ImageView imageView, upload;
+    RadioGroup gender ;
+
+    FontTextViewRegular title ;
     private static final int REQUEST_CODE_CHOOSE = 500;
     ArrayList<University> arrayListUniversity;
     ListView universityList;
-    LinearLayout listUniversityLayout ,listTypeLayout ,listFacultyLayout ,listSpecificationLayout;
-    ImageView imageUniversity ,imageType ,imageFaculty ,imageSpecification;
-    FontTextViewRegular titleSpinnerType,titleSpinnerFaculty,titleSpinnerSpecification,titleSpinnerUniversity ;
+    LinearLayout chooseUniversity, chooseFaculty;
+    LinearLayout listUniversityLayout, listTypeLayout, listFacultyLayout, listSpecificationLayout;
+    ImageView imageUniversity, imageType, imageFaculty, imageSpecification;
+    FontTextViewRegular titleSpinnerType, titleSpinnerFaculty, titleSpinnerSpecification, titleSpinnerUniversity;
     int height;
-    FontEditTextViewRegular name ,idNumber ,mobileNumber,phoneNumber,studentID,address , email ;
+    FontEditTextViewRegular name, idNumber, mobileNumber, phoneNumber, studentID, address, email;
+    Typeface face;
 
 
     @Override
@@ -64,6 +72,8 @@ public class AddTrainees extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         arrayListUniversity = new ArrayList<>();
+        face= Typeface.createFromAsset(getActivity().getAssets(), FONTS_APP);
+
 
     }
 
@@ -73,6 +83,7 @@ public class AddTrainees extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_add_trainees, container, false);
         bindView();
+        title.setText("المتدربين");
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +96,22 @@ public class AddTrainees extends Fragment {
                         .thumbnailScale(0.85f)
                         .imageEngine(new MyGlideEngine())
                         .forResult(REQUEST_CODE_CHOOSE);
+
+            }
+        });
+
+        chooseUniversity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UniversityItem();
+
+
+            }
+        });
+
+        chooseFaculty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
@@ -103,6 +130,10 @@ public class AddTrainees extends Fragment {
         phoneNumber = view.findViewById(R.id.phoneNumber);
         mobileNumber = view.findViewById(R.id.mobileNumber);
         address = view.findViewById(R.id.address);
+        gender = view.findViewById(R.id.radioGroup);
+
+        chooseUniversity = view.findViewById(R.id.university);
+        chooseFaculty = view.findViewById(R.id.faculty);
 
         universityList = view.findViewById(R.id.universitySpinner);
 
@@ -121,6 +152,7 @@ public class AddTrainees extends Fragment {
         titleSpinnerUniversity = view.findViewById(R.id.textUniversity);
         titleSpinnerType = view.findViewById(R.id.textType);
 
+        title = getActivity().findViewById(R.id.title);
 
     }
 
@@ -146,11 +178,9 @@ public class AddTrainees extends Fragment {
             imageView.setVisibility(View.VISIBLE);
 
 
-
         }
 
     }
-
 
 
     public boolean Validate() {
@@ -165,7 +195,7 @@ public class AddTrainees extends Fragment {
         return true;
     }
 
-    public void Categories() {
+    public void UniversityItem() {
         new UserAPI().getAllUniversity(new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
@@ -192,7 +222,8 @@ public class AddTrainees extends Fragment {
                     ResponseError responseError = (ResponseError) result;
                     if (getActivity() != null)
                         Alerter.create(getActivity())
-                                .setText(responseError.getMessage())
+                                .setText("لا يوجد اتصال بالانترنت")
+                                .setTextTypeface(face)
                                 .hideIcon()
                                 .setBackgroundColorRes(R.color.colorPrimary)
                                 .show();

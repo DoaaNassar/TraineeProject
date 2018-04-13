@@ -28,7 +28,7 @@ public class ShowPlaceFragment extends Fragment {
     View view;
     RecyclerView recyclerView;
     PlaceAdapter placeAdapter;
-
+FontTextViewRegular title ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class ShowPlaceFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_show_place, container, false);
 
         bindView();
+        title.setText(getString(R.string.placePart));
         ArrayList<PlaceModel> arrayList = new ArrayList<>();
         arrayList.add(new PlaceModel("مستشفى الأقصى", "20"));
         arrayList.add(new PlaceModel("مستشفى الشفا", "50"));
@@ -71,5 +72,6 @@ public class ShowPlaceFragment extends Fragment {
 
     public void bindView() {
         recyclerView = view.findViewById(R.id.recyclerview);
+        title = view.findViewById(R.id.title);
     }
 }

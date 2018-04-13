@@ -15,6 +15,14 @@ public class Constants {
     public static final String ADD_UNIVERSITY = baseUrl +"api/add-university";
     public static final String PHOTO_PATH = baseUrl +"uploads/book_images/";
 
+    public static final String GET_FACULTY = baseUrl +"";
+    public static final String GET_now_TRAINER = baseUrl +"";
+    public static final String GET_old_TRAINER = baseUrl +"";
+
+
+
+
+
 
 
 }

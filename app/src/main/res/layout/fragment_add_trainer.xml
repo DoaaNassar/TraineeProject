@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -39,6 +40,8 @@
                 android:hint="اسم المشرف"
                 android:padding="10dp"
                 android:textSize="13sp"
+                android:singleLine="true"
+                android:gravity="right"
 
                 />
 
@@ -52,6 +55,9 @@
                 android:hint="@string/email"
                 android:padding="10dp"
                 android:textSize="13sp"
+                android:singleLine="true"
+                android:gravity="right"
+
 
                 />
 
@@ -66,6 +72,9 @@
                 android:inputType="number"
                 android:padding="10dp"
                 android:textSize="13sp"
+                android:singleLine="true"
+                android:gravity="right"
+
 
 
                 />
@@ -82,6 +91,7 @@
                 android:inputType="number"
                 android:padding="10dp"
                 android:textSize="13sp"
+                android:gravity="right"
 
                 />
 
@@ -133,7 +143,11 @@
                     android:id="@+id/universitySpinner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:foregroundGravity="right">
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:divider="@color/white"
+                    android:dividerHeight="2dp"
+                    >
 
                 </ListView>
             </LinearLayout>
@@ -184,6 +198,10 @@
                     android:id="@+id/facultySpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:divider="@color/white"
+                    android:dividerHeight="2dp"
 
                     >
 
@@ -202,7 +220,6 @@
                 android:textSize="13sp"
                 android:textStyle="bold"
 
-
                 />
 
 
@@ -210,28 +227,6 @@
 
 
     </ScrollView>
-
-    <!--<FrameLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="#A0000000"-->
-    <!--android:id="@+id/loadingLayout"-->
-    <!--android:visibility="gone"-->
-
-    <!--&gt;-->
-    <!--<com.wang.avi.AVLoadingIndicatorView-->
-    <!--android:id="@+id/avi"-->
-    <!--style="@style/AVLoadingIndicatorView.Large"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:visibility="visible"-->
-    <!--app:indicatorColor="@color/colorAccent"-->
-    <!--app:indicatorName="BallClipRotatePulseIndicator"-->
-
-
-    <!--/>-->
-    <!--</FrameLayout>-->
 </FrameLayout>
 
 

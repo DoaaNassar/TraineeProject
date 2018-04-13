@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="app_name">برنامج التدريب الميداني</string>
     <string name="ForgetPassword">هل نسيت كلمة المرور ؟</string>
     <string name="login">دخول</string>
     <string name="showUniversity">الجامعات</string>

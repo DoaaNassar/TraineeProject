@@ -35,6 +35,7 @@ import duaa.traineeproject.Model.ResponseTrue;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
+import duaa.traineeproject.view.FontTextViewRegular;
 import duaa.traineeproject.view.MyGlideEngine;
 //import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
@@ -47,6 +48,7 @@ public class AddUniversity extends Fragment {
     Uri SelectedImage;
     FontEditTextViewRegular nameUniversity , address ,email ,phoneNumber , mobileNumber;
     FontButtonRegular save ;
+    FontTextViewRegular title ;
 
     private static final int REQUEST_CODE_CHOOSE = 600;
     FrameLayout loadingLayout;
@@ -64,6 +66,8 @@ public class AddUniversity extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_add_university, container, false);
         bindView();
+        title.setText(getString(R.string.universityPart));
+
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +127,7 @@ public class AddUniversity extends Fragment {
         save = view.findViewById(R.id.save);
 //        contentLayout = getActivity().findViewById(R.id.contentLayout);
         loadingLayout = getActivity().findViewById(R.id.loadingLayout);
+        title = getActivity().findViewById(R.id.title);
 
 
     }

@@ -20,6 +20,7 @@ import duaa.traineeproject.JavaObject.Specification;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
+import duaa.traineeproject.view.FontTextViewRegular;
 
 
 public class AddSpecificationFragment extends Fragment {
@@ -30,6 +31,7 @@ public class AddSpecificationFragment extends Fragment {
     SpecAdapter specAdapter;
     FontButtonRegular addSpec;
     FontEditTextViewRegular spec;
+    FontTextViewRegular title;
 
 
     @Override
@@ -45,6 +47,8 @@ public class AddSpecificationFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_add_specification, container, false);
         bindView();
+        title.setText(getString(R.string.universityPart));
+
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         specAdapter = new SpecAdapter(getActivity(), specificationList, new CustomItemClickListener() {
             @Override
@@ -82,6 +86,8 @@ public class AddSpecificationFragment extends Fragment {
         recyclerView = view.findViewById(R.id.specificationList);
         addSpec = view.findViewById(R.id.addSpec);
         spec = view.findViewById(R.id.specText);
+        title = view.findViewById(R.id.title);
+
 
     }
 

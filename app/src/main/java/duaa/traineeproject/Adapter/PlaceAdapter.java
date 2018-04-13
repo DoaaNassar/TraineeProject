@@ -10,9 +10,7 @@ import java.util.List;
 
 import duaa.traineeproject.Interface.CustomItemClickListener;
 import duaa.traineeproject.Model.PlaceModel;
-import duaa.traineeproject.Model.TrainerModel;
 import duaa.traineeproject.R;
-import duaa.traineeproject.view.FontEditTextViewRegular;
 import duaa.traineeproject.view.FontTextViewRegular;
 
 /**

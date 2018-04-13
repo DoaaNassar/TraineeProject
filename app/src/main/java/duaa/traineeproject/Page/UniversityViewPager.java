@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import duaa.traineeproject.Fragment.AddUniversity;
 import duaa.traineeproject.Fragment.Unviersity;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
+
+import static duaa.traineeproject.Page.TrainerFragment.isBack;
 
 
 public class UniversityViewPager extends Fragment {
@@ -175,5 +178,33 @@ public class UniversityViewPager extends Fragment {
 
 
     }
+    @Override
+    public void onResume() {
 
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK ) {
+                    if (isBack) {
+                        getActivity().getSupportFragmentManager().popBackStack("DuaaBassamNassar", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    } else {
+//
+                        int x = getFragmentManager().getBackStackEntryCount()-1;
+                        for (int i = 0; i < x; i++) {
+                            getFragmentManager().popBackStack();
+                        }
+                    }
+                    return true;
+
+                }
+
+                return false;
+            }
+        });
+    }
 }

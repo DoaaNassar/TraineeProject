@@ -7,9 +7,7 @@
     android:layout_height="match_parent"
     tools:context="duaa.traineeproject.Activity.EditTrainee">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -20,8 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
@@ -94,7 +91,6 @@
 
 
                 </FrameLayout>
-
 
                 <duaa.traineeproject.view.FontEditTextViewRegular
                     android:id="@+id/email"

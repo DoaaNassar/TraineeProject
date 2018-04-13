@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import duaa.traineeproject.R;
+import duaa.traineeproject.view.FontTextViewRegular;
 
 
 public class AddPlaceFragment extends Fragment {
     View view;
+    FontTextViewRegular title;
 
 
     @Override
@@ -26,7 +28,15 @@ public class AddPlaceFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_add_place, container, false);
+        bindView();
+        title.setText("قسم الأماكن");
+
         // Inflate the layout for this fragment
         return view ;
+    }
+
+    public void bindView(){
+        title = getActivity().findViewById(R.id.title);
+
     }
 }

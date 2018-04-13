@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +23,16 @@ import duaa.traineeproject.Page.TraineeViewPager;
 import duaa.traineeproject.Page.TrainerFragment;
 import duaa.traineeproject.Page.UniversityViewPager;
 import duaa.traineeproject.R;
+import duaa.traineeproject.view.FontTextViewRegular;
+
+import static duaa.traineeproject.Page.TrainerFragment.isBack;
 
 
 public class ContentFrontMain extends Fragment {
 
     Fragment fragment =null;
 
+    FontTextViewRegular title;
     View view ;
 
     @Override
@@ -41,6 +47,8 @@ public class ContentFrontMain extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
        view =inflater.inflate(R.layout.fragment_content_front_main, container, false);
+       title = getActivity().findViewById(R.id.title);
+       title.setText(getString(R.string.app_name));
         ////Trainee layout
         LinearLayout  addTraineeBtn = view.findViewById(R.id.addTrainee);
         LinearLayout  showNowTraineeBtn = view.findViewById(R.id.showTrainee);
@@ -72,7 +80,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new TraineeViewPager();
-                Fragment(2,fragment);
+                Fragment(2,fragment ,"TraineeViewPager");
 
             }});
 
@@ -81,7 +89,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new TraineeViewPager();
-                Fragment(1,fragment);
+                Fragment(1,fragment,"TraineeViewPager");
 
             }});
 
@@ -91,7 +99,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new TraineeViewPager();
-                Fragment(0,fragment);
+                Fragment(0,fragment,"TraineeViewPager");
 
             }});
 
@@ -100,7 +108,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new UniversityViewPager();
-                Fragment(0,fragment);
+                Fragment(0,fragment,"UniversityViewPager");
 
             }});
 
@@ -109,7 +117,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new UniversityViewPager();
-                Fragment(1,fragment);
+                Fragment(1,fragment,"UniversityViewPager");
 
             }});
 
@@ -118,7 +126,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new UniversityViewPager();
-                Fragment(2,fragment);
+                Fragment(2,fragment,"UniversityViewPager");
 
             }});
 
@@ -127,7 +135,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new UniversityViewPager();
-                Fragment(3,fragment);
+                Fragment(3,fragment,"UniversityViewPager");
             }
         });
 
@@ -135,7 +143,7 @@ public class ContentFrontMain extends Fragment {
             @Override
             public void onClick(View v) {
                 fragment = new PlaceFragmentPager();
-                Fragment(0,fragment);
+                Fragment(0,fragment,"PlaceFragmentPager");
             }
         });
 
@@ -143,7 +151,7 @@ public class ContentFrontMain extends Fragment {
             @Override
             public void onClick(View v) {
                 fragment = new PlaceFragmentPager();
-                Fragment(1,fragment);
+                Fragment(1,fragment,"PlaceFragmentPager");
             }
         });
 
@@ -152,7 +160,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new TrainerFragment();
-                Fragment(0,fragment);
+                Fragment(0,fragment,"TrainerFragment");
 
             }
         });
@@ -162,7 +170,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new TrainerFragment();
-                Fragment(1,fragment);
+                Fragment(1,fragment,"TrainerFragment");
             }
         });
 
@@ -171,7 +179,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new TrainerFragment();
-                Fragment(2,fragment);
+                Fragment(2,fragment,"TrainerFragment");
             }
         });
 
@@ -189,20 +197,44 @@ public class ContentFrontMain extends Fragment {
     }
 
 
-    public void Fragment(int  numberOfPage , Fragment fragment){
+    public void Fragment(int  numberOfPage , Fragment fragment ,String  name){
 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         Bundle bundle = new Bundle();
         bundle.putInt("numberViewPager",numberOfPage);
         fragment.setArguments(bundle);
-        fragmentTransaction.addToBackStack("").replace(R.id.containerLayout,fragment).commit();
+        fragmentTransaction.addToBackStack(null).replace(R.id.containerLayout,fragment).commit();
 
     }
 
     public void bindView (){
 
+        title = getActivity().findViewById(R.id.title);
 
     }
+    @Override
+    public void onResume() {
 
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK ) {
+                        int x = getFragmentManager().getBackStackEntryCount()-1;
+                        for (int i = 0; i < x; i++) {
+                            getFragmentManager().popBackStack();
+                        }
+                    return true;
+
+                }
+
+                return false;
+            }
+        });
+    }
 }

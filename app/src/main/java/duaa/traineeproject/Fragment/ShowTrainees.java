@@ -14,10 +14,13 @@ import java.util.ArrayList;
 import duaa.traineeproject.Adapter.ListTraineeAdapter;
 import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.R;
+import duaa.traineeproject.view.FontTextViewRegular;
 
 
 public class ShowTrainees extends Fragment {
 
+    View view ;
+    FontTextViewRegular title ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,10 @@ public class ShowTrainees extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_show_trainees, container, false);
+        view = inflater.inflate(R.layout.fragment_show_trainees, container, false);
 
+        bindView();
+        title.setText(getString(R.string.placePart));
         ArrayList <TrainerObject> arrayList = new ArrayList<>();
         arrayList.add(new TrainerObject("دعاء  نصار","","","","","",""));
         arrayList.add(new TrainerObject("اسراء بسام نصار","","","","","",""));
@@ -67,5 +72,8 @@ public class ShowTrainees extends Fragment {
         });
 
         return view;
+    }
+    public void bindView(){
+        title = getActivity().findViewById(R.id.title);
     }
 }

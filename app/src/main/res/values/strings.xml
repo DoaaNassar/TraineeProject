@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">برنامج التدريب الميداني</string>
     <string name="title_activity_navigation_menu">navigationMenuActivity</string>
@@ -36,6 +37,13 @@
     <string name="addPlace">إضافة مكان</string>
     <string name="showPlace">الأماكن</string>
     <string name="please_wait">الرجاء الانتظار</string>
+    <string name="universityPart">قسم الجامعات و الكليات</string>
+    <string name="placePart">قسم الأماكن</string>
+    <string name="trainerPart">قسم المشرفين</string>
+    <string name="traineePart">قسم المتدربين</string>
+
+
+
 
 
 </resources>

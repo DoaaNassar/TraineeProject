@@ -24,6 +24,7 @@ import duaa.traineeproject.API.ResponseError;
 import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
+import duaa.traineeproject.view.FontTextViewRegular;
 
 
 public class AddFacultyFragment extends Fragment {
@@ -35,6 +36,7 @@ public class AddFacultyFragment extends Fragment {
     FontButtonRegular addSpec;
     RecyclerView recyclerView,universityRecyclerView;
     FontEditTextViewRegular spec ;
+    FontTextViewRegular title;
 
 
 
@@ -54,6 +56,8 @@ public class AddFacultyFragment extends Fragment {
                              Bundle savedInstanceState) {
         view =inflater.inflate(R.layout.fragment_add_faculty, container, false);
         bindView();
+        title.setText("قسم الجامعات والكليات");
+
 
 
 //        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
@@ -95,6 +99,7 @@ public class AddFacultyFragment extends Fragment {
         recyclerView =view.findViewById(R.id.specificationList);
 //        universityRecyclerView=view.findViewById(R.id.universityList);
         spec =view.findViewById(R.id.textSpec);
+        title = getActivity().findViewById(R.id.title);
 
     }
 
