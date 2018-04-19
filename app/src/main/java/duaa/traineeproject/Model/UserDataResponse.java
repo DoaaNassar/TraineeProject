@@ -8,31 +8,40 @@ import java.io.Serializable;
 
 public class UserDataResponse implements Serializable{
 
-    int id;
+    int user_id;
+    String user_name;
     String email;
-    String name;
-    String address ;
-    String image;
-    String phoneNumber ;
-    String mobileNumber ;
+    String phone ;
+    String mobile;
+    String password ;
+    String role_id ;
+    String access_token ;
 
-    public UserDataResponse(int id, String email, String name,
-                            String address, String image, String phoneNumber, String mobileNumber) {
-        this.id = id;
+    public UserDataResponse(int user_id, String user_name, String email, String phone, String mobile, String password, String role_id, String access_token) {
+        this.user_id = user_id;
+        this.user_name = user_name;
         this.email = email;
-        this.name = name;
-        this.address = address;
-        this.image = image;
-        this.phoneNumber = phoneNumber;
-        this.mobileNumber = mobileNumber;
+        this.phone = phone;
+        this.mobile = mobile;
+        this.password = password;
+        this.role_id = role_id;
+        this.access_token = access_token;
     }
 
-    public int getId() {
-        return id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public String getEmail() {
@@ -43,43 +52,43 @@ public class UserDataResponse implements Serializable{
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
-    public String getImage() {
-        return image;
+    public String getPassword() {
+        return password;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getRole_id() {
+        return role_id;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setRole_id(String role_id) {
+        this.role_id = role_id;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
+    public String getAccess_token() {
+        return access_token;
     }
 
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
     }
 }

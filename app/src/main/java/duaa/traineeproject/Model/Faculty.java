@@ -12,37 +12,27 @@ import duaa.traineeproject.JavaObject.Specification;
  */
 
 public class Faculty implements Serializable {
-    private int faculty_id ;
-    private String faculty_name;
-    private List<Specification> specification_list ;
+    private int collage_id ;
+    private String collage_name;
 
-    public Faculty(int faculty_id, String faculty_name, List<Specification> specification_list) {
-        this.faculty_id = faculty_id;
-        this.faculty_name = faculty_name;
-        this.specification_list = specification_list;
+    public Faculty(int collage_id, String collage_name) {
+        this.collage_id = collage_id;
+        this.collage_name = collage_name;
     }
 
-    public int getFaculty_id() {
-        return faculty_id;
+    public int getCollage_id() {
+        return collage_id;
     }
 
-    public void setFaculty_id(int faculty_id) {
-        this.faculty_id = faculty_id;
+    public void setCollage_id(int collage_id) {
+        this.collage_id = collage_id;
     }
 
-    public String getFaculty_name() {
-        return faculty_name;
+    public String getCollage_name() {
+        return collage_name;
     }
 
-    public void setFaculty_name(String faculty_name) {
-        this.faculty_name = faculty_name;
-    }
-
-    public List<Specification> getSpecification_list() {
-        return specification_list;
-    }
-
-    public void setSpecification_list(List<Specification> specification_list) {
-        this.specification_list = specification_list;
+    public void setCollage_name(String collage_name) {
+        this.collage_name = collage_name;
     }
 }

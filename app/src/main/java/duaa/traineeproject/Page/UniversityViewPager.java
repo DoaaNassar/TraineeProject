@@ -4,15 +4,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import duaa.traineeproject.Fragment.AddFacultyFragment;
-import duaa.traineeproject.Fragment.AddSpecificationFragment;
+import duaa.traineeproject.Fragment.ShowFacultyFragment;
 import duaa.traineeproject.Fragment.AddUniversity;
 import duaa.traineeproject.Fragment.Unviersity;
 import duaa.traineeproject.R;
@@ -51,7 +49,7 @@ public class UniversityViewPager extends Fragment {
 
         } else if (number == 2) {
 
-            Fragment con = new AddSpecificationFragment();
+            Fragment con = new ShowFacultyFragment();
             FragmentManager fm = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
             fragmentTransaction.replace(R.id.containerUniversity, con).commit();
@@ -103,7 +101,7 @@ public class UniversityViewPager extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Fragment con = new AddSpecificationFragment();
+                Fragment con = new ShowFacultyFragment();
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.containerUniversity, con).commit();
@@ -133,7 +131,7 @@ public class UniversityViewPager extends Fragment {
     public void bindView() {
         addUniversity = view.findViewById(R.id.addUniversity);
         addFaculty = view.findViewById(R.id.addFaculty);
-        addSpecification = view.findViewById(R.id.addSpecialization);
+        addSpecification = view.findViewById(R.id.faculty);
         university = view.findViewById(R.id.university);
 
 

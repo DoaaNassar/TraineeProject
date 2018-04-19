@@ -68,7 +68,7 @@ public class AdapterSpinnerFaculty extends BaseAdapter {
         }
 
         final Faculty item = arrayList.get(i);
-        viewHolder.name.setText(item.getFaculty_name());
+        viewHolder.name.setText(item.getCollage_name());
 
 
         return row;

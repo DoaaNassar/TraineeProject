@@ -70,7 +70,7 @@ public class TrainerFragment extends Fragment {
         oldTrainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment(new OldTraineeFragment());
+                Fragment(new OldTrainerFragment());
                 oldTrainer();
             }
         });

@@ -6,17 +6,17 @@ import java.io.Serializable;
  * Created by AL-Qema on 08/03/18.
  */
 
-public class ResponseAddTrainee implements Serializable
+public class ResponseSuccess implements Serializable
 
 {
     private String message;
     private boolean status;
 
 
-    public ResponseAddTrainee() {
+    public ResponseSuccess() {
     }
 
-    public ResponseAddTrainee(String message, boolean status) {
+    public ResponseSuccess(String message, boolean status) {
         this.message = message;
         this.status = status;
     }

@@ -498,7 +498,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="@string/addSpecialization"
+                        android:text="الكليات"
                         android:textSize="15sp" />
 
 

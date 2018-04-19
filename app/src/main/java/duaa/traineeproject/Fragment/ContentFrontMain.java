@@ -225,10 +225,9 @@ public class ContentFrontMain extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
 
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK ) {
-                        int x = getFragmentManager().getBackStackEntryCount()-1;
-                        for (int i = 0; i < x; i++) {
-                            getFragmentManager().popBackStack();
-                        }
+                    getActivity().finish();
+
+
                     return true;
 
                 }

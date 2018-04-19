@@ -37,7 +37,7 @@ public class ShowTrainees extends Fragment {
         view = inflater.inflate(R.layout.fragment_show_trainees, container, false);
 
         bindView();
-        title.setText(getString(R.string.placePart));
+        title.setText(getString(R.string.traineePart));
         ArrayList <TrainerObject> arrayList = new ArrayList<>();
         arrayList.add(new TrainerObject("دعاء  نصار","","","","","",""));
         arrayList.add(new TrainerObject("اسراء بسام نصار","","","","","",""));

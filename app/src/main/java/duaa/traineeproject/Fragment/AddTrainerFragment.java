@@ -1,9 +1,5 @@
 package duaa.traineeproject.Fragment;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,23 +8,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.Toast;
 
 import com.tapadoo.alerter.Alerter;
 
@@ -39,13 +26,12 @@ import duaa.traineeproject.API.ResponseError;
 import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.Adapter.AdapterSpinner;
 import duaa.traineeproject.Adapter.AdapterSpinnerFaculty;
-import duaa.traineeproject.Adapter.ListTraineeAdapter;
 import duaa.traineeproject.Interface.UniversalCallBack;
 import duaa.traineeproject.JavaObject.Specification;
 import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.Model.Faculty;
 import duaa.traineeproject.Model.FacultyListModel;
-import duaa.traineeproject.Model.ResponseAddTrainee;
+import duaa.traineeproject.Model.ResponseSuccess;
 import duaa.traineeproject.Model.University;
 import duaa.traineeproject.Model.UniversityListModel;
 import duaa.traineeproject.MyCustomAnimation;
@@ -56,7 +42,6 @@ import duaa.traineeproject.view.FontEditTextViewRegular;
 import duaa.traineeproject.view.FontTextViewRegular;
 
 import static duaa.traineeproject.Constants.FONTS_APP;
-import static duaa.traineeproject.Constants.getUniversity;
 import static duaa.traineeproject.Page.TrainerFragment.isBack;
 
 public class AddTrainerFragment extends Fragment {
@@ -160,27 +145,7 @@ public class AddTrainerFragment extends Fragment {
             public void onClick(View v) {
 
                 FacultyItems();
-                List<Specification> specifications = new ArrayList<>();
 
-                specifications.add(new Specification("1", "2"));
-                specifications.add(new Specification("1", "2"));
-                specifications.add(new Specification("1", "2"));
-
-                arrayListFaculty.clear();
-
-                arrayListFaculty.add(new Faculty(1, "الاسلامية", specifications));
-                arrayListFaculty.add(new Faculty(1, "الاسلامية", specifications));
-                arrayListFaculty.add(new Faculty(1, "الاسلامية", specifications));
-                arrayListFaculty.add(new Faculty(1, "الاسلامية", specifications));
-
-
-                Log.d("duaabassam", arrayListUniversity.get(0).getUniversiy_name() + "hhhh");
-                final AdapterSpinnerFaculty adapter = new AdapterSpinnerFaculty(getActivity(), arrayListFaculty);
-
-                adapter.notifyDataSetChanged();
-                facultyList.setAdapter(adapter);
-                UIUtils.setListViewHeightBasedOnItems(facultyList);
-                SpinnerAnimation(listFacultyLayout, imageFaculty);
                 if (listUniversityLayout.getVisibility() == View.VISIBLE) {
                     SpinnerAnimation(listUniversityLayout, imageUniversity);
 
@@ -206,6 +171,8 @@ public class AddTrainerFragment extends Fragment {
 
             }
         });
+
+
 
 
         return view;
@@ -333,7 +300,7 @@ public class AddTrainerFragment extends Fragment {
 
 
     public void FacultyItems() {
-        new UserAPI().getAllFaculty(new UniversalCallBack() {
+        new UserAPI().getAllFaculty("",new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
 
@@ -397,10 +364,10 @@ public class AddTrainerFragment extends Fragment {
         contentLayout.setEnabled(false);
         isBack=true;
 
-        new UserAPI().AddTrainee(item, new UniversalCallBack() {
+        new UserAPI().AddTrainer(item, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
-                ResponseAddTrainee responseItem = (ResponseAddTrainee) result;
+                ResponseSuccess responseItem = (ResponseSuccess) result;
                 String ss = responseItem.getMessage();
 
                 if (responseItem.isStatus()) {

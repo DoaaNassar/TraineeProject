@@ -59,10 +59,10 @@
             <duaa.traineeproject.view.FontTextViewRegular
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:id="@+id/addSpecialization"
+                android:id="@+id/faculty"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="@string/addSpecialization"
+                android:text="الكليات"
                 android:textColor="#bdbdbd"
                 android:layout_weight="1"
                 android:textSize="12sp" />

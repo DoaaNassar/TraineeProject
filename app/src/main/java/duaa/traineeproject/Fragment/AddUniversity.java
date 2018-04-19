@@ -1,6 +1,5 @@
 package duaa.traineeproject.Fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -21,16 +20,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
-import com.zhihu.matisse.engine.impl.PicassoEngine;
-
-import java.util.List;
 
 import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.Interface.UniversalCallBack;
-import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.Model.AddUniversityObject;
-import duaa.traineeproject.Model.ResponseAddTrainee;
 import duaa.traineeproject.Model.ResponseTrue;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontButtonRegular;
@@ -82,16 +75,6 @@ public class AddUniversity extends Fragment {
                         .imageEngine(new MyGlideEngine())
                         .forResult(REQUEST_CODE_CHOOSE);
 
-
-//                Matisse.from(MainActivity.this)
-//                        .choose(MimeType.allOf())
-//                        .countable(true)
-//                        .maxSelectable(9)
-//                        .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
-//                        .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-//                        .thumbnailScale(0.85f)
-//                        .imageEngine(new GlideEngine())
-//                        .forResult(REQUEST_CODE_CHOOSE);
 
             }
         });

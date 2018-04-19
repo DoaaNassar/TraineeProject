@@ -37,7 +37,7 @@
             </FrameLayout>
 
             <duaa.traineeproject.view.FontEditTextViewRegular
-                android:id="@+id/mobileNumber"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -92,26 +92,6 @@
                 android:text="@string/ForgetPassword"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
-
-
-            <!--<duaa.traineeproject.view.FontTextViewRegular-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginBottom="20dp"-->
-            <!--android:text="@string/newAccont"-->
-            <!--android:textColor="@color/black"-->
-            <!--android:textSize="14sp" />-->
-
-            <!--<com.example.duaa.sportier.view.FontTextViewRegular-->
-            <!--android:id="@+id/register"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:text="@string/register"-->
-            <!--android:textColor="@color/red"-->
-            <!--android:textSize="13sp"-->
-            <!--android:textStyle="bold" />-->
 
 
         </LinearLayout>

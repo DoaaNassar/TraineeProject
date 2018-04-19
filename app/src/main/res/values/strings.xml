@@ -41,6 +41,12 @@
     <string name="placePart">قسم الأماكن</string>
     <string name="trainerPart">قسم المشرفين</string>
     <string name="traineePart">قسم المتدربين</string>
+    <string name="noInternet">لا يوجد اتصال بالانترنت</string>
+    <string name="noAdd">لم يتم الاتصال بالسيرفر</string>
+
+
+
+
 
 
 

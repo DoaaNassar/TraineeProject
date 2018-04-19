@@ -5,153 +5,153 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.tapadoo.alerter.Alerter;
-import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import duaa.traineeproject.API.ResponseError;
 import duaa.traineeproject.API.UserAPI;
-import duaa.traineeproject.Adapter.TrainerAdapter;
-import duaa.traineeproject.Adapter.UniversityAdapter;
+import duaa.traineeproject.Adapter.AdapterSpinner;
+import duaa.traineeproject.Adapter.AdapterSpinnerFaculty;
+import duaa.traineeproject.Adapter.FacultyAdapter;
+import duaa.traineeproject.Adapter.SpecAdapter;
 import duaa.traineeproject.Interface.CustomItemClickListener;
 import duaa.traineeproject.Interface.UniversalCallBack;
-import duaa.traineeproject.Model.Trainer;
-import duaa.traineeproject.Model.TrainerListModel;
-import duaa.traineeproject.Model.UniversityListModel;
+import duaa.traineeproject.Model.Faculty;
+import duaa.traineeproject.Model.FacultyListModel;
+import duaa.traineeproject.MyCustomAnimation;
 import duaa.traineeproject.R;
+import duaa.traineeproject.Units.UIUtils;
+import duaa.traineeproject.view.FontButtonRegular;
+import duaa.traineeproject.view.FontEditTextViewRegular;
 import duaa.traineeproject.view.FontTextViewRegular;
 
 import static duaa.traineeproject.Constants.FONTS_APP;
 
 
-public class ShowTrainerFragment extends Fragment {
-    View view;
-    TrainerAdapter trainerAdapter;
-    RecyclerView recyclerView;
-    ArrayList<Trainer> trainerList;
-    FontTextViewRegular title;
-    LinearLayout loading;
-    Typeface face ;
+public class ShowFacultyFragment extends Fragment {
 
+    View view;
+    List<String> specificationList;
+    List<Faculty> arrayListFaculty;
+    RecyclerView recyclerView;
+    SpecAdapter specAdapter;
+    FontTextViewRegular title;
+    int height;
+    Typeface face;
+    FacultyAdapter facultyAdapter;
+    LinearLayout loading;
+    FontTextViewRegular facultyText ;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        trainerList = new ArrayList<>();
-        face = Typeface.createFromAsset(getActivity().getAssets(), FONTS_APP);
+        specificationList = new ArrayList<>();
+        arrayListFaculty = new ArrayList<>();
 
+        face = Typeface.createFromAsset(getActivity().getAssets(), FONTS_APP);
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_show_trainer, container, false);
+        view = inflater.inflate(R.layout.fragment_show_faculty, container, false);
         bindView();
-        title.setText(getString(R.string.trainerPart));
-        ArrayList<Trainer> arrayList = new ArrayList<>();
-        arrayList.add(new Trainer(1, "مستشفى الأقصى", "20"));
-        arrayList.add(new Trainer(1, "مستشفى الأقصى", "20"));
-        arrayList.add(new Trainer(1, "مستشفى الأقصى", "20"));
-        arrayList.add(new Trainer(1, "مستشفى الأقصى", "20"));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        trainerAdapter = new TrainerAdapter(getActivity(), arrayList, new CustomItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
+        title.setText(getString(R.string.universityPart));
 
-            }
-        }, new UniversityAdapter.MyRecyclerViewListener() {
-            @Override
-            public void RemoveImage(View v, int position) {
-            }
-        });
-        recyclerView.setAdapter(trainerAdapter);
-        trainerAdapter.notifyDataSetChanged();
-        trainer();
-        // Inflate the layout for this fragment
+        FacultyItems();
+
         return view;
     }
 
     public void bindView() {
-        recyclerView = view.findViewById(R.id.listShow);
+
+        recyclerView = view.findViewById(R.id.recyclerview);
         title = getActivity().findViewById(R.id.title);
         loading = view.findViewById(R.id.loading);
-
+        facultyText = view.findViewById(R.id.faculty);
 
     }
 
-    public void trainer() {
+    public void FacultyItems() {
+        facultyText.setEnabled(false);
 
-        new UserAPI().getAllNowTrainer(new UniversalCallBack() {
+        new UserAPI().getAllFaculty("",new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
 
-                TrainerListModel response = (TrainerListModel) result;
-                Log.d("ddddd", "ffff");
-
+                FacultyListModel facultyListModel = (FacultyListModel) result;
 
 //                if (responseCategories.isStatus()) {
                 loading.setVisibility(View.GONE);
-                trainerList.clear();
-                trainerList.addAll(response.getResult());
+                facultyText.setEnabled(true);
+
+                arrayListFaculty.clear();
+                arrayListFaculty.addAll(facultyListModel.getResult());
                 recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-                trainerAdapter = new TrainerAdapter(getActivity(), trainerList,
+                facultyAdapter = new FacultyAdapter(getActivity(), arrayListFaculty,
                         new CustomItemClickListener() {
                             @Override
                             public void onItemClick(View v, int position) {
 
                             }
-                        }, new UniversityAdapter.MyRecyclerViewListener() {
+                        }, new FacultyAdapter.MyRecyclerViewListener() {
                     @Override
                     public void RemoveImage(View v, int position) {
 
                     }
                 });
 
-                recyclerView.setAdapter(trainerAdapter);
-                trainerAdapter.notifyDataSetChanged();
+                recyclerView.setAdapter(facultyAdapter);
+                facultyAdapter.notifyDataSetChanged();
 
-
+                //                }
             }
-//            }
 
             @Override
             public void onFailure(Object result) {
                 if (result != null) {
                     ResponseError responseError = (ResponseError) result;
-                    loading.setVisibility(View.GONE);
-
                     if (getActivity() != null)
-                      Alarm(getString(R.string.noAdd));
+                        Alarm(getString(R.string.noAdd));
+                    loading.setVisibility(View.GONE);
+                    facultyText.setEnabled(true);
+
+
+
                 }
             }
 
             @Override
             public void onFinish() {
                 loading.setVisibility(View.GONE);
+                facultyText.setEnabled(true);
+
 
 
             }
 
             @Override
             public void OnError(String message) {
-                loading.setVisibility(View.GONE);
+
                 Alarm(getString(R.string.noInternet));
+                loading.setVisibility(View.GONE);
+                facultyText.setEnabled(true);
+
 
             }
         });
-
-
     }
 
     public void Alarm(String message) {

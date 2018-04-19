@@ -8,22 +8,12 @@ import java.util.List;
  */
 
 public class LoginModel implements Serializable {
-int  authrezed ;
-String message ;
-List<showUserLogin>result ;
+   showUserLogin result;
+    String message;
 
-    public LoginModel(int authrezed, String message, List<showUserLogin> result) {
-        this.authrezed = authrezed;
-        this.message = message;
+    public LoginModel(showUserLogin result, String message) {
         this.result = result;
-    }
-
-    public int getAuthrezed() {
-        return authrezed;
-    }
-
-    public void setAuthrezed(int authrezed) {
-        this.authrezed = authrezed;
+        this.message = message;
     }
 
     public String getMessage() {
@@ -34,11 +24,11 @@ List<showUserLogin>result ;
         this.message = message;
     }
 
-    public List<showUserLogin> getResult() {
+    public showUserLogin getResult() {
         return result;
     }
 
-    public void setResult(List<showUserLogin> result) {
+    public void setResult(showUserLogin result) {
         this.result = result;
     }
 }

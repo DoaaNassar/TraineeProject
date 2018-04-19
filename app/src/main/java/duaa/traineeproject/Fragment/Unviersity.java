@@ -1,9 +1,11 @@
 package duaa.traineeproject.Fragment;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import com.tapadoo.alerter.Alerter;
 
 import java.util.ArrayList;
 
@@ -26,6 +30,8 @@ import duaa.traineeproject.Model.UniversityListModel;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
 
+import static duaa.traineeproject.Constants.FONTS_APP;
+
 
 public class Unviersity extends Fragment {
     RecyclerView universityRecyclerView;
@@ -34,13 +40,16 @@ public class Unviersity extends Fragment {
     ArrayList<University> universityList;
     UniversityAdapter showUniversityAdapter;
     LinearLayout loading, noInternet;
-    FontTextViewRegular title ;
+    FontTextViewRegular title ,universityTab;
 
+
+    Typeface face ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         universityList = new ArrayList<>();
+        face = Typeface.createFromAsset(getActivity().getAssets(), FONTS_APP);
 
 
     }
@@ -62,12 +71,13 @@ public class Unviersity extends Fragment {
         universityRecyclerView = view.findViewById(R.id.listUniversityShow);
         loading = view.findViewById(R.id.loading);
         title = getActivity().findViewById(R.id.title);
+        universityTab = getActivity().findViewById(R.id.university);
 
 
     }
 
     public void university() {
-
+        universityTab.setEnabled(false);
         new UserAPI().getAllUniversity(new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
@@ -76,6 +86,8 @@ public class Unviersity extends Fragment {
                 Log.d("ddddd", "ffff");
 
                 loading.setVisibility(View.GONE);
+                universityTab.setEnabled(true);
+
 
 //                if (responseCategories.isStatus()) {
                 universityList.clear();
@@ -95,7 +107,7 @@ public class Unviersity extends Fragment {
                 });
 
                 universityRecyclerView.setAdapter(showUniversityAdapter);
-//                    specAdapter.notifyDataSetChanged();
+                showUniversityAdapter.notifyDataSetChanged();
 
 
             }
@@ -106,19 +118,18 @@ public class Unviersity extends Fragment {
                 if (result != null) {
                     ResponseError responseError = (ResponseError) result;
                     loading.setVisibility(View.GONE);
+                    universityTab.setEnabled(true);
 
-//                    if (getActivity() != null)
-//                        Alerter.create(getActivity())
-//                                .setText(responseError.getMessage())
-//                                .hideIcon()
-//                                .setBackgroundColorRes(R.color.colorPrimary)
-//                                .show();
+                    if (getActivity() != null)
+                        Alarm(getString(R.string.noAdd));
                 }
             }
 
             @Override
             public void onFinish() {
                 loading.setVisibility(View.GONE);
+                universityTab.setEnabled(true);
+
 
 
             }
@@ -126,18 +137,22 @@ public class Unviersity extends Fragment {
             @Override
             public void OnError(String message) {
                 loading.setVisibility(View.GONE);
-
-
-//                Alerter.create(getActivity())
-//                        .setText(message)
-//                        .hideIcon()
-//                        .setBackgroundColorRes(R.color.colorPrimary)
-//                        .show();
-
-
+                universityTab.setEnabled(true);
+                Alarm(getString(R.string.noInternet));
             }
         });
 
+
+    }
+
+    public void Alarm(String message) {
+        Alerter.create(getActivity())
+                .setText(message)
+                .hideIcon()
+                .setContentGravity(GravityCompat.END)
+                .setTextTypeface(face)
+                .setBackgroundColorRes(R.color.cardview_dark_background)
+                .show();
 
     }
 }

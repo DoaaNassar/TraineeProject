@@ -20,6 +20,7 @@ import duaa.traineeproject.API.SharedPrefSingleton;
 import duaa.traineeproject.API.VolleySingleton;
 import duaa.traineeproject.Activity.Login;
 import duaa.traineeproject.Model.UserDataResponse;
+import duaa.traineeproject.Model.showUserLogin;
 
 /**
  * Created by AL-Qema on 08/03/18.
@@ -135,7 +136,7 @@ public class  ApplicationController extends Application {
 
 
     public String token(){
-        SharedPreferences sharedPreferences = getSharedPreferences("access_token",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("app_data",MODE_PRIVATE);
         String token = sharedPreferences.getString("access_token","");
         return token ;
 
@@ -145,16 +146,16 @@ public class  ApplicationController extends Application {
     public  void  login_token(String access_token){
 
         SharedPreferences.Editor editor = ApplicationController.getAppContext().
-                getSharedPreferences("access_token", Context.MODE_PRIVATE).edit();
+                getSharedPreferences("app_data", Context.MODE_PRIVATE).edit();
         editor.putString("access_token", access_token);
         editor.commit();
 
     }
 
-    public void userLogin(final UserDataResponse user){
+    public  void userLogin(final showUserLogin user){
 
         SharedPreferences.Editor editor = ApplicationController.getAppContext().
-                getSharedPreferences("access_token", Context.MODE_PRIVATE).edit();
+                getSharedPreferences("app_data", Context.MODE_PRIVATE).edit();
         Gson gson = new Gson();
         String json = gson.toJson(user);
         editor.putString("User", json);
@@ -162,11 +163,11 @@ public class  ApplicationController extends Application {
 
     }
 
-    public UserDataResponse getLoginUser (){
-        SharedPreferences sharedPreferences = getSharedPreferences("access_token",MODE_PRIVATE);
+    public  showUserLogin getLoginUser (){
+        SharedPreferences sharedPreferences = getSharedPreferences("app_data",MODE_PRIVATE);
         String response = sharedPreferences.getString("User","");
         Gson gson = new Gson();
-        UserDataResponse user =gson.fromJson(response ,UserDataResponse.class);
+        showUserLogin user =gson.fromJson(response ,showUserLogin.class);
 
         return user;
     }

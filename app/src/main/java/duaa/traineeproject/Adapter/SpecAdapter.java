@@ -23,7 +23,7 @@ import duaa.traineeproject.view.FontTextViewRegular;
 
 public class SpecAdapter  extends RecyclerView.Adapter<SpecAdapter.MyViewHolder> {
 
-    private List<Specification> specification;
+    private List<String> specification;
     CustomItemClickListener listener;
     Context context;
     MyRecyclerViewListener myRecyclerViewListener;
@@ -45,7 +45,7 @@ public class SpecAdapter  extends RecyclerView.Adapter<SpecAdapter.MyViewHolder>
 
     }
 
-    public SpecAdapter(Context context, List<Specification> specification, CustomItemClickListener listener,
+    public SpecAdapter(Context context, List<String> specification, CustomItemClickListener listener,
                        MyRecyclerViewListener myRecyclerViewListener) {
         this.context = context;
         this.specification = specification;
@@ -54,7 +54,7 @@ public class SpecAdapter  extends RecyclerView.Adapter<SpecAdapter.MyViewHolder>
 
     }
 
-    public List<Specification> getItems() {
+    public List<String> getItems() {
         return specification;
     }
 
@@ -80,7 +80,7 @@ public class SpecAdapter  extends RecyclerView.Adapter<SpecAdapter.MyViewHolder>
 
     @Override
     public void onBindViewHolder(SpecAdapter.MyViewHolder holder, final int position) {
-        Specification item = specification.get(position);
+        String item = specification.get(position);
 
         holder.remove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class SpecAdapter  extends RecyclerView.Adapter<SpecAdapter.MyViewHolder>
                 myRecyclerViewListener.RemoveImage(v,position);
             }
         });
-        holder.name.setText(item.getName());
+        holder.name.setText(item);
     }
 
     @Override

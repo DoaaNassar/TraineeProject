@@ -28,7 +28,7 @@ public class ShowPlaceFragment extends Fragment {
     View view;
     RecyclerView recyclerView;
     PlaceAdapter placeAdapter;
-FontTextViewRegular title ;
+    FontTextViewRegular title;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +72,6 @@ FontTextViewRegular title ;
 
     public void bindView() {
         recyclerView = view.findViewById(R.id.recyclerview);
-        title = view.findViewById(R.id.title);
+        title = getActivity().findViewById(R.id.title);
     }
 }

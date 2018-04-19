@@ -16,5 +16,8 @@
     <string name="mobileNumber">رقم الهاتف</string>
     <string name="IDPersonNumber">رقم الهوية</string>
     <string name="please_wait">الرجاء الانتظار</string>
+    <string name="noInternet">لا يوجد اتصال بالانترنت</string>
+    <string name="noAdd">لم تتم عملية الإضافة</string>
+
 
 </resources>

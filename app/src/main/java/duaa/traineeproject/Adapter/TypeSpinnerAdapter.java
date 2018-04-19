@@ -7,25 +7,24 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.Model.University;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
 
 /**
- * Created by AL-Qema on 10/04/18.
+ * Created by AL-Qema on 15/04/18.
  */
 
-public class AdapterSpinner extends BaseAdapter {
+public class TypeSpinnerAdapter  extends BaseAdapter {
 
     Activity con;
-    ArrayList<University> arrayList;
-    boolean selectAll;
+    ArrayList<String> arrayList;
 
-    public AdapterSpinner(Activity con, ArrayList<University> arrayList) {
+    public TypeSpinnerAdapter(Activity con, ArrayList<String> arrayList) {
         this.con = con;
         this.arrayList = arrayList;
 
@@ -50,13 +49,13 @@ public class AdapterSpinner extends BaseAdapter {
     public View getView(final int i, View view, ViewGroup viewGroup) {
 
         View row;
-        final AdapterSpinner.ViewHolder viewHolder;
+        final TypeSpinnerAdapter.ViewHolder viewHolder;
         HashMap map = new HashMap();
 
         if (view == null) {
 
             row = con.getLayoutInflater().inflate(R.layout.item_spinner, viewGroup, false);
-            viewHolder = new AdapterSpinner.ViewHolder();
+            viewHolder = new TypeSpinnerAdapter.ViewHolder();
 
             viewHolder.name = row.findViewById(R.id.name);
 
@@ -64,11 +63,11 @@ public class AdapterSpinner extends BaseAdapter {
 
         } else {
             row = view;
-            viewHolder = (AdapterSpinner.ViewHolder) view.getTag();
+            viewHolder = (TypeSpinnerAdapter.ViewHolder) view.getTag();
         }
 
-        final University item = arrayList.get(i);
-        viewHolder.name.setText(item.getUniversiy_name());
+        final String item = arrayList.get(i);
+        viewHolder.name.setText(item);
 
 
         return row;
@@ -79,7 +78,6 @@ public class AdapterSpinner extends BaseAdapter {
 
 
     }
-
 
 
 }
