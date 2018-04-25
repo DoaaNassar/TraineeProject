@@ -27,7 +27,7 @@ import duaa.traineeproject.view.FontTextViewRegular;
 
 public class UniversityAdapter  extends RecyclerView.Adapter<UniversityAdapter.MyViewHolder> {
 
-    private List<University> specification;
+    private List<University> specialization;
     CustomItemClickListener listener;
     Context context;
     UniversityAdapter.MyRecyclerViewListener myRecyclerViewListener;
@@ -52,17 +52,17 @@ public class UniversityAdapter  extends RecyclerView.Adapter<UniversityAdapter.M
 
     }
 
-    public UniversityAdapter(Context context, List<University> specification, CustomItemClickListener listener,
+    public UniversityAdapter(Context context, List<University> specialization, CustomItemClickListener listener,
                              UniversityAdapter.MyRecyclerViewListener myRecyclerViewListener) {
         this.context = context;
-        this.specification = specification;
+        this.specialization = specialization;
         this.listener = listener;
         this.myRecyclerViewListener = myRecyclerViewListener ;
 
     }
 
     public List<University> getItems() {
-        return specification;
+        return specialization;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class UniversityAdapter  extends RecyclerView.Adapter<UniversityAdapter.M
 
     @Override
     public void onBindViewHolder(UniversityAdapter.MyViewHolder holder, final int position) {
-        University item = specification.get(position);
+        University item = specialization.get(position);
         holder.name.setText(item.getUniversiy_name());
         holder.email.setText(item.getAddress());
         RequestOptions requestOptions = new RequestOptions();
@@ -110,7 +110,7 @@ public class UniversityAdapter  extends RecyclerView.Adapter<UniversityAdapter.M
 
     @Override
     public int getItemCount() {
-        return specification.size();
+        return specialization.size();
     }
 
 

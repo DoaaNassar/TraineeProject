@@ -41,7 +41,6 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dialog = new SpotsDialog(this, R.style.Custom);
         face = Typeface.createFromAsset(this.getAssets(), FONTS_APP);
         setContentView(R.layout.activity_login);
 
@@ -71,10 +70,11 @@ public class Login extends AppCompatActivity {
                 Login.this.finish();
                 Intent intent = new Intent(Login.this, NavigationMenuActivity.class);
                 startActivity(intent);
-                ApplicationController.getInstance().userLogin(loginModel.getResult());
 
-                dialog.hide();
+                ApplicationController.getInstance().userLogin(loginModel.getResult());
+                ApplicationController.getInstance().login_token(loginModel.getResult().getAccess_token());
                 Alarm(loginModel.getMessage());
+                dialog.hide();
 
             }
 
@@ -93,7 +93,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void OnError(String message) {
                 dialog.hide();
-                Alarm(getString(R.string.noInternet));
+                if (Login.this != null)
+                    Alarm(getString(R.string.noInternet));
 
             }
         });
@@ -115,6 +116,8 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         loginBtn = findViewById(R.id.loginBtn);
+        dialog = new SpotsDialog(this, R.style.Custom);
+
     }
 
 

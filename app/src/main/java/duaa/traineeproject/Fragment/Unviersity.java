@@ -61,7 +61,7 @@ public class Unviersity extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_unviersity, container, false);
         bindView();
-        title.setText(getString(R.string.universityPart));
+        title.setText(getResources().getString(R.string.universityPart));
         university();
 
         return view;
@@ -83,7 +83,6 @@ public class Unviersity extends Fragment {
             public void onResponse(Object result) {
 
                 UniversityListModel responseCategories = (UniversityListModel) result;
-                Log.d("ddddd", "ffff");
 
                 loading.setVisibility(View.GONE);
                 universityTab.setEnabled(true);
@@ -121,7 +120,7 @@ public class Unviersity extends Fragment {
                     universityTab.setEnabled(true);
 
                     if (getActivity() != null)
-                        Alarm(getString(R.string.noAdd));
+                        Alarm(getResources().getString(R.string.noAdd));
                 }
             }
 
@@ -138,7 +137,8 @@ public class Unviersity extends Fragment {
             public void OnError(String message) {
                 loading.setVisibility(View.GONE);
                 universityTab.setEnabled(true);
-                Alarm(getString(R.string.noInternet));
+                if(getActivity()!=null)
+                Alarm(getResources().getString(R.string.noInternet));
             }
         });
 

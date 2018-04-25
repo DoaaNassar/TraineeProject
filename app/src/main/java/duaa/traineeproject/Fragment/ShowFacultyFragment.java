@@ -41,7 +41,7 @@ import static duaa.traineeproject.Constants.FONTS_APP;
 public class ShowFacultyFragment extends Fragment {
 
     View view;
-    List<String> specificationList;
+    List<String> specializationList;
     List<Faculty> arrayListFaculty;
     RecyclerView recyclerView;
     SpecAdapter specAdapter;
@@ -50,13 +50,13 @@ public class ShowFacultyFragment extends Fragment {
     Typeface face;
     FacultyAdapter facultyAdapter;
     LinearLayout loading;
-    FontTextViewRegular facultyText ;
+    FontTextViewRegular facultyText;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        specificationList = new ArrayList<>();
+        specializationList = new ArrayList<>();
         arrayListFaculty = new ArrayList<>();
 
         face = Typeface.createFromAsset(getActivity().getAssets(), FONTS_APP);
@@ -80,14 +80,14 @@ public class ShowFacultyFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
         title = getActivity().findViewById(R.id.title);
         loading = view.findViewById(R.id.loading);
-        facultyText = view.findViewById(R.id.faculty);
+        facultyText = getActivity().findViewById(R.id.faculty);
 
     }
 
     public void FacultyItems() {
         facultyText.setEnabled(false);
 
-        new UserAPI().getAllFaculty("",new UniversalCallBack() {
+        new UserAPI().getAllFaculty("", new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
 
@@ -123,11 +123,12 @@ public class ShowFacultyFragment extends Fragment {
             public void onFailure(Object result) {
                 if (result != null) {
                     ResponseError responseError = (ResponseError) result;
-                    if (getActivity() != null)
-                        Alarm(getString(R.string.noAdd));
-                    loading.setVisibility(View.GONE);
-                    facultyText.setEnabled(true);
+                    if (getActivity() != null) {
 
+                        Alarm(getString(R.string.noAdd));
+                        loading.setVisibility(View.GONE);
+                        facultyText.setEnabled(true);
+                    }
 
 
                 }
@@ -139,15 +140,16 @@ public class ShowFacultyFragment extends Fragment {
                 facultyText.setEnabled(true);
 
 
-
             }
 
             @Override
             public void OnError(String message) {
 
-                Alarm(getString(R.string.noInternet));
-                loading.setVisibility(View.GONE);
-                facultyText.setEnabled(true);
+                if (getActivity() != null) {
+                    Alarm(getString(R.string.noInternet));
+                    loading.setVisibility(View.GONE);
+                    facultyText.setEnabled(true);
+                }
 
 
             }

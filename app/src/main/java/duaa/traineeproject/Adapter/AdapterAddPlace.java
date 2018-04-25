@@ -1,32 +1,28 @@
 package duaa.traineeproject.Adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 
 import java.util.List;
 
 import duaa.traineeproject.Interface.CustomItemClickListener;
-import duaa.traineeproject.JavaObject.specialization;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
 
 /**
- * Created by AL-Qema on 17/03/18.
+ * Created by AL-Qema on 24/04/18.
  */
 
-public class SpecAdapter  extends RecyclerView.Adapter<SpecAdapter.MyViewHolder> {
+public class AdapterAddPlace  extends RecyclerView.Adapter<AdapterAddPlace.MyViewHolder> {
 
-    private List<String> specialization;
+    private List<String> place;
     CustomItemClickListener listener;
     Context context;
-    MyRecyclerViewListener myRecyclerViewListener;
+    AdapterAddPlace.MyRecyclerViewListener myRecyclerViewListener;
 
 
 
@@ -45,26 +41,26 @@ public class SpecAdapter  extends RecyclerView.Adapter<SpecAdapter.MyViewHolder>
 
     }
 
-    public SpecAdapter(Context context, List<String> specialization, CustomItemClickListener listener,
-                       MyRecyclerViewListener myRecyclerViewListener) {
+    public AdapterAddPlace(Context context, List<String> place, CustomItemClickListener listener,
+                       AdapterAddPlace.MyRecyclerViewListener myRecyclerViewListener) {
         this.context = context;
-        this.specialization = specialization;
+        this.place = place;
         this.listener = listener;
         this.myRecyclerViewListener = myRecyclerViewListener;
 
     }
 
     public List<String> getItems() {
-        return specialization;
+        return place;
     }
 
     @Override
-    public SpecAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterAddPlace.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.spec_layout, parent, false);
 
-        final SpecAdapter.MyViewHolder mViewHolder = new SpecAdapter.MyViewHolder(itemView);
+        final AdapterAddPlace.MyViewHolder mViewHolder = new AdapterAddPlace.MyViewHolder(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -79,8 +75,8 @@ public class SpecAdapter  extends RecyclerView.Adapter<SpecAdapter.MyViewHolder>
 
 
     @Override
-    public void onBindViewHolder(SpecAdapter.MyViewHolder holder, final int position) {
-        String item = specialization.get(position);
+    public void onBindViewHolder(AdapterAddPlace.MyViewHolder holder, final int position) {
+        String item = place.get(position);
 
         holder.remove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +89,7 @@ public class SpecAdapter  extends RecyclerView.Adapter<SpecAdapter.MyViewHolder>
 
     @Override
     public int getItemCount() {
-        return specialization.size();
+        return place.size();
     }
 
     public interface MyRecyclerViewListener {

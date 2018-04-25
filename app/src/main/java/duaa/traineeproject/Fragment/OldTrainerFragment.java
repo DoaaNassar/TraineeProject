@@ -34,11 +34,11 @@ import duaa.traineeproject.view.FontTextViewRegular;
 
 public class OldTrainerFragment extends Fragment {
 
-    View view ;
-    FontTextViewRegular title ;
-    RecyclerView recyclerView ;
-    OldTrainerAdapter oldTrainerAdapter ;
-    ArrayList<Trainer> arrayList ;
+    View view;
+    FontTextViewRegular title;
+    RecyclerView recyclerView;
+    OldTrainerAdapter oldTrainerAdapter;
+    ArrayList<Trainer> arrayList;
 
 
     @Override
@@ -54,32 +54,12 @@ public class OldTrainerFragment extends Fragment {
         bindView();
         title.setText(getString(R.string.trainerPart));
 
-        arrayList.add(new Trainer(1,"مستشفى الأقصى", "20"));
-        arrayList.add(new Trainer(1,"مستشفى الأقصى", "20"));
-        arrayList.add(new Trainer(1,"مستشفى الأقصى", "20"));
-        arrayList.add(new Trainer(1,"مستشفى الأقصى", "20"));
-
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        oldTrainerAdapter = new OldTrainerAdapter(getActivity(), arrayList, new CustomItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-
-            }
-        }, new UniversityAdapter.MyRecyclerViewListener() {
-            @Override
-            public void RemoveImage(View v, int position) {
-            }
-        });
-        recyclerView.setAdapter(oldTrainerAdapter);
-        oldTrainerAdapter.notifyDataSetChanged();
-
-
+        getOldTrainer();
         // Inflate the layout for this fragment
         return view;
     }
 
-    public void bindView(){
+    public void bindView() {
         title = getActivity().findViewById(R.id.title);
         recyclerView = view.findViewById(R.id.recyclerview);
     }
@@ -104,7 +84,7 @@ public class OldTrainerFragment extends Fragment {
                             public void onItemClick(View v, int position) {
 
                             }
-                        }, new UniversityAdapter.MyRecyclerViewListener() {
+                        }, new OldTrainerAdapter.MyRecyclerViewListener() {
                     @Override
                     public void RemoveImage(View v, int position) {
 
@@ -124,12 +104,12 @@ public class OldTrainerFragment extends Fragment {
                     ResponseError responseError = (ResponseError) result;
 
                     if (getActivity() != null)
-                         Alerter.create(getActivity())
-                        .setText(responseError.getMessage())
-                            .hideIcon()
-                            .setContentGravity(GravityCompat.END)
-                            .setBackgroundColorRes(R.color.colorPrimary)
-                            .show();
+                        Alerter.create(getActivity())
+                                .setText(responseError.getMessage())
+                                .hideIcon()
+                                .setContentGravity(GravityCompat.END)
+                                .setBackgroundColorRes(R.color.colorPrimary)
+                                .show();
                 }
             }
 

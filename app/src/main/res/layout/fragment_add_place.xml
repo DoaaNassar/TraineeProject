@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:orientation="vertical">
 
         <duaa.traineeproject.view.FontTextViewRegular
@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="تسجيل مكان جديد "
-            android:textColor="@color/cardview_shadow_start_color"
-            android:textSize="17sp"
+            android:textColor="@color/silver"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <duaa.traineeproject.view.FontEditTextViewRegular
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/background_edittext"
+            android:background="@drawable/border"
             android:hint="اسم المكان"
             android:padding="10dp"
             android:textSize="13sp"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/background_edittext"
+            android:background="@drawable/border"
             android:hint="@string/email"
             android:gravity="right"
             android:padding="10dp"
@@ -62,24 +62,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/background_edittext"
+                android:background="@drawable/border"
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
                 android:textSize="13sp"
-                android:paddingLeft="70dp"
+                android:paddingLeft="75dp"
                 android:hint="اسم القسم"
+                android:singleLine="true"
+
 
                 />
 
-            <duaa.traineeproject.view.FontButtonRegular
+            <ImageView
                 android:id="@+id/addPart"
                 android:layout_width="70dp"
-                android:layout_height="31dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
-                android:text="إضافة"
                 android:textColor="@color/white"
+                android:src="@drawable/ic_add_black_24dp"
                 android:background="@drawable/background_buttonn"
 
                 />

@@ -42,7 +42,7 @@
                 android:gravity="center"
                 android:text="@string/addPlace"
                 android:textColor="#bdbdbd"
-                android:textSize="12sp" />
+                android:textSize="13sp" />
 
             <duaa.traineeproject.view.FontTextViewRegular
                 android:id="@+id/place"
@@ -53,12 +53,11 @@
                 android:gravity="center"
                 android:text="@string/showPlace"
                 android:textColor="#bdbdbd"
-                android:textSize="12sp" />
+                android:textSize="13sp" />
 
 
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

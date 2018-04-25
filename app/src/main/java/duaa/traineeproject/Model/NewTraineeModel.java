@@ -1,12 +1,12 @@
-package duaa.traineeproject.JavaObject;
+package duaa.traineeproject.Model;
 
 import java.io.Serializable;
 
 /**
- * Created by AL-Qema on 14/04/18.
+ * Created by AL-Qema on 25/04/18.
  */
 
-public class AntherTraining implements Serializable {
+public class NewTraineeModel implements Serializable {
 
     String trainee_id;
     String university;
@@ -22,7 +22,7 @@ public class AntherTraining implements Serializable {
 //    String source;
     String user_id;
 
-    public AntherTraining(String trainee_id, String university, String collage, String specialization, String trainee_type, String university_number, String hour_number, String trainee_place, String place_partment, String user_id) {
+    public NewTraineeModel(String trainee_id, String university, String collage, String specialization, String trainee_type, String university_number, String hour_number, String trainee_place, String place_partment, String user_id) {
         this.trainee_id = trainee_id;
         this.university = university;
         this.collage = collage;

@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(ApplicationController.getInstance().token())){
 
+            MainActivity.this.finish();
             Intent refresh = new Intent(this, NavigationMenuActivity.class);
             startActivity(refresh);
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
 
                     finish();
-                    Intent intent =new Intent(MainActivity.this,Login.class);
+                    Intent intent =new Intent(MainActivity.this,NavigationMenuActivity.class);
                     startActivity(intent);
 
                 }
@@ -40,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
             Timer opening = new Timer();
             opening.schedule(task,4000);
         }
-
-
-
-
 
     }
 }

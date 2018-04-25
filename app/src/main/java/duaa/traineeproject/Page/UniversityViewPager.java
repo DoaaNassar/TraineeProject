@@ -22,7 +22,7 @@ import static duaa.traineeproject.Page.TrainerFragment.isBack;
 public class UniversityViewPager extends Fragment {
 
 
-    FontTextViewRegular addUniversity, addFaculty, addSpecification, university;
+    FontTextViewRegular addUniversity, addFaculty, addspecialization, university;
     View view;
     int number = 0;
 
@@ -97,7 +97,7 @@ public class UniversityViewPager extends Fragment {
         });
 
 
-        addSpecification.setOnClickListener(new View.OnClickListener() {
+        addspecialization.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -131,7 +131,7 @@ public class UniversityViewPager extends Fragment {
     public void bindView() {
         addUniversity = view.findViewById(R.id.addUniversity);
         addFaculty = view.findViewById(R.id.addFaculty);
-        addSpecification = view.findViewById(R.id.faculty);
+        addspecialization = view.findViewById(R.id.faculty);
         university = view.findViewById(R.id.university);
 
 
@@ -141,7 +141,7 @@ public class UniversityViewPager extends Fragment {
 
         addUniversity.setTextColor(getResources().getColor(R.color.colorPrimary));
         addFaculty.setTextColor(getResources().getColor(R.color.silver));
-        addSpecification.setTextColor(getResources().getColor(R.color.silver));
+        addspecialization.setTextColor(getResources().getColor(R.color.silver));
         university.setTextColor(getResources().getColor(R.color.silver));
 
 
@@ -151,7 +151,7 @@ public class UniversityViewPager extends Fragment {
 
         addUniversity.setTextColor(getResources().getColor(R.color.silver));
         addFaculty.setTextColor(getResources().getColor(R.color.colorPrimary));
-        addSpecification.setTextColor(getResources().getColor(R.color.silver));
+        addspecialization.setTextColor(getResources().getColor(R.color.silver));
         university.setTextColor(getResources().getColor(R.color.silver));
 
 
@@ -161,7 +161,7 @@ public class UniversityViewPager extends Fragment {
 
         addUniversity.setTextColor(getResources().getColor(R.color.silver));
         addFaculty.setTextColor(getResources().getColor(R.color.silver));
-        addSpecification.setTextColor(getResources().getColor(R.color.colorPrimary));
+        addspecialization.setTextColor(getResources().getColor(R.color.colorPrimary));
         university.setTextColor(getResources().getColor(R.color.silver));
 
 
@@ -171,7 +171,7 @@ public class UniversityViewPager extends Fragment {
 
         addUniversity.setTextColor(getResources().getColor(R.color.silver));
         addFaculty.setTextColor(getResources().getColor(R.color.silver));
-        addSpecification.setTextColor(getResources().getColor(R.color.silver));
+        addspecialization.setTextColor(getResources().getColor(R.color.silver));
         university.setTextColor(getResources().getColor(R.color.colorPrimary));
 
 

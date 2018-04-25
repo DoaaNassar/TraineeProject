@@ -15,17 +15,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import duaa.traineeproject.Application.ApplicationController;
 import duaa.traineeproject.Fragment.ContentFrontMain;
+import duaa.traineeproject.Model.UserDataResponse;
+import duaa.traineeproject.Model.showUserLogin;
 import duaa.traineeproject.Page.PlaceFragmentPager;
 import duaa.traineeproject.Page.TraineeViewPager;
 import duaa.traineeproject.Page.TrainerFragment;
 import duaa.traineeproject.Page.UniversityViewPager;
 import duaa.traineeproject.R;
+import duaa.traineeproject.view.FontTextViewRegular;
 
 public class NavigationMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Fragment fragment;
+    FontTextViewRegular userName ;
+    FontTextViewRegular userRole ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,8 @@ public class NavigationMenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_navigation_menu);
         getSupportFragmentManager().beginTransaction().addToBackStack(null).
                 replace(R.id.containerLayout, new ContentFrontMain()).commit();
+        bindView();
+        setData();
 
         //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //     setSupportActionBar(toolbar);
@@ -41,6 +49,7 @@ public class NavigationMenuActivity extends AppCompatActivity
         LinearLayout university = findViewById(R.id.university);
         LinearLayout out = findViewById(R.id.out);
         LinearLayout place = findViewById(R.id.place);
+        LinearLayout home = findViewById(R.id.home);
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
@@ -95,6 +104,17 @@ public class NavigationMenuActivity extends AppCompatActivity
         });
 
 
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new ContentFrontMain();
+                Fragment(fragment);
+                drawer.closeDrawer(GravityCompat.END);
+
+            }
+        });
+
+
 //        fragment = new TraineeViewPager();
 //        Fragment(fragment);
 
@@ -142,6 +162,11 @@ public class NavigationMenuActivity extends AppCompatActivity
         return true;
     }
 
+    public void bindView (){
+        userName = findViewById(R.id.userName);
+        userRole = findViewById(R.id.userRole);
+
+    }
     public void Fragment(Fragment fragment) {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -162,6 +187,10 @@ public class NavigationMenuActivity extends AppCompatActivity
 //        }
 //    }
 
-
+    public void setData (){
+        showUserLogin user = ApplicationController.getInstance().getLoginUser();
+        userName.setText(user.getUser_name());
+        userRole.setText(user.getRole_id()+"");
+    }
 
 }

@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:orientation="vertical"
         >
 
@@ -34,8 +34,11 @@
             android:hint="اسم الكلية"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/background_edittext"
+            android:background="@drawable/border"
             android:textSize="13sp"
+            android:singleLine="true"
+            android:gravity="right"
+
 
             />
 
@@ -49,24 +52,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/background_edittext"
+                android:background="@drawable/border"
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
                 android:textSize="13sp"
-                android:paddingLeft="70dp"
+                android:paddingLeft="75dp"
                 android:hint="التخصص"
+                android:singleLine="true"
+                android:gravity="right"
+
 
                 />
 
-            <duaa.traineeproject.view.FontButtonRegular
+            <ImageView
                 android:id="@+id/addSpec"
                 android:layout_width="70dp"
-                android:layout_height="31dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
-                android:text="إضافة"
                 android:textColor="@color/white"
+                android:src="@drawable/ic_add_black_24dp"
                 android:background="@drawable/background_buttonn"
 
                 />
@@ -77,7 +83,7 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/specificationList"
+            android:id="@+id/specializationList"
             >
 
         </android.support.v7.widget.RecyclerView>

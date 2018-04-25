@@ -13,6 +13,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         app:cardBackgroundColor="#ffffff"
+        android:elevation="5dp"
         app:cardCornerRadius="7dp">
 
 
@@ -45,8 +46,8 @@
                         android:gravity="right"
                         android:text="دعاء بسام نصار"
                         android:textColor="@color/Blue"
-                        android:textSize="17sp"
-                        android:textStyle="bold" />
+                        android:textSize="15sp"
+                         />
 
                     <duaa.traineeproject.view.FontTextViewRegular
                         android:id="@+id/idNumber"
@@ -55,7 +56,7 @@
                         android:gravity="right"
                         android:text="220130751"
                         android:textColor="#313030"
-                        android:textSize="12sp" />
+                        android:textSize="11sp" />
 
 
                     <LinearLayout
@@ -64,7 +65,7 @@
                         android:layout_margin="10dp">
 
                         <duaa.traineeproject.view.FontTextViewRegular
-                            android:id="@+id/edit"
+                            android:id="@+id/training"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="التدريبات"

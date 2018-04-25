@@ -34,20 +34,19 @@
                 android:text="مستشفى الأقصى"
                 android:textColor="@color/Blue"
                 android:textSize="15sp"
-                android:textStyle="bold"
 
 
                 />
 
 
             <duaa.traineeproject.view.FontTextViewRegular
-                android:id="@+id/specification"
+                android:id="@+id/specialization"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:text="500 "
                 android:textColor="#313030"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:layout_marginTop="5dp"
                 />
 

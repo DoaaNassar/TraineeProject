@@ -22,7 +22,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
     private List<PlaceModel> placeList;
     CustomItemClickListener listener;
     Context context;
-    UniversityAdapter.MyRecyclerViewListener myRecyclerViewListener;
+    PlaceAdapter.MyRecyclerViewListener myRecyclerViewListener;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -40,7 +40,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
     }
 
     public PlaceAdapter(Context context, List<PlaceModel> placeList, CustomItemClickListener listener,
-                          UniversityAdapter.MyRecyclerViewListener myRecyclerViewListener) {
+                          PlaceAdapter.MyRecyclerViewListener myRecyclerViewListener) {
         this.context = context;
         this.placeList = placeList;
         this.listener = listener;
@@ -77,8 +77,8 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
 
         PlaceModel item = placeList.get(position);
 
-        holder.name.setText(item.getName());
-        holder.number.setText(item.getNumber());
+        holder.name.setText(item.getPlace_name());
+        holder.number.setText(item.getPhone());
 
 //        holder.remove.setOnClickListener(new View.OnClickListener() {
 //            @Override

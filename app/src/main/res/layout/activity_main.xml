@@ -27,7 +27,7 @@
         android:layout_below="@+id/imageSplash"
         android:layout_marginTop="30dp"
         android:text="تدريب وزراة الصحة"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         />
 

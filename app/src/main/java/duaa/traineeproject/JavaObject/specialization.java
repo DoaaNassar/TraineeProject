@@ -4,12 +4,12 @@ package duaa.traineeproject.JavaObject;
  * Created by AL-Qema on 17/03/18.
  */
 
-public class Specification {
+public class specialization {
 
     String name ;
     String id ;
 
-    public Specification(String name, String id) {
+    public specialization(String name, String id) {
         this.name = name;
         this.id = id;
     }

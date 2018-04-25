@@ -7,16 +7,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 
+import duaa.traineeproject.Application.ApplicationController;
+import duaa.traineeproject.Model.showUserLogin;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontEditTextViewRegular;
 import duaa.traineeproject.view.FontTextViewRegular;
 
 public class EditTrainee extends AppCompatActivity {
 
+    FontEditTextViewRegular userName , password ,email,address ,phoneNumber , mobileNumber ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_trainee);
+        bindView();
+        setData();
+
 
         findViewById(R.id.changePassword).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +57,22 @@ public class EditTrainee extends AppCompatActivity {
 
         dialog.show();
 
+    }
+
+    public  void bindView (){
+        userName = findViewById(R.id.userName);
+        email = findViewById(R.id.email);
+        address = findViewById(R.id.address);
+        mobileNumber = findViewById(R.id.mobileNumber);
+        phoneNumber = findViewById(R.id.phoneNumber);
+    }
+
+    public void setData (){
+        showUserLogin user = ApplicationController.getInstance().getLoginUser();
+        userName.setText(user.getUser_name());
+        email.setText(user.getEmail());
+        mobileNumber.setText(user.getMobile());
+        phoneNumber.setText(user.getPhone());
     }
 
 

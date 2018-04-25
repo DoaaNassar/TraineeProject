@@ -27,7 +27,7 @@ import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.Adapter.AdapterSpinner;
 import duaa.traineeproject.Adapter.AdapterSpinnerFaculty;
 import duaa.traineeproject.Interface.UniversalCallBack;
-import duaa.traineeproject.JavaObject.Specification;
+import duaa.traineeproject.JavaObject.specialization;
 import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.Model.Faculty;
 import duaa.traineeproject.Model.FacultyListModel;
@@ -55,13 +55,14 @@ public class AddTrainerFragment extends Fragment {
     int height = 0;
     LinearLayout listUniversityLayout, listFacultyLayout;
     ListView universityList, facultyList;
-    FontTextViewRegular textUniversity, facultyText;
     ArrayList<University> arrayListUniversity;
     ArrayList<Faculty> arrayListFaculty;
     ImageView imageUniversity, imageFaculty;
     Typeface face;
-    boolean isChooseUniversity = false, isChooseFaculty = false ;
-    FontTextViewRegular title ;
+    boolean isChooseUniversity = false, isChooseFaculty = false;
+    FontTextViewRegular title;
+    int universityNum ,facultyNum ;
+    FontTextViewRegular titleSpinnerUniversity  , titleSpinnerFaculty;
 
 
     public static AddTrainerFragment newInstance() {
@@ -104,14 +105,8 @@ public class AddTrainerFragment extends Fragment {
 
                 } else {
 
-                    Alerter.create(getActivity())
-                            .setText("يرجى تعبئة البيانات الناقصة")
-                            .hideIcon()
-                            .setBackgroundColorRes(R.color.colorPrimary)
-                            .setTextTypeface(face)
-                            .show();
+                    Alarm("يرجى تعبئة باقي البيانات");
                 }
-
 
             }
         });
@@ -119,23 +114,12 @@ public class AddTrainerFragment extends Fragment {
         chooseUniversity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UniversityItems();
-                arrayListUniversity.clear();
-                arrayListUniversity.add(new University(1, "الاسلامية", "gaza", "123"));
-                arrayListUniversity.add(new University(1, "الاسلامية", "gaza", "123"));
-                arrayListUniversity.add(new University(1, "الاسلامية", "gaza", "123"));
 
-                Log.d("duaabassam", arrayListUniversity.get(0).getUniversiy_name() + "hhhh");
-                final AdapterSpinner adapter = new AdapterSpinner(getActivity(), arrayListUniversity);
-
-                adapter.notifyDataSetChanged();
-                universityList.setAdapter(adapter);
-                UIUtils.setListViewHeightBasedOnItems(universityList);
-                SpinnerAnimation(listUniversityLayout, imageUniversity);
-                if (listFacultyLayout.getVisibility() == View.VISIBLE) {
-                    SpinnerAnimation(listFacultyLayout, imageFaculty);
-
+                if (listUniversityLayout.getVisibility() == View.GONE) {
+                    UniversityItem();
                 }
+                SpinnerAnimation(listUniversityLayout, imageUniversity);
+                SpinnerAnimationClose(listFacultyLayout, imageFaculty);
 
             }
         });
@@ -144,35 +128,42 @@ public class AddTrainerFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                FacultyItems();
+                if (universityNum > 0) {
+                    if (listFacultyLayout.getVisibility() == View.GONE) {
+                        Log.d("duaaa", arrayListUniversity.get(universityNum - 1).getUniversiy_id() + "");
+                        FacultyItems(arrayListUniversity.get(universityNum - 1).getUniversiy_id() + "");
+                    }
+                    SpinnerAnimation(listFacultyLayout, imageFaculty);
+                    SpinnerAnimationClose(listUniversityLayout, imageUniversity);
 
-                if (listUniversityLayout.getVisibility() == View.VISIBLE) {
-                    SpinnerAnimation(listUniversityLayout, imageUniversity);
-
+                } else {
+                    Alarm("أضف الجامعة أولا ");
                 }
             }
+
         });
 
         universityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                isChooseUniversity = true;
-                textUniversity.setText(arrayListUniversity.get(position).getUniversiy_name());
+                universityNum = position + 1;
+                titleSpinnerUniversity.setText(arrayListUniversity.get(position).getUniversiy_name());
                 SpinnerAnimation(listUniversityLayout, imageUniversity);
 
             }
         });
 
+
+
         facultyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                isChooseFaculty = true;
+                facultyNum = position + 1;
+                titleSpinnerFaculty.setText(arrayListFaculty.get(position).getCollage_name());
                 SpinnerAnimation(listFacultyLayout, imageFaculty);
 
             }
         });
-
-
 
 
         return view;
@@ -187,9 +178,9 @@ public class AddTrainerFragment extends Fragment {
             return false;
         } else if (TextUtils.isEmpty(mobileNumber.getText().toString())) {
             return false;
-        } else if (!isChooseUniversity) {
+        } else if (universityNum==0) {
             return false;
-        } else if (!isChooseUniversity) {
+        } else if (facultyNum==0) {
             return false;
         }
         return true;
@@ -210,11 +201,11 @@ public class AddTrainerFragment extends Fragment {
         listUniversityLayout = view.findViewById(R.id.universitySpinnerLayout);
         listFacultyLayout = view.findViewById(R.id.facultySpinnerLayout);
 
+        titleSpinnerFaculty = view.findViewById(R.id.facultyText);
+        titleSpinnerUniversity = view.findViewById(R.id.textUniversity);
+
         universityList = view.findViewById(R.id.universitySpinner);
         facultyList = view.findViewById(R.id.facultySpinner);
-
-        textUniversity = view.findViewById(R.id.textUniversity);
-        facultyText = view.findViewById(R.id.facultyText);
 
         imageUniversity = view.findViewById(R.id.imageUniversity);
         imageFaculty = view.findViewById(R.id.faculty);
@@ -243,7 +234,7 @@ public class AddTrainerFragment extends Fragment {
     ////////////*********api***********//////
 
     ////////GET
-    public void UniversityItems() {
+    public void UniversityItem() {
         new UserAPI().getAllUniversity(new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
@@ -259,8 +250,6 @@ public class AddTrainerFragment extends Fragment {
 
                 adapter.notifyDataSetChanged();
                 universityList.setAdapter(adapter);
-                UIUtils.setListViewHeightBasedOnItems(universityList);
-                SpinnerAnimation(listUniversityLayout, imageUniversity);
 
                 //                }
             }
@@ -270,12 +259,7 @@ public class AddTrainerFragment extends Fragment {
                 if (result != null) {
                     ResponseError responseError = (ResponseError) result;
                     if (getActivity() != null)
-                        Alerter.create(getActivity())
-                                .setText(responseError.getMessage())
-                                .hideIcon()
-                                .setBackgroundColorRes(R.color.colorPrimary)
-                                .setTextTypeface(face)
-                                .show();
+                        Alarm(getString(R.string.noAdd));
                 }
             }
 
@@ -286,21 +270,14 @@ public class AddTrainerFragment extends Fragment {
 
             @Override
             public void OnError(String message) {
-
-
-                Alerter.create(getActivity())
-                        .setText("لا يوجد اتصال بالانترنت")
-                        .hideIcon()
-                        .setBackgroundColorRes(R.color.colorAccent)
-                        .setTextTypeface(face)
-                        .show();
+                Alarm(getString(R.string.noInternet));
             }
         });
+//
     }
 
-
-    public void FacultyItems() {
-        new UserAPI().getAllFaculty("",new UniversalCallBack() {
+    public void FacultyItems(String university_id) {
+        new UserAPI().getAllFaculty(university_id, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
 
@@ -309,14 +286,12 @@ public class AddTrainerFragment extends Fragment {
 //                if (responseCategories.isStatus()) {
                 arrayListFaculty.clear();
                 arrayListFaculty.addAll(responseCategories.getResult());
-                Log.d("duaabassam", arrayListUniversity.get(0).getUniversiy_name() + "hhhh");
-                final AdapterSpinner adapter = new AdapterSpinner(getActivity(), arrayListUniversity);
+                final AdapterSpinnerFaculty adapter = new AdapterSpinnerFaculty(getActivity(), arrayListFaculty);
 
 
                 adapter.notifyDataSetChanged();
-                universityList.setAdapter(adapter);
-                UIUtils.setListViewHeightBasedOnItems(universityList);
-                SpinnerAnimation(listUniversityLayout, imageUniversity);
+                facultyList.setAdapter(adapter);
+                UIUtils.setListViewHeightBasedOnItems(facultyList);
 
                 //                }
             }
@@ -326,13 +301,8 @@ public class AddTrainerFragment extends Fragment {
                 if (result != null) {
                     ResponseError responseError = (ResponseError) result;
                     if (getActivity() != null)
-                        Alerter.create(getActivity())
-                                .setText("لا يوجد اتصال بالانترنت")
-                                .hideIcon()
-                                .setBackgroundColorRes(R.color.colorPrimary)
-                                .setTextTypeface(face)
-                                .setContentGravity(GravityCompat.END)
-                                .show();
+                        Alarm(getString(R.string.noAdd));
+
                 }
             }
 
@@ -343,17 +313,10 @@ public class AddTrainerFragment extends Fragment {
 
             @Override
             public void OnError(String message) {
-                Alerter.create(getActivity())
-                        .setText("لا يوجد اتصال بالانترنت")
-                        .hideIcon()
-                        .setBackgroundColorRes(R.color.colorPrimary)
-                        .setTextTypeface(face)
-                        .setContentGravity(GravityCompat.END)
-                        .show();
 
+                Alarm(getString(R.string.noInternet));
             }
         });
-//
     }
 
     ////////////////POST
@@ -362,21 +325,16 @@ public class AddTrainerFragment extends Fragment {
 
         loadingLayout.setVisibility(View.VISIBLE);
         contentLayout.setEnabled(false);
-        isBack=true;
+        isBack = true;
 
         new UserAPI().AddTrainer(item, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
                 ResponseSuccess responseItem = (ResponseSuccess) result;
-                String ss = responseItem.getMessage();
 
                 if (responseItem.isStatus()) {
 
-                    Alerter.create(getActivity())
-                            .setText(responseItem.getMessage())
-                            .hideIcon()
-                            .setBackgroundColorRes(R.color.colorPrimary)
-                            .show();
+                    Alarm(responseItem.getMessage());
                     loadingLayout.setVisibility(View.GONE);
                     contentLayout.setEnabled(true);
                 }
@@ -385,14 +343,11 @@ public class AddTrainerFragment extends Fragment {
             @Override
             public void onFailure(Object result) {
                 if (result != null) {
-                    Alerter.create(getActivity())
-                            .setText("لم تتم عملية الاضافة")
-                            .hideIcon()
-                            .setContentGravity(GravityCompat.END)
-                            .setBackgroundColorRes(R.color.colorPrimary)
-                            .show();
-                    loadingLayout.setVisibility(View.GONE);
-                    contentLayout.setEnabled(true);
+                    if (getActivity() != null) {
+                        Alarm(getResources().getString(R.string.noAdd));
+                        loadingLayout.setVisibility(View.GONE);
+                        contentLayout.setEnabled(true);
+                    }
                 }
             }
 
@@ -403,17 +358,33 @@ public class AddTrainerFragment extends Fragment {
 
             @Override
             public void OnError(String message) {
-                Alerter.create(getActivity())
-                        .setText("لا يوجد اتصال بالانترنت ")
-                        .hideIcon()
-                        .setBackgroundColorRes(R.color.colorPrimary)
-                        .show();
-                loadingLayout.setVisibility(View.GONE);
-                contentLayout.setEnabled(true);
+                if (getActivity() != null) {
+                    Alarm(getResources().getString(R.string.noInternet));
+                    loadingLayout.setVisibility(View.GONE);
+                    contentLayout.setEnabled(true);
+                }
 
             }
         });
     }
 
+    public void Alarm(String message) {
+        Alerter.create(getActivity())
+                .setText(message)
+                .hideIcon()
+                .setContentGravity(GravityCompat.END)
+                .setTextTypeface(face)
+                .setBackgroundColorRes(R.color.cardview_dark_background)
+                .show();
+
+    }
+
+    public void SpinnerAnimationClose(LinearLayout view2, ImageView imageView) {
+        MyCustomAnimation a = new MyCustomAnimation(view2, 1000, MyCustomAnimation.COLLAPSE);
+        height = a.getHeight();
+        view2.startAnimation(a);
+        imageView.setBackgroundResource(R.drawable.ic_arrow_drop_down_black_24dp);
+
+    }
 
 }

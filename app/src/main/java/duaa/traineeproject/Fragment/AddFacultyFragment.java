@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.tapadoo.alerter.Alerter;
 
@@ -21,7 +22,7 @@ import duaa.traineeproject.Adapter.ShowUniversityAdapter;
 import duaa.traineeproject.Adapter.SpecAdapter;
 import duaa.traineeproject.Interface.CustomItemClickListener;
 import duaa.traineeproject.Interface.UniversalCallBack;
-import duaa.traineeproject.JavaObject.Specification;
+import duaa.traineeproject.JavaObject.specialization;
 import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.Model.AddFacultyModel;
 import duaa.traineeproject.Model.Faculty;
@@ -43,9 +44,10 @@ import static duaa.traineeproject.Page.TrainerFragment.isBack;
 public class AddFacultyFragment extends Fragment {
     View view;
     SpecAdapter specAdapter;
-    List<String> specificationList;
+    List<String> specializationList;
     ArrayList<University> unviersityList;
-    FontButtonRegular addSpec, save;
+    FontButtonRegular  save;
+    ImageView addSpec;
     RecyclerView recyclerView;
     FontEditTextViewRegular spec, facultyName;
     FontTextViewRegular title;
@@ -55,7 +57,7 @@ public class AddFacultyFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        specificationList = new ArrayList<>();
+        specializationList = new ArrayList<>();
         unviersityList = new ArrayList<>();
         face = Typeface.createFromAsset(getActivity().getAssets(), FONTS_APP);
 
@@ -70,7 +72,7 @@ public class AddFacultyFragment extends Fragment {
         title.setText("قسم الجامعات والكليات");
 
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        specAdapter = new SpecAdapter(getActivity(), specificationList, new CustomItemClickListener() {
+        specAdapter = new SpecAdapter(getActivity(), specializationList, new CustomItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
 
@@ -78,7 +80,7 @@ public class AddFacultyFragment extends Fragment {
         }, new SpecAdapter.MyRecyclerViewListener() {
             @Override
             public void RemoveImage(View v, int position) {
-                specificationList.remove(position);
+                specializationList.remove(position);
                 specAdapter.notifyItemRemoved(position);
                 specAdapter.notifyDataSetChanged();
             }
@@ -91,7 +93,7 @@ public class AddFacultyFragment extends Fragment {
             public void onClick(View v) {
 
                 if (!TextUtils.isEmpty(spec.getText().toString())) {
-                    specificationList.add(spec.getText().toString());
+                    specializationList.add(spec.getText().toString());
                     specAdapter.notifyDataSetChanged();
                 } else {
                     Alarm("أضف تخصصاً");
@@ -104,8 +106,8 @@ public class AddFacultyFragment extends Fragment {
             public void onClick(View v) {
 
                 if (!TextUtils.isEmpty(facultyName.getText().toString())) {
-                    if (specificationList.size() != 0) {
-                        AddItem(new AddFacultyModel(facultyName.getText().toString(), specificationList));
+                    if (specializationList.size() != 0) {
+                        AddItem(new AddFacultyModel(facultyName.getText().toString(), specializationList));
                     } else
                         Alarm("يجب إضافة قسم واحد على الأقل ");
                     } else {
@@ -122,7 +124,7 @@ public class AddFacultyFragment extends Fragment {
 
     public void bindView() {
         addSpec = view.findViewById(R.id.addSpec);
-        recyclerView = view.findViewById(R.id.specificationList);
+        recyclerView = view.findViewById(R.id.specializationList);
 //        universityRecyclerView=view.findViewById(R.id.universityList);
         spec = view.findViewById(R.id.textSpec);
         title = getActivity().findViewById(R.id.title);

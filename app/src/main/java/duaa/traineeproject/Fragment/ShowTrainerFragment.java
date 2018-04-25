@@ -58,32 +58,12 @@ public class ShowTrainerFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_show_trainer, container, false);
         bindView();
-        title.setText(getString(R.string.trainerPart));
-        ArrayList<Trainer> arrayList = new ArrayList<>();
-        arrayList.add(new Trainer(1, "مستشفى الأقصى", "20"));
-        arrayList.add(new Trainer(1, "مستشفى الأقصى", "20"));
-        arrayList.add(new Trainer(1, "مستشفى الأقصى", "20"));
-        arrayList.add(new Trainer(1, "مستشفى الأقصى", "20"));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        trainerAdapter = new TrainerAdapter(getActivity(), arrayList, new CustomItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-
-            }
-        }, new UniversityAdapter.MyRecyclerViewListener() {
-            @Override
-            public void RemoveImage(View v, int position) {
-            }
-        });
-        recyclerView.setAdapter(trainerAdapter);
-        trainerAdapter.notifyDataSetChanged();
-        trainer();
-        // Inflate the layout for this fragment
+        title.setText(getResources().getString(R.string.trainerPart));
         return view;
     }
 
     public void bindView() {
-        recyclerView = view.findViewById(R.id.listShow);
+        recyclerView = view.findViewById(R.id.recyclerview);
         title = getActivity().findViewById(R.id.title);
         loading = view.findViewById(R.id.loading);
 
@@ -97,8 +77,6 @@ public class ShowTrainerFragment extends Fragment {
             public void onResponse(Object result) {
 
                 TrainerListModel response = (TrainerListModel) result;
-                Log.d("ddddd", "ffff");
-
 
 //                if (responseCategories.isStatus()) {
                 loading.setVisibility(View.GONE);
@@ -111,7 +89,7 @@ public class ShowTrainerFragment extends Fragment {
                             public void onItemClick(View v, int position) {
 
                             }
-                        }, new UniversityAdapter.MyRecyclerViewListener() {
+                        }, new TrainerAdapter.MyRecyclerViewListener() {
                     @Override
                     public void RemoveImage(View v, int position) {
 
@@ -120,7 +98,6 @@ public class ShowTrainerFragment extends Fragment {
 
                 recyclerView.setAdapter(trainerAdapter);
                 trainerAdapter.notifyDataSetChanged();
-
 
             }
 //            }
@@ -132,7 +109,7 @@ public class ShowTrainerFragment extends Fragment {
                     loading.setVisibility(View.GONE);
 
                     if (getActivity() != null)
-                      Alarm(getString(R.string.noAdd));
+                      Alarm(getResources().getString(R.string.noAdd));
                 }
             }
 
@@ -140,13 +117,13 @@ public class ShowTrainerFragment extends Fragment {
             public void onFinish() {
                 loading.setVisibility(View.GONE);
 
-
             }
 
             @Override
             public void OnError(String message) {
                 loading.setVisibility(View.GONE);
-                Alarm(getString(R.string.noInternet));
+                if (getActivity() != null)
+                    Alarm(getResources().getString(R.string.noInternet));
 
             }
         });

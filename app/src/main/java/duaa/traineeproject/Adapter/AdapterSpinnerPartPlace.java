@@ -1,30 +1,28 @@
 package duaa.traineeproject.Adapter;
 
 import android.app.Activity;
-import android.app.Dialog;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import duaa.traineeproject.JavaObject.TrainerObject;
-import duaa.traineeproject.Model.University;
+import duaa.traineeproject.Model.PartPlaceModel;
+import duaa.traineeproject.Model.PlaceModel;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
 
 /**
- * Created by AL-Qema on 10/04/18.
+ * Created by AL-Qema on 20/04/18.
  */
 
-public class AdapterSpinner extends BaseAdapter {
+public class AdapterSpinnerPartPlace extends BaseAdapter {
 
     Activity con;
-    ArrayList<University> arrayList;
+    ArrayList<PartPlaceModel> arrayList;
 
-    public AdapterSpinner(Activity con, ArrayList<University> arrayList) {
+    public AdapterSpinnerPartPlace(Activity con, ArrayList<PartPlaceModel> arrayList) {
         this.con = con;
         this.arrayList = arrayList;
 
@@ -49,13 +47,11 @@ public class AdapterSpinner extends BaseAdapter {
     public View getView(final int i, View view, ViewGroup viewGroup) {
 
         View row;
-        final AdapterSpinner.ViewHolder viewHolder;
-        HashMap map = new HashMap();
-
+        final AdapterSpinnerPartPlace.ViewHolder viewHolder;
         if (view == null) {
 
             row = con.getLayoutInflater().inflate(R.layout.item_spinner, viewGroup, false);
-            viewHolder = new AdapterSpinner.ViewHolder();
+            viewHolder = new AdapterSpinnerPartPlace.ViewHolder();
 
             viewHolder.name = row.findViewById(R.id.name);
 
@@ -63,12 +59,13 @@ public class AdapterSpinner extends BaseAdapter {
 
         } else {
             row = view;
-            viewHolder = (AdapterSpinner.ViewHolder) view.getTag();
+            viewHolder = (AdapterSpinnerPartPlace.ViewHolder) view.getTag();
         }
 
-        final University item = arrayList.get(i);
-        viewHolder.name.setText(item.getUniversiy_name());
+        final PartPlaceModel item = arrayList.get(i);
+        Log.d("ddddd",item.getPartment_name());
 
+        viewHolder.name.setText(item.getPartment_name());
 
         return row;
     }
@@ -78,7 +75,5 @@ public class AdapterSpinner extends BaseAdapter {
 
 
     }
-
-
 
 }

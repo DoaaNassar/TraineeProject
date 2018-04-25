@@ -25,7 +25,7 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.MyViewHo
     private List<Trainer> trainerList;
     CustomItemClickListener listener;
     Context context;
-    UniversityAdapter.MyRecyclerViewListener myRecyclerViewListener;
+    TrainerAdapter.MyRecyclerViewListener myRecyclerViewListener;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -45,7 +45,7 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.MyViewHo
     }
 
     public TrainerAdapter(Context context, List<Trainer> trainerList, CustomItemClickListener listener,
-                          UniversityAdapter.MyRecyclerViewListener myRecyclerViewListener) {
+                          TrainerAdapter.MyRecyclerViewListener myRecyclerViewListener) {
         this.context = context;
         this.trainerList = trainerList;
         this.listener = listener;

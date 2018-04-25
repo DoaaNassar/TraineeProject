@@ -23,7 +23,7 @@ public class OldTrainerAdapter extends RecyclerView.Adapter<OldTrainerAdapter.My
     private List<Trainer> placeList;
     CustomItemClickListener listener;
     Context context;
-    UniversityAdapter.MyRecyclerViewListener myRecyclerViewListener;
+    OldTrainerAdapter.MyRecyclerViewListener myRecyclerViewListener;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -41,7 +41,7 @@ public class OldTrainerAdapter extends RecyclerView.Adapter<OldTrainerAdapter.My
     }
 
     public OldTrainerAdapter(Context context, List<Trainer> placeList, CustomItemClickListener listener,
-                        UniversityAdapter.MyRecyclerViewListener myRecyclerViewListener) {
+                        OldTrainerAdapter.MyRecyclerViewListener myRecyclerViewListener) {
         this.context = context;
         this.placeList = placeList;
         this.listener = listener;

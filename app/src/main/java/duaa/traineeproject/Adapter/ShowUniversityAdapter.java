@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 import duaa.traineeproject.Interface.CustomItemClickListener;
-import duaa.traineeproject.JavaObject.Specification;
+import duaa.traineeproject.JavaObject.specialization;
 import duaa.traineeproject.Model.University;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
@@ -22,7 +22,7 @@ import duaa.traineeproject.view.FontTextViewRegular;
 
 public class ShowUniversityAdapter extends RecyclerView.Adapter<ShowUniversityAdapter.MyViewHolder> {
 
-    private List<University> specification;
+    private List<University> specialization;
     CustomItemClickListener listener;
     Context context;
     ShowUniversityAdapter.MyRecyclerViewListener myRecyclerViewListener;
@@ -42,17 +42,17 @@ public class ShowUniversityAdapter extends RecyclerView.Adapter<ShowUniversityAd
 
     }
 
-    public ShowUniversityAdapter(Context context, List<University> specification, CustomItemClickListener listener,
+    public ShowUniversityAdapter(Context context, List<University> specialization, CustomItemClickListener listener,
                                  ShowUniversityAdapter.MyRecyclerViewListener myRecyclerViewListener) {
         this.context = context;
-        this.specification = specification;
+        this.specialization = specialization;
         this.listener = listener;
         this.myRecyclerViewListener = myRecyclerViewListener;
 
     }
 
     public List<University> getItems() {
-        return specification;
+        return specialization;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class ShowUniversityAdapter extends RecyclerView.Adapter<ShowUniversityAd
 
     @Override
     public void onBindViewHolder(ShowUniversityAdapter.MyViewHolder holder, final int position) {
-        University item = specification.get(position);
+        University item = specialization.get(position);
 
 //        holder.remove.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -90,7 +90,7 @@ public class ShowUniversityAdapter extends RecyclerView.Adapter<ShowUniversityAd
 
     @Override
     public int getItemCount() {
-        return specification.size();
+        return specialization.size();
     }
 
     public interface MyRecyclerViewListener {

@@ -1,6 +1,7 @@
 package duaa.traineeproject.Fragment;
 
 import android.app.NativeActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
@@ -31,25 +32,41 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
 import com.zhihu.matisse.engine.impl.PicassoEngine;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import duaa.traineeproject.API.ResponseError;
 import duaa.traineeproject.API.UserAPI;
+import duaa.traineeproject.Activity.NavigationMenuActivity;
 import duaa.traineeproject.Adapter.AdapterSpinner;
 import duaa.traineeproject.Adapter.AdapterSpinnerFaculty;
+import duaa.traineeproject.Adapter.AdapterSpinnerPartPlace;
+import duaa.traineeproject.Adapter.AdapterSpinnerPlace;
+import duaa.traineeproject.Adapter.AdapterSpinnerspecialization;
 import duaa.traineeproject.Adapter.TypeSpinnerAdapter;
+import duaa.traineeproject.Application.ApplicationController;
 import duaa.traineeproject.Interface.UniversalCallBack;
-import duaa.traineeproject.JavaObject.Specification;
+import duaa.traineeproject.JavaObject.PartObject;
+import duaa.traineeproject.JavaObject.Place;
 import duaa.traineeproject.JavaObject.Trainee;
 import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.Model.Faculty;
 import duaa.traineeproject.Model.FacultyListModel;
+import duaa.traineeproject.Model.PartPlaceListModel;
+import duaa.traineeproject.Model.PartPlaceModel;
+import duaa.traineeproject.Model.PlaceListModel;
+import duaa.traineeproject.Model.PlaceModel;
 import duaa.traineeproject.Model.ResponseSuccess;
+import duaa.traineeproject.Model.SpecializationListModel;
+import duaa.traineeproject.Model.SpecializationModel;
 import duaa.traineeproject.Model.University;
 import duaa.traineeproject.Model.UniversityListModel;
 import duaa.traineeproject.MyCustomAnimation;
 import duaa.traineeproject.R;
 import duaa.traineeproject.Units.UIUtils;
+import duaa.traineeproject.Units.Utility;
 import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
 import duaa.traineeproject.view.FontTextViewRegular;
@@ -70,26 +87,28 @@ public class AddTrainees extends Fragment {
 
     FontTextViewRegular title;
     private static final int REQUEST_CODE_CHOOSE = 500;
+
     ArrayList<University> arrayListUniversity;
     ArrayList<String> arrayListType;
     ArrayList<Faculty> arrayListFaculty;
-    ArrayList<Specification>arrayListSpecification;
-    ListView universityList, typeList, facultyList, specificationList;
-    LinearLayout chooseUniversity, chooseFaculty, chooseType;
-    LinearLayout listUniversityLayout, listTypeLayout, listFacultyLayout, listSpecificationLayout;
-    ImageView imageUniversity, imageType, imageFaculty, imageSpecification;
-    FontTextViewRegular titleSpinnerType, titleSpinnerFaculty, titleSpinnerSpecification, titleSpinnerUniversity;
+    ArrayList<SpecializationModel> arrayListspecialization;
+    ArrayList<PlaceModel> arrayListPlace;
+    ArrayList<PartPlaceModel> arrayListPartPlace;
+
+    ListView universityList, typeList, facultyList, specializationList, placeList, partPlaceList;
+    LinearLayout chooseUniversity, chooseFaculty, chooseType, choosespecialization, choosePlace, choosePartPlace, studentLayout;
+    LinearLayout listUniversityLayout, listTypeLayout, listFacultyLayout, listspecializationLayout, listPlaceLayout, listPartPlaceLayout;
+    ImageView imageUniversity, imageType, imageFaculty, imagespecialization, imagePlace, imagePartPlace;
+    FontTextViewRegular titleSpinnerType, titleSpinnerFaculty, titleSpinnerspecialization, titleSpinnerUniversity, titleSpinnerPlace, titleSpinnerPartPlace;
+
     int height;
-
-
-
     Typeface face;
     FontEditTextViewRegular name, idNumber, mobileNumber, phoneNumber, studentID, address, email, numberHour;
     FontButtonRegular save;
     RadioButton radioButton1, radioButton2;
     String genderText;
 
-    int universityNum, facultyNum, typeNum, specificationNum;
+    int universityNum, facultyNum, typeNum, specializationNum, placeNum;
 
 
     @Override
@@ -99,7 +118,10 @@ public class AddTrainees extends Fragment {
         arrayListUniversity = new ArrayList<>();
         arrayListType = new ArrayList<>();
         arrayListFaculty = new ArrayList<>();
-        arrayListSpecification = new ArrayList<>();
+        arrayListspecialization = new ArrayList<>();
+        arrayListPlace = new ArrayList<>();
+        arrayListPartPlace = new ArrayList<>();
+
 
         face = Typeface.createFromAsset(getActivity().getAssets(), FONTS_APP);
 
@@ -139,20 +161,18 @@ public class AddTrainees extends Fragment {
             @Override
             public void onClick(View v) {
 
-                SpinnerAnimation(listTypeLayout, imageType);
                 final TypeSpinnerAdapter adapter = new TypeSpinnerAdapter(getActivity(), arrayListType);
 
                 adapter.notifyDataSetChanged();
                 typeList.setAdapter(adapter);
                 UIUtils.setListViewHeightBasedOnItems(typeList);
 
-                if (listFacultyLayout.getVisibility() == View.VISIBLE) {
-                    SpinnerAnimation(listFacultyLayout, imageFaculty);
-                }
-
-                if (listUniversityLayout.getVisibility() == View.VISIBLE) {
-                    SpinnerAnimation(listUniversityLayout, imageUniversity);
-                }
+                SpinnerAnimation(listTypeLayout, imageType);
+                SpinnerAnimationClose(listUniversityLayout, imageUniversity);
+                SpinnerAnimationClose(listFacultyLayout, imageFaculty);
+                SpinnerAnimationClose(listPartPlaceLayout, imagePartPlace);
+                SpinnerAnimationClose(listspecializationLayout, imagespecialization);
+                SpinnerAnimationClose(listPlaceLayout, imagePlace);
 
             }
         });
@@ -165,18 +185,12 @@ public class AddTrainees extends Fragment {
                 if (listUniversityLayout.getVisibility() == View.GONE) {
                     UniversityItem();
                 }
-
-                if (listFacultyLayout.getVisibility() == View.VISIBLE) {
-
-                    SpinnerAnimation(listFacultyLayout, imageFaculty);
-
-                }
-
-                if (listTypeLayout.getVisibility() == View.VISIBLE) {
-
-                    SpinnerAnimation(listTypeLayout, imageType);
-
-                }
+                SpinnerAnimationClose(listTypeLayout, imageType);
+                SpinnerAnimation(listUniversityLayout, imageUniversity);
+                SpinnerAnimationClose(listFacultyLayout, imageFaculty);
+                SpinnerAnimationClose(listPartPlaceLayout, imagePartPlace);
+                SpinnerAnimationClose(listspecializationLayout, imagespecialization);
+                SpinnerAnimationClose(listPlaceLayout, imagePlace);
             }
         });
 
@@ -186,16 +200,16 @@ public class AddTrainees extends Fragment {
 
                 if (universityNum > 0) {
                     if (listFacultyLayout.getVisibility() == View.GONE) {
-                        FacultyItems(arrayListUniversity.get(universityNum-1).getUniversiy_id()+"");
+                        Log.d("duaaa", arrayListUniversity.get(universityNum - 1).getUniversiy_id() + "");
+                        FacultyItems(arrayListUniversity.get(universityNum - 1).getUniversiy_id() + "");
                     }
+                    SpinnerAnimation(listFacultyLayout, imageFaculty);
+                    SpinnerAnimationClose(listTypeLayout, imageType);
+                    SpinnerAnimationClose(listUniversityLayout, imageUniversity);
+                    SpinnerAnimationClose(listPartPlaceLayout, imagePartPlace);
+                    SpinnerAnimationClose(listspecializationLayout, imagespecialization);
+                    SpinnerAnimationClose(listPlaceLayout, imagePlace);
 
-                    if (listTypeLayout.getVisibility() == View.VISIBLE) {
-                        SpinnerAnimation(listTypeLayout, imageType);
-                    }
-
-                    if (listUniversityLayout.getVisibility() == View.VISIBLE) {
-                        SpinnerAnimation(listUniversityLayout, imageUniversity);
-                    }
                 } else {
                     Alarm("أضف الجامعة أولا ");
                 }
@@ -203,10 +217,73 @@ public class AddTrainees extends Fragment {
 
         });
 
+        choosePlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (listPlaceLayout.getVisibility() == View.GONE) {
+                    PlaceItems();
+                }
+
+                SpinnerAnimationClose(listTypeLayout, imageType);
+                SpinnerAnimationClose(listUniversityLayout, imageUniversity);
+                SpinnerAnimationClose(listFacultyLayout, imageFaculty);
+                SpinnerAnimationClose(listPartPlaceLayout, imagePartPlace);
+                SpinnerAnimationClose(listspecializationLayout, imagespecialization);
+                SpinnerAnimation(listPlaceLayout, imagePlace);
+
+
+            }
+
+        });
+
+        choosePartPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (placeNum > 0) {
+                    if (listPartPlaceLayout.getVisibility() == View.GONE) {
+                        Log.d("ffffff", arrayListPlace.get(placeNum - 1).getPlace_id() + "");
+                        PartPlaceItem(arrayListPlace.get(placeNum - 1).getPlace_id() + "");
+                    }
+                    SpinnerAnimationClose(listFacultyLayout, imageFaculty);
+                    SpinnerAnimationClose(listTypeLayout, imageType);
+                    SpinnerAnimationClose(listUniversityLayout, imageUniversity);
+                    SpinnerAnimation(listPartPlaceLayout, imagePartPlace);
+                    SpinnerAnimationClose(listspecializationLayout, imagespecialization);
+                    SpinnerAnimationClose(listPlaceLayout, imagePlace);
+
+                } else {
+                    Alarm("أضف القسم الرئيسي أولا :)");
+                }
+            }
+
+        });
+
+        choosespecialization.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (facultyNum > 0) {
+                    if (listspecializationLayout.getVisibility() == View.GONE) {
+                        SpecializationItems(arrayListFaculty.get(facultyNum - 1).getCollage_id() + "");
+                    }
+                    SpinnerAnimationClose(listFacultyLayout, imageFaculty);
+                    SpinnerAnimationClose(listTypeLayout, imageType);
+                    SpinnerAnimationClose(listUniversityLayout, imageUniversity);
+                    SpinnerAnimationClose(listPartPlaceLayout, imagePartPlace);
+                    SpinnerAnimation(listspecializationLayout, imagespecialization);
+                    SpinnerAnimationClose(listPlaceLayout, imagePlace);
+
+                } else {
+                    Alarm("أضف الكلية أولا ");
+                }
+            }
+        });
 
         typeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SpinnerAnimation(studentLayout, position);
                 typeNum = position + 1;
                 titleSpinnerType.setText(arrayListType.get(position));
                 SpinnerAnimation(listTypeLayout, imageType);
@@ -224,22 +301,60 @@ public class AddTrainees extends Fragment {
             }
         });
 
+        placeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                placeNum = position + 1;
+                titleSpinnerPlace.setText(arrayListPlace.get(position).getPlace_name());
+                SpinnerAnimation(listPlaceLayout, imagePlace);
 
+            }
+        });
+
+        facultyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                facultyNum = position + 1;
+                titleSpinnerFaculty.setText(arrayListFaculty.get(position).getCollage_name());
+                SpinnerAnimation(listFacultyLayout, imageFaculty);
+
+            }
+        });
+
+        specializationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                specializationNum = position + 1;
+                titleSpinnerspecialization.setText(arrayListspecialization.get(position).getSpecalization_name());
+                SpinnerAnimation(listspecializationLayout, imagespecialization);
+            }
+        });
+
+
+        gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                View radioButton = radioGroup.findViewById(i);
+                int index = radioGroup.indexOfChild(radioButton);
+                if (index == 0)
+                    genderText = "ذكر";
+                else
+                    genderText = "أنثى";
+            }
+        });
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(Validate()){
+                if (Validate()) {
 
 
-//                    AddItem(new Trainee(name.getText().toString(),,mobileNumber.getText().toString()
-//                            ,phoneNumber.getText().toString() ,email.getText().toString(),
-//                            arrayListUniversity.get(universityNum-1).getUniversiy_id()+"",arrayListFaculty.get(facultyNum-1).getFaculty_id()+"",
-//                            arrayListSpecification.get(specificationNum-1).getId()+"",
-//                            arrayListType.get(typeNum-1),studentID.getText().toString(),numberHour.getText().toString()
-//                    )));
+//                    AddItem(new Trainee(name.getText().toString(),genderText,mobileNumber.getText().toString(),
+//                            phoneNumber.getText().toString(),email.getText().toString(),arrayListUniversity.get(universityNum-1).getUniversiy_id()+"",
+//                            arrayListFaculty.get(facultyNum-1).getCollage_id()+"",arrayListspecialization.get(specializationNum-1)+""
+//                    ,arrayListType.get(typeNum-1)));
 
-                }else{
+                } else {
                     Alarm("لم تتم إضافة جميع البيانات اللازمة");
 
                 }
@@ -271,27 +386,40 @@ public class AddTrainees extends Fragment {
         chooseUniversity = view.findViewById(R.id.university);
         chooseFaculty = view.findViewById(R.id.faculty);
         chooseType = view.findViewById(R.id.type);
+        choosePlace = view.findViewById(R.id.place);
+        choosespecialization = view.findViewById(R.id.specialization);
+        choosePartPlace = view.findViewById(R.id.partPlace);
 
 
         universityList = view.findViewById(R.id.universitySpinner);
         typeList = view.findViewById(R.id.typeSpinner);
         facultyList = view.findViewById(R.id.facultySpinner);
-        specificationList = view.findViewById(R.id.specificationSpinner);
+        specializationList = view.findViewById(R.id.specializationSpinner);
+        placeList = view.findViewById(R.id.placeSpinner);
+        partPlaceList = view.findViewById(R.id.partPlaceSpinner);
 
         listUniversityLayout = view.findViewById(R.id.universitySpinnerLayout);
         listFacultyLayout = view.findViewById(R.id.facultySpinnerLayout);
         listTypeLayout = view.findViewById(R.id.typeSpinnerLayout);
-        listSpecificationLayout = view.findViewById(R.id.specificationSpinnerLayout);
+        listspecializationLayout = view.findViewById(R.id.specializationSpinnerLayout);
+        listPlaceLayout = view.findViewById(R.id.placeSpinnerLayout);
+        listPartPlaceLayout = view.findViewById(R.id.partPlaceSpinnerLayout);
 
         imageFaculty = view.findViewById(R.id.facultyImage);
         imageType = view.findViewById(R.id.iconType);
-        imageSpecification = view.findViewById(R.id.specImage);
+        imagespecialization = view.findViewById(R.id.specImage);
         imageUniversity = view.findViewById(R.id.imageUniversity);
+        imagePlace = view.findViewById(R.id.imagePlace);
+        imagePartPlace = view.findViewById(R.id.imagePartPlace);
 
         titleSpinnerFaculty = view.findViewById(R.id.facultyText);
-        titleSpinnerSpecification = view.findViewById(R.id.textSpec);
         titleSpinnerUniversity = view.findViewById(R.id.textUniversity);
+        titleSpinnerspecialization = view.findViewById(R.id.textSpec);
         titleSpinnerType = view.findViewById(R.id.textType);
+        titleSpinnerPlace = view.findViewById(R.id.textPlace);
+        titleSpinnerPartPlace = view.findViewById(R.id.textPartPlace);
+
+        studentLayout = view.findViewById(R.id.studentLayout);
 
         save = view.findViewById(R.id.save);
 
@@ -308,6 +436,7 @@ public class AddTrainees extends Fragment {
 
         if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
             SelectedImage = Matisse.obtainResult(data).get(0);
+            UploadImage(SelectedImage);
 
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.placeholder(R.drawable.add_user);
@@ -328,6 +457,22 @@ public class AddTrainees extends Fragment {
     }
 
 
+    private void UploadImage(Uri SelectedImage) {
+        InputStream iStream = null;
+        try {
+            Context applicationContext = getActivity().getApplicationContext();
+            iStream = applicationContext.getContentResolver().openInputStream(SelectedImage);
+            byte[] image = Utility.getBytes(iStream);
+            UploadUserImage(ApplicationController.getInstance().token(),
+                    image);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public boolean Validate() {
 
         if (TextUtils.isEmpty(name.getText().toString())) {
@@ -345,7 +490,7 @@ public class AddTrainees extends Fragment {
         } else if (typeNum < 1) {
             return false;
         } else if (typeNum == 1) {
-            if (specificationNum > 1) {
+            if (specializationNum > 1) {
             } else if (universityNum < 1) {
                 return false;
             } else if (facultyNum < 1) {
@@ -371,7 +516,6 @@ public class AddTrainees extends Fragment {
 
                 adapter.notifyDataSetChanged();
                 universityList.setAdapter(adapter);
-                SpinnerAnimation(listUniversityLayout, imageUniversity);
 
                 //                }
             }
@@ -400,7 +544,7 @@ public class AddTrainees extends Fragment {
 
 
     public void FacultyItems(String university_id) {
-        new UserAPI().getAllFaculty(university_id,new UniversalCallBack() {
+        new UserAPI().getAllFaculty(university_id, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
 
@@ -415,7 +559,6 @@ public class AddTrainees extends Fragment {
                 adapter.notifyDataSetChanged();
                 facultyList.setAdapter(adapter);
                 UIUtils.setListViewHeightBasedOnItems(facultyList);
-                SpinnerAnimation(listFacultyLayout, imageFaculty);
 
                 //                }
             }
@@ -443,19 +586,133 @@ public class AddTrainees extends Fragment {
         });
     }
 
-    public void SpinnerAnimation(LinearLayout view2, ImageView imageView) {
-        if (view2.getVisibility() == View.VISIBLE) {
-            MyCustomAnimation a = new MyCustomAnimation(view2, 1000, MyCustomAnimation.COLLAPSE);
-            height = a.getHeight();
-            view2.startAnimation(a);
-            imageView.setBackgroundResource(R.drawable.ic_arrow_drop_down_black_24dp);
-        } else {
-            MyCustomAnimation a = new MyCustomAnimation(view2, 1000, MyCustomAnimation.EXPAND);
-            a.setHeight(height);
-            view2.startAnimation(a);
-            imageView.setBackgroundResource(R.drawable.ic_arrow_drop_up_black_24dp);
 
-        }
+    public void SpecializationItems(String collage_id) {
+        new UserAPI().getAllSpecialization(collage_id, new UniversalCallBack() {
+            @Override
+            public void onResponse(Object result) {
+
+                SpecializationListModel responseSpecialization = (SpecializationListModel) result;
+
+//                if (responseCategories.isStatus()) {
+                arrayListspecialization.clear();
+                arrayListspecialization.addAll(responseSpecialization.getResult());
+                final AdapterSpinnerspecialization adapter = new AdapterSpinnerspecialization(getActivity(), arrayListspecialization);
+
+
+                adapter.notifyDataSetChanged();
+                specializationList.setAdapter(adapter);
+                UIUtils.setListViewHeightBasedOnItems(specializationList);
+
+                //                }
+            }
+
+            @Override
+            public void onFailure(Object result) {
+                if (result != null) {
+                    ResponseError responseError = (ResponseError) result;
+                    if (getActivity() != null)
+                        Alarm(getString(R.string.noAdd));
+
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void OnError(String message) {
+
+                Alarm(getString(R.string.noInternet));
+            }
+        });
+    }
+
+    public void PartPlaceItem(String place_id) {
+        new UserAPI().getPartPlace(place_id, new UniversalCallBack() {
+            @Override
+            public void onResponse(Object result) {
+
+                PartPlaceListModel responsePartPlace = (PartPlaceListModel) result;
+
+//                if (responseCategories.isStatus()) {
+                arrayListPartPlace.clear();
+                arrayListPartPlace.addAll(responsePartPlace.getResult());
+                final AdapterSpinnerPartPlace adapter = new AdapterSpinnerPartPlace(getActivity(), arrayListPartPlace);
+
+                adapter.notifyDataSetChanged();
+                partPlaceList.setAdapter(adapter);
+                UIUtils.setListViewHeightBasedOnItems(partPlaceList);
+
+                //                }
+            }
+
+            @Override
+            public void onFailure(Object result) {
+                if (result != null) {
+                    ResponseError responseError = (ResponseError) result;
+                    if (getActivity() != null)
+                        Alarm(getString(R.string.noAdd));
+
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void OnError(String message) {
+
+                Alarm(getString(R.string.noInternet));
+            }
+        });
+    }
+
+    public void PlaceItems() {
+        new UserAPI().getPlace(new UniversalCallBack() {
+            @Override
+            public void onResponse(Object result) {
+
+                PlaceListModel responsePlace = (PlaceListModel) result;
+
+//                if (responseCategories.isStatus()) {
+                arrayListPlace.clear();
+                arrayListPlace.addAll(responsePlace.getResult());
+                final AdapterSpinnerPlace adapter = new AdapterSpinnerPlace(getActivity(), arrayListPlace);
+
+
+                adapter.notifyDataSetChanged();
+                placeList.setAdapter(adapter);
+                UIUtils.setListViewHeightBasedOnItems(placeList);
+
+                //                }
+            }
+
+            @Override
+            public void onFailure(Object result) {
+                if (result != null) {
+                    ResponseError responseError = (ResponseError) result;
+                    if (getActivity() != null)
+                        Alarm(getString(R.string.noAdd));
+
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void OnError(String message) {
+
+                Alarm(getString(R.string.noInternet));
+            }
+        });
     }
 
 
@@ -475,7 +732,7 @@ public class AddTrainees extends Fragment {
             @Override
             public void onFailure(Object result) {
                 if (result != null) {
-                   Alarm(getString(R.string.noAdd));
+                    Alarm(getString(R.string.noAdd));
                 }
             }
 
@@ -486,7 +743,8 @@ public class AddTrainees extends Fragment {
 
             @Override
             public void OnError(String message) {
-              Alarm(getString(R.string.noInternet));
+                if(getActivity()!=null)
+                    Alarm(getString(R.string.noInternet));
 
             }
         });
@@ -503,5 +761,66 @@ public class AddTrainees extends Fragment {
 
     }
 
+    public void SpinnerAnimation(LinearLayout view2, ImageView imageView) {
+        if (view2.getVisibility() == View.VISIBLE) {
+            MyCustomAnimation a = new MyCustomAnimation(view2, 1000, MyCustomAnimation.COLLAPSE);
+            height = a.getHeight();
+            view2.startAnimation(a);
+            imageView.setBackgroundResource(R.drawable.ic_arrow_drop_down_black_24dp);
+        } else {
+            MyCustomAnimation a = new MyCustomAnimation(view2, 1000, MyCustomAnimation.EXPAND);
+            a.setHeight(height);
+            view2.startAnimation(a);
+            imageView.setBackgroundResource(R.drawable.ic_arrow_drop_up_black_24dp);
+
+        }
+    }
+
+    public void SpinnerAnimation(LinearLayout view2, int number) {
+        if (number == 1) {
+            MyCustomAnimation a = new MyCustomAnimation(view2, 1000, MyCustomAnimation.COLLAPSE);
+            height = a.getHeight();
+            view2.startAnimation(a);
+        } else {
+            MyCustomAnimation a = new MyCustomAnimation(view2, 1000, MyCustomAnimation.EXPAND);
+            a.setHeight(height);
+            view2.startAnimation(a);
+        }
+    }
+
+    public void SpinnerAnimationClose(LinearLayout view2, ImageView imageView) {
+        if (view2.getVisibility() == View.VISIBLE) {
+            MyCustomAnimation a = new MyCustomAnimation(view2, 1000, MyCustomAnimation.COLLAPSE);
+            height = a.getHeight();
+            view2.startAnimation(a);
+            imageView.setBackgroundResource(R.drawable.ic_arrow_drop_down_black_24dp);
+        }
+
+    }
+
+    public void UploadUserImage(final String token, final byte[] photo) {
+        new UserAPI().UploadUserImage(token, photo, new UniversalCallBack() {
+            @Override
+            public void onResponse(Object result) {
+
+            }
+
+            @Override
+            public void onFailure(Object result) {
+                if (result != null) {
+                    ResponseError responseError = (ResponseError) result;
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void OnError(String message) {
+            }
+        });
+    }
 
 }

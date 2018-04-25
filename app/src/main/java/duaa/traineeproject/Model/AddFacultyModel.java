@@ -3,7 +3,7 @@ package duaa.traineeproject.Model;
 import java.io.Serializable;
 import java.util.List;
 
-import duaa.traineeproject.JavaObject.Specification;
+import duaa.traineeproject.JavaObject.specialization;
 
 /**
  * Created by AL-Qema on 13/04/18.
@@ -11,11 +11,11 @@ import duaa.traineeproject.JavaObject.Specification;
 
 public class AddFacultyModel implements Serializable {
     String name ;
-    List <String> specifications ;
+    List <String> specializations ;
 
-    public AddFacultyModel(String name, List<String> specifications) {
+    public AddFacultyModel(String name, List<String> specializations) {
         this.name = name;
-        this.specifications = specifications;
+        this.specializations = specializations;
     }
 
     public String getName() {
@@ -26,11 +26,11 @@ public class AddFacultyModel implements Serializable {
         this.name = name;
     }
 
-    public List<String> getSpecifications() {
-        return specifications;
+    public List<String> getspecializations() {
+        return specializations;
     }
 
-    public void setSpecifications(List<String> specifications) {
-        this.specifications = specifications;
+    public void setspecializations(List<String> specializations) {
+        this.specializations = specializations;
     }
 }
