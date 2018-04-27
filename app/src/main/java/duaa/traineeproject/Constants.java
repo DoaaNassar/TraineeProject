@@ -10,8 +10,7 @@ public class Constants {
     public static final String baseUrl ="http://192.168.1.108/trainee_project/public/";
 
     public static final String LOGIN= baseUrl +"api/login";
-    public static final String LOGOUT= baseUrl +"";
-    public static final String CHANGE_PASSWORD = baseUrl +"";
+    public static final String CHANGE_PASSWORD = baseUrl +"api/change-password";
     public static final String UPDATE_PROFILE = baseUrl +"";
 
 
@@ -26,27 +25,27 @@ public class Constants {
 
 
 
-    public static final String GET_now_TRAINER = baseUrl +"";
+    public static final String GET_now_TRAINER = baseUrl +"api/get-traiers";
     public static final String GET_OLD_TRAINER = baseUrl +"";
     public static final String ADD_TRAINER= baseUrl +"api/add-trainer";
 
 
-    public static final String GET_NOW_TRAINEE = baseUrl +"";
-    public static final String GET_OLD_TRAINEE = baseUrl +"";
+    public static final String GET_NOW_TRAINEE = baseUrl +"api/get-trainee";
+    public static final String GET_OLD_TRAINEE = baseUrl +"api/get-trainee";
     public static final String ADD_TRAINEE = baseUrl +"api/add-trainee";
     public static final String END_TRAINING_TRAINEE = baseUrl +"";
     public static final String EDIT_TRAINEE = baseUrl +"";
     public static final String DELETE_TRAINEE = baseUrl +"";
     public static final String ADD_ANTHER_TRAINING_TRAINEE = baseUrl +"";
 
-    public static final String ADD_PLACE = baseUrl +"";
+    public static final String ADD_PLACE = baseUrl +"api/add-place";
     public static final String GET_PLACE = baseUrl +"api/get-all-places";
     public static final String DELETE_PLACE = baseUrl +"";
     public static final String GET_PART_PLACE = baseUrl +"api/get-all-partments-place";
 
 
 
-    public static final String UPLOAD= baseUrl +"";
+    public static final String UPLOAD= baseUrl +"api/upload-photos";
 
 
 

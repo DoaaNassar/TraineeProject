@@ -142,36 +142,30 @@ public class OldTraineeFragment extends Fragment {
         arrayListType.add("تدريب جامعي");
         arrayListType.add("تطوع");
 
-        ArrayList<TraineeModel> arrayList = new ArrayList<>();
-        arrayList.add(new TraineeModel(1, "دعاء  نصار", "", "", "", "", ""));
-        arrayList.add(new TraineeModel(1, "دعاء  نصار", "", "", "", "", ""));
-        arrayList.add(new TraineeModel(1, "دعاء  نصار", "", "", "", "", ""));
-        arrayList.add(new TraineeModel(1, "دعاء  نصار", "", "", "", "", ""));
-        arrayList.add(new TraineeModel(1, "دعاء  نصار", "", "", "", "", ""));
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new AdapterOldTrainee(getActivity(), arrayList, new CustomItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-
-            }
-        }, new AdapterOldTrainee.MyRecyclerViewListener() {
-            @Override
-            public void AddNew(View v, int position) {
-                showDialog(getActivity());
-
-            }
-
-            @Override
-            public void Training(View v, int position) {
-
-                Intent refresh = new Intent(getActivity(), TrainingActivity.class);
-                startActivity(refresh);
-            }
-        });
-
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+//        ArrayList<TraineeModel> arrayList = new ArrayList<>();
+//         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        adapter = new AdapterOldTrainee(getActivity(), arrayList, new CustomItemClickListener() {
+//            @Override
+//            public void onItemClick(View v, int position) {
+//
+//            }
+//        }, new AdapterOldTrainee.MyRecyclerViewListener() {
+//            @Override
+//            public void AddNew(View v, int position) {
+//                showDialog(getActivity());
+//
+//            }
+//
+//            @Override
+//            public void Training(View v, int position) {
+//
+//                Intent refresh = new Intent(getActivity(), TrainingActivity.class);
+//                startActivity(refresh);
+//            }
+//        });
+//
+//        recyclerView.setAdapter(adapter);
+//        adapter.notifyDataSetChanged();
 
         // Inflate the layout for this fragment
         return view;
@@ -453,7 +447,8 @@ public class OldTraineeFragment extends Fragment {
 
     public void ShowTrainee() {
 
-        new UserAPI().getAllOldTrainee(ApplicationController.getInstance().getLoginUser().getRole_id() + "",
+        new UserAPI().getTrainee(ApplicationController.getInstance().getLoginUser().getUser_id()+ "",ApplicationController.getInstance().getLoginUser().getRole_id()+"",
+                "1","1",
                 new UniversalCallBack() {
                     @Override
                     public void onResponse(Object result) {
@@ -486,6 +481,9 @@ public class OldTraineeFragment extends Fragment {
                             }
                         });
                         recyclerView.setAdapter(adapter);
+                        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+                        llm.setOrientation(LinearLayoutManager.VERTICAL);
+                        recyclerView.setLayoutManager(llm);
                         adapter.notifyDataSetChanged();
 
                         //                }
@@ -536,7 +534,7 @@ public class OldTraineeFragment extends Fragment {
             @Override
             public void onFailure(Object result) {
                 if (result != null) {
-                    Alarm(getString(R.string.noAdd));
+                    Alarm(getResources().getString(R.string.noAdd));
                 }
             }
 
@@ -548,7 +546,7 @@ public class OldTraineeFragment extends Fragment {
             @Override
             public void OnError(String message) {
                 if (getActivity() != null)
-                    Alarm(getString(R.string.noInternet));
+                    Alarm(getResources().getString(R.string.noInternet));
 
             }
         });

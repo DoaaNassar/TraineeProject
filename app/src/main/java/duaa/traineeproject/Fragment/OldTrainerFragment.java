@@ -1,6 +1,7 @@
 package duaa.traineeproject.Fragment;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,15 +22,19 @@ import duaa.traineeproject.API.ResponseError;
 import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.Adapter.OldTrainerAdapter;
 import duaa.traineeproject.Adapter.PlaceAdapter;
+import duaa.traineeproject.Adapter.TrainerAdapter;
 import duaa.traineeproject.Adapter.UniversityAdapter;
 import duaa.traineeproject.Interface.CustomItemClickListener;
 import duaa.traineeproject.Interface.UniversalCallBack;
 import duaa.traineeproject.Model.OldTrainerListModel;
 import duaa.traineeproject.Model.PlaceModel;
 import duaa.traineeproject.Model.Trainer;
+import duaa.traineeproject.Model.TrainerListModel;
 import duaa.traineeproject.Model.UniversityListModel;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
+
+import static duaa.traineeproject.Constants.FONTS_APP;
 
 
 public class OldTrainerFragment extends Fragment {
@@ -39,12 +44,16 @@ public class OldTrainerFragment extends Fragment {
     RecyclerView recyclerView;
     OldTrainerAdapter oldTrainerAdapter;
     ArrayList<Trainer> arrayList;
+    Typeface face;
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         arrayList = new ArrayList<>();
+        face = Typeface.createFromAsset(getActivity().getAssets(), FONTS_APP);
+
     }
 
     @Override
@@ -54,7 +63,7 @@ public class OldTrainerFragment extends Fragment {
         bindView();
         title.setText(getString(R.string.trainerPart));
 
-        getOldTrainer();
+        trainer();
         // Inflate the layout for this fragment
         return view;
     }
@@ -64,19 +73,18 @@ public class OldTrainerFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
     }
 
-    public void getOldTrainer() {
+    public void trainer() {
 
-        new UserAPI().getAllOldTrainer(new UniversalCallBack() {
+        new UserAPI().getAllNowTrainer("0",new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
 
-                OldTrainerListModel responseTrainer = (OldTrainerListModel) result;
-                Log.d("ddddd", "ffff");
-
+                TrainerListModel response = (TrainerListModel) result;
 
 //                if (responseCategories.isStatus()) {
+//                loading.setVisibility(View.GONE);
                 arrayList.clear();
-                arrayList.addAll(responseTrainer.getResult());
+                arrayList.addAll(response.getResult());
                 recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
                 oldTrainerAdapter = new OldTrainerAdapter(getActivity(), arrayList,
                         new CustomItemClickListener() {
@@ -92,8 +100,10 @@ public class OldTrainerFragment extends Fragment {
                 });
 
                 recyclerView.setAdapter(oldTrainerAdapter);
+                LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+                llm.setOrientation(LinearLayoutManager.VERTICAL);
+                recyclerView.setLayoutManager(llm);
                 oldTrainerAdapter.notifyDataSetChanged();
-
 
             }
 //            }
@@ -102,34 +112,24 @@ public class OldTrainerFragment extends Fragment {
             public void onFailure(Object result) {
                 if (result != null) {
                     ResponseError responseError = (ResponseError) result;
+//                    loading.setVisibility(View.GONE);
 
                     if (getActivity() != null)
-                        Alerter.create(getActivity())
-                                .setText(responseError.getMessage())
-                                .hideIcon()
-                                .setContentGravity(GravityCompat.END)
-                                .setBackgroundColorRes(R.color.colorPrimary)
-                                .show();
+                        Alarm(getResources().getString(R.string.noAdd));
                 }
             }
 
             @Override
             public void onFinish() {
-
+//                loading.setVisibility(View.GONE);
 
             }
 
             @Override
             public void OnError(String message) {
-
-
-                Alerter.create(getActivity())
-                        .setText("لا يوجد انترنت")
-                        .hideIcon()
-                        .setContentGravity(GravityCompat.END)
-                        .setBackgroundColorRes(R.color.colorPrimary)
-                        .show();
-
+//                loading.setVisibility(View.GONE);
+                if (getActivity() != null)
+                    Alarm(getResources().getString(R.string.noInternet));
 
             }
         });
@@ -137,5 +137,14 @@ public class OldTrainerFragment extends Fragment {
 
     }
 
+    public void Alarm(String message) {
+        Alerter.create(getActivity())
+                .setText(message)
+                .hideIcon()
+                .setContentGravity(GravityCompat.END)
+                .setTextTypeface(face)
+                .setBackgroundColorRes(R.color.cardview_dark_background)
+                .show();
 
+    }
 }

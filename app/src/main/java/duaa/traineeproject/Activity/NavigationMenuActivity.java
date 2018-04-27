@@ -1,5 +1,6 @@
 package duaa.traineeproject.Activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -9,14 +10,23 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import dmax.dialog.SpotsDialog;
+import duaa.traineeproject.API.ResponseError;
+import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.Application.ApplicationController;
 import duaa.traineeproject.Fragment.ContentFrontMain;
+import duaa.traineeproject.Interface.UniversalCallBack;
+import duaa.traineeproject.Model.ResponseSuccess;
 import duaa.traineeproject.Model.UserDataResponse;
 import duaa.traineeproject.Model.showUserLogin;
 import duaa.traineeproject.Page.PlaceFragmentPager;
@@ -30,8 +40,10 @@ public class NavigationMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Fragment fragment;
-    FontTextViewRegular userName ;
-    FontTextViewRegular userRole ;
+    FontTextViewRegular userName;
+    FontTextViewRegular userRole;
+    AlertDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +51,7 @@ public class NavigationMenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_navigation_menu);
         getSupportFragmentManager().beginTransaction().addToBackStack(null).
                 replace(R.id.containerLayout, new ContentFrontMain()).commit();
+        dialog = new SpotsDialog(this, R.style.Custom);
         bindView();
         setData();
 
@@ -114,9 +127,27 @@ public class NavigationMenuActivity extends AppCompatActivity
             }
         });
 
+        out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.show();
 
-//        fragment = new TraineeViewPager();
-//        Fragment(fragment);
+                TimerTask task = new TimerTask() {
+                    @Override
+                    public void run() {
+
+                        NavigationMenuActivity.this.finish();
+                        Intent refresh = new Intent(NavigationMenuActivity.this, Login.class);
+                        startActivity(refresh);
+                        ApplicationController.getInstance().login_token("");
+                        ApplicationController.getInstance().userLogin(new showUserLogin());
+
+                    }
+                };
+                Timer opening = new Timer();
+                opening.schedule(task, 1000);
+            }
+        });
 
 //        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 //                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -162,11 +193,12 @@ public class NavigationMenuActivity extends AppCompatActivity
         return true;
     }
 
-    public void bindView (){
+    public void bindView() {
         userName = findViewById(R.id.userName);
         userRole = findViewById(R.id.userRole);
 
     }
+
     public void Fragment(Fragment fragment) {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -187,10 +219,17 @@ public class NavigationMenuActivity extends AppCompatActivity
 //        }
 //    }
 
-    public void setData (){
+    public void setData() {
         showUserLogin user = ApplicationController.getInstance().getLoginUser();
         userName.setText(user.getUser_name());
-        userRole.setText(user.getRole_id()+"");
+        userRole.setText(user.getRole_id() + "");
+    }
+
+    public void Logout(final String token) {
+//        dialog.show();
+//        dialog.setCancelable(false);
+
+
     }
 
 }

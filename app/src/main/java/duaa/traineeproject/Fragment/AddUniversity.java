@@ -2,9 +2,11 @@ package duaa.traineeproject.Fragment;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.tapadoo.alerter.Alerter;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 
@@ -33,6 +36,8 @@ import duaa.traineeproject.view.MyGlideEngine;
 //import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 import static android.app.Activity.RESULT_OK;
+import static duaa.traineeproject.Constants.FONTS_APP;
+import static duaa.traineeproject.Page.TrainerFragment.isBack;
 
 public class AddUniversity extends Fragment {
 
@@ -42,6 +47,8 @@ public class AddUniversity extends Fragment {
     FontEditTextViewRegular nameUniversity , address ,email ,phoneNumber , mobileNumber;
     FontButtonRegular save ;
     FontTextViewRegular title ;
+    Typeface face;
+
 
     private static final int REQUEST_CODE_CHOOSE = 600;
     FrameLayout loadingLayout;
@@ -50,6 +57,8 @@ public class AddUniversity extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        face = Typeface.createFromAsset(getActivity().getAssets(), FONTS_APP);
+
 
     }
 
@@ -91,6 +100,7 @@ public class AddUniversity extends Fragment {
                     AddItem(new AddUniversityObject(nameUniversityTxt, emailTxt, mobileNumberTxt, phoneNumberTxt, addressTxt));
                 }else {
 
+                    Alarm("يرجى تعبئة جميع البيانات اللازمة :)");
                 }
             }
         });
@@ -145,6 +155,7 @@ public class AddUniversity extends Fragment {
 
     public void AddItem(final AddUniversityObject item) {
         loadingLayout.setVisibility(View.VISIBLE);
+        isBack = true ;
 //        contentLayout.setEnabled(false);
         new UserAPI().AddUniversity(item, new UniversalCallBack() {
             @Override
@@ -153,6 +164,8 @@ public class AddUniversity extends Fragment {
                 String message = responseItem.getMessage();
 
                 loadingLayout.setVisibility(View.GONE);
+                isBack = false ;
+
 //                contentLayout.setEnabled(true);
                 Toast.makeText(getActivity(), message+"", Toast.LENGTH_SHORT).show();
 //                if (responseItem.isStatus()) {
@@ -166,9 +179,8 @@ public class AddUniversity extends Fragment {
             @Override
             public void onFailure(Object result) {
                 if (result != null) {
+                    isBack = false ;
                     loadingLayout.setVisibility(View.GONE);
-
-
                 }
 
             }
@@ -176,20 +188,18 @@ public class AddUniversity extends Fragment {
             @Override
             public void onFinish() {
                 loadingLayout.setVisibility(View.GONE);
-
+                isBack = false ;
 
             }
 
             @Override
             public void OnError(String message) {
-//                Alerter.create(AddItemActivity.this)
-//                        .setText(message)
-//                        .hideIcon()
-//                        .setBackgroundColorRes(R.color.colorPrimary)
-//                        .show();
-//                if(pDialog.isShowing()){
-//                    pDialog.dismissWithAnimation();
-//                }
+//
+                if(getActivity()!= null){
+                    Alarm(getResources().getString(R.string.noInternet));
+                    isBack = false ;
+
+                }
             }
         });
     }
@@ -206,5 +216,14 @@ public class AddUniversity extends Fragment {
         }
         return true;
     }
+    public void Alarm(String message) {
+        Alerter.create(getActivity())
+                .setText(message)
+                .hideIcon()
+                .setContentGravity(GravityCompat.END)
+                .setTextTypeface(face)
+                .setBackgroundColorRes(R.color.cardview_dark_background)
+                .show();
 
+    }
 }

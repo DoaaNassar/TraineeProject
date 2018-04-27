@@ -7,27 +7,27 @@ import java.io.Serializable;
  */
 
 public class PartObject implements Serializable{
-String name;
-int number ;
+String partment_name;
+String num ;
 
-    public PartObject(String name, int number) {
-        this.name = name;
-        this.number = number;
+    public PartObject(String partment_name, String num) {
+        this.partment_name = partment_name;
+        this.num = num;
     }
 
-    public String getName() {
-        return name;
+    public String getPartment_name() {
+        return partment_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPartment_name(String partment_name) {
+        this.partment_name = partment_name;
     }
 
-    public int getNumber() {
-        return number;
+    public String getNum() {
+        return num;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setNum(String num) {
+        this.num = num;
     }
 }

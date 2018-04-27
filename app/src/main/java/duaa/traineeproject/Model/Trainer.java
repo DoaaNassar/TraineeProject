@@ -8,31 +8,36 @@ import java.io.Serializable;
 
 public class Trainer implements Serializable {
 
-    int id;
-    String name;
+    int trainer_id;
+    String trainer_name;
     String email;
+    String phone ;
+    String mobile ;
+    int is_deleted ;
 
-
-    public Trainer(int id, String name, String email) {
-        this.id = id;
-        this.name = name;
+    public Trainer(int trainer_id, String trainer_name, String email, String phone, String mobile, int is_deleted) {
+        this.trainer_id = trainer_id;
+        this.trainer_name = trainer_name;
         this.email = email;
+        this.phone = phone;
+        this.mobile = mobile;
+        this.is_deleted = is_deleted;
     }
 
-    public int getId() {
-        return id;
+    public int getTrainer_id() {
+        return trainer_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTrainer_id(int trainer_id) {
+        this.trainer_id = trainer_id;
     }
 
-    public String getName() {
-        return name;
+    public String getTrainer_name() {
+        return trainer_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTrainer_name(String trainer_name) {
+        this.trainer_name = trainer_name;
     }
 
     public String getEmail() {
@@ -41,5 +46,29 @@ public class Trainer implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public int getIs_deleted() {
+        return is_deleted;
+    }
+
+    public void setIs_deleted(int is_deleted) {
+        this.is_deleted = is_deleted;
     }
 }

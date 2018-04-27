@@ -20,7 +20,10 @@
             android:layout_height="wrap_content"
             android:text="تسجيل متدرب جديد "
             android:textColor="@color/silver"
-            android:textSize="15sp"
+            android:textSize="14sp"
+            android:drawableEnd="@drawable/user_new"
+            android:gravity="center_vertical"
+            android:drawablePadding="8dp"
             android:textStyle="bold" />
 
         <duaa.traineeproject.view.FontEditTextViewRegular

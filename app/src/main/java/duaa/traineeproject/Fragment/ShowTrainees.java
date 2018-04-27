@@ -44,6 +44,7 @@ import duaa.traineeproject.Model.TraineeListModel;
 import duaa.traineeproject.Model.TraineeModel;
 import duaa.traineeproject.R;
 import duaa.traineeproject.Units.UIUtils;
+import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontTextViewRegular;
 
 import static duaa.traineeproject.Constants.FONTS_APP;
@@ -81,50 +82,6 @@ public class ShowTrainees extends Fragment {
         bindView();
         title.setText(getResources().getString(R.string.traineePart));
         ShowTrainee();
-        arrayList.add(new TraineeModel(1, "دعاء  نصار", "", "", "", "", ""));
-        arrayList.add(new TraineeModel(1, "دعاء  نصار", "", "", "", "", ""));
-        arrayList.add(new TraineeModel(1, "دعاء  نصار", "", "", "", "", ""));
-        arrayList.add(new TraineeModel(1, "دعاء  نصار", "", "", "", "", ""));
-        arrayList.add(new TraineeModel(1, "دعاء  نصار", "", "", "", "", ""));
-
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new AdapterNewTrainee(getActivity(), arrayList, new CustomItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-
-            }
-        }, new AdapterNewTrainee.MyRecyclerViewListener() {
-            @Override
-            public void Delete(View v, int position) {
-                showDialog(getActivity(), position);
-            }
-
-            @Override
-            public void Edit(View v, int position) {
-                Intent refresh = new Intent(getContext(), EditTrainee.class);
-                startActivity(refresh);
-
-            }
-        });
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-
-//        CheckBox checkBox =view.findViewById(R.id.checkAll);
-//        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if(isChecked){
-//                adapter.toggleSelectAll();
-//                adapter.notifyDataSetChanged();
-//
-//                }
-//                else {
-//                    adapter.toggleSelectAll();
-//                    adapter.notifyDataSetChanged();
-//                }
-//            }
-//        });
 
         return view;
     }
@@ -136,7 +93,7 @@ public class ShowTrainees extends Fragment {
 
     }
 
-    public void showDialog(Activity activity, final int position) {
+    public void showDialog(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("هل أنت متاكد ؟");
         builder.setCancelable(false);
@@ -209,7 +166,8 @@ public class ShowTrainees extends Fragment {
 
     public void ShowTrainee() {
 
-        new UserAPI().getAllNowTrainee(ApplicationController.getInstance().getLoginUser().getRole_id()+"",
+        new UserAPI().getTrainee(ApplicationController.getInstance().getLoginUser().getUser_id()+"",
+                ApplicationController.getInstance().getLoginUser().getRole_id()+"","1","0",
                 new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
@@ -229,7 +187,7 @@ public class ShowTrainees extends Fragment {
                 }, new AdapterNewTrainee.MyRecyclerViewListener() {
                     @Override
                     public void Delete(View v, int position) {
-                        showDialog(getActivity(), position);
+                        showDialog(getActivity(),position);
                     }
 
                     @Override
@@ -239,6 +197,9 @@ public class ShowTrainees extends Fragment {
 
                     }
                 });
+                LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+                llm.setOrientation(LinearLayoutManager.VERTICAL);
+                recyclerView.setLayoutManager(llm);
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 
@@ -278,5 +239,31 @@ public class ShowTrainees extends Fragment {
             }
         });
     }
+    public void showDialog(Activity activity , final int position) {
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setContentView(R.layout.dialog_yes_no);
+        FontButtonRegular yes = dialog.findViewById(R.id.yes);
+        FontButtonRegular no = dialog.findViewById(R.id.no);
 
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                positionList = position;
+                DeleteTrainee(arrayList.get(position) + "");
+                dialog.hide();
+
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              dialog.hide();
+            }
+        });
+        dialog.show();
+
+    }
 }

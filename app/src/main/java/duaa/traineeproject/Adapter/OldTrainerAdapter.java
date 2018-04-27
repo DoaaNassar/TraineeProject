@@ -78,7 +78,7 @@ public class OldTrainerAdapter extends RecyclerView.Adapter<OldTrainerAdapter.My
 
         Trainer item = placeList.get(position);
 
-        holder.name.setText(item.getName());
+        holder.name.setText(item.getTrainer_name());
         holder.email.setText(item.getEmail());
 
 //        holder.remove.setOnClickListener(new View.OnClickListener() {

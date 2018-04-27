@@ -81,7 +81,7 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.MyViewHo
     public void onBindViewHolder(TrainerAdapter.MyViewHolder holder, final int position) {
         Trainer item = trainerList.get(position);
         holder.email.setText(item.getEmail());
-        holder.name.setText(item.getName());
+        holder.name.setText(item.getTrainer_name());
 
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override

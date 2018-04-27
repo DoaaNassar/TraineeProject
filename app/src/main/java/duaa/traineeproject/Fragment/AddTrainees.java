@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 
 import duaa.traineeproject.API.ResponseError;
 import duaa.traineeproject.API.UserAPI;
+import duaa.traineeproject.Activity.MainActivity;
 import duaa.traineeproject.Activity.NavigationMenuActivity;
 import duaa.traineeproject.Adapter.AdapterSpinner;
 import duaa.traineeproject.Adapter.AdapterSpinnerFaculty;
@@ -61,6 +63,7 @@ import duaa.traineeproject.Model.PlaceModel;
 import duaa.traineeproject.Model.ResponseSuccess;
 import duaa.traineeproject.Model.SpecializationListModel;
 import duaa.traineeproject.Model.SpecializationModel;
+import duaa.traineeproject.Model.TraineeAddModel;
 import duaa.traineeproject.Model.University;
 import duaa.traineeproject.Model.UniversityListModel;
 import duaa.traineeproject.MyCustomAnimation;
@@ -71,6 +74,7 @@ import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
 import duaa.traineeproject.view.FontTextViewRegular;
 import duaa.traineeproject.view.MyGlideEngine;
+import es.dmoral.toasty.Toasty;
 //import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 import static android.app.Activity.RESULT_OK;
@@ -108,7 +112,8 @@ public class AddTrainees extends Fragment {
     RadioButton radioButton1, radioButton2;
     String genderText;
 
-    int universityNum, facultyNum, typeNum, specializationNum, placeNum;
+    int universityNum, facultyNum, typeNum, specializationNum, placeNum, partPlaceNum;
+    String idTrainee;
 
 
     @Override
@@ -121,7 +126,6 @@ public class AddTrainees extends Fragment {
         arrayListspecialization = new ArrayList<>();
         arrayListPlace = new ArrayList<>();
         arrayListPartPlace = new ArrayList<>();
-
 
         face = Typeface.createFromAsset(getActivity().getAssets(), FONTS_APP);
 
@@ -280,6 +284,26 @@ public class AddTrainees extends Fragment {
             }
         });
 
+        choosePartPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (placeNum > 0) {
+                    if (listPartPlaceLayout.getVisibility() == View.GONE) {
+                        PartPlaceItem(arrayListPlace.get(placeNum - 1).getPlace_id() + "");
+                    }
+                    SpinnerAnimationClose(listFacultyLayout, imageFaculty);
+                    SpinnerAnimationClose(listTypeLayout, imageType);
+                    SpinnerAnimationClose(listUniversityLayout, imageUniversity);
+                    SpinnerAnimation(listPartPlaceLayout, imagePartPlace);
+                    SpinnerAnimationClose(listspecializationLayout, imagespecialization);
+                    SpinnerAnimationClose(listPlaceLayout, imagePlace);
+
+                } else {
+                    Alarm("أضف القسم أولا ");
+                }
+            }
+        });
+
         typeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -330,6 +354,14 @@ public class AddTrainees extends Fragment {
             }
         });
 
+        partPlaceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                partPlaceNum = position + 1;
+                titleSpinnerPartPlace.setText(arrayListPartPlace.get(position).getPartment_name());
+                SpinnerAnimation(listPartPlaceLayout, imagePartPlace);
+            }
+        });
 
         gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -345,19 +377,29 @@ public class AddTrainees extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (Validate()) {
 
+                    if (arrayListType.get(typeNum - 1).equals("تدريب جامعي")) {
 
-//                    AddItem(new Trainee(name.getText().toString(),genderText,mobileNumber.getText().toString(),
-//                            phoneNumber.getText().toString(),email.getText().toString(),arrayListUniversity.get(universityNum-1).getUniversiy_id()+"",
-//                            arrayListFaculty.get(facultyNum-1).getCollage_id()+"",arrayListspecialization.get(specializationNum-1)+""
-//                    ,arrayListType.get(typeNum-1)));
+                        AddItem(new Trainee(name.getText().toString(), genderText, mobileNumber.getText().toString(),
+                                phoneNumber.getText().toString(), email.getText().toString(), arrayListUniversity.get(universityNum - 1).getUniversiy_id() + "",
+                                arrayListFaculty.get(facultyNum - 1).getCollage_id() + "", arrayListspecialization.get(specializationNum - 1).getSpecalization_id() + ""
+                                , arrayListType.get(typeNum - 1), studentID.getText().toString(), numberHour.getText().toString(),
+                                arrayListPlace.get(placeNum - 1).getPlace_id() + "",
+                                arrayListPartPlace.get(partPlaceNum - 1).getPlace_partment_id() + "",
+                                idNumber.getText().toString(), ApplicationController.getInstance().getLoginUser().getRole_id() + "",
+                                ApplicationController.getInstance().getLoginUser().getUser_id() + ""));
 
-                } else {
-                    Alarm("لم تتم إضافة جميع البيانات اللازمة");
-
-                }
+                    } else {
+                        AddItem(new Trainee(name.getText().toString(), genderText, mobileNumber.getText().toString(),
+                                phoneNumber.getText().toString(), email.getText().toString()
+                                , arrayListType.get(typeNum - 1), numberHour.getText().toString(),
+                                arrayListPlace.get(placeNum - 1).getPlace_id() + "",
+                                arrayListPartPlace.get(partPlaceNum - 1).getPlace_partment_id() + "",
+                                idNumber.getText().toString(), ApplicationController.getInstance().getLoginUser().getRole_id() + "",
+                                ApplicationController.getInstance().getLoginUser().getUser_id() + ""));
+                    }
+                } else Alarm("لم تتم إضافة جميع البيانات اللازمة");
 
 
             }
@@ -436,7 +478,6 @@ public class AddTrainees extends Fragment {
 
         if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
             SelectedImage = Matisse.obtainResult(data).get(0);
-            UploadImage(SelectedImage);
 
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.placeholder(R.drawable.add_user);
@@ -463,8 +504,9 @@ public class AddTrainees extends Fragment {
             Context applicationContext = getActivity().getApplicationContext();
             iStream = applicationContext.getContentResolver().openInputStream(SelectedImage);
             byte[] image = Utility.getBytes(iStream);
+            Log.d("duaaa", idTrainee + "");
             UploadUserImage(ApplicationController.getInstance().token(),
-                    image);
+                    image, idTrainee);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -500,6 +542,7 @@ public class AddTrainees extends Fragment {
         return true;
     }
 
+
     public void UniversityItem() {
         new UserAPI().getAllUniversity(new UniversalCallBack() {
             @Override
@@ -516,6 +559,8 @@ public class AddTrainees extends Fragment {
 
                 adapter.notifyDataSetChanged();
                 universityList.setAdapter(adapter);
+                UIUtils.setListViewHeightBasedOnItems(universityList);
+
 
                 //                }
             }
@@ -721,12 +766,17 @@ public class AddTrainees extends Fragment {
         new UserAPI().AddTrainee(item, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
-                ResponseSuccess responseItem = (ResponseSuccess) result;
+                TraineeAddModel responseItem = (TraineeAddModel) result;
 
                 if (responseItem.isStatus()) {
                     Alarm(responseItem.getMessage());
+                    Toasty.success(getActivity(), responseItem.getMessage(), Toast.LENGTH_SHORT, true).show();
+                    idTrainee = responseItem.getTrainee_data_id();
+                    UploadImage(SelectedImage);
 
                 }
+                Alarm(responseItem.getMessage());
+
             }
 
             @Override
@@ -743,7 +793,7 @@ public class AddTrainees extends Fragment {
 
             @Override
             public void OnError(String message) {
-                if(getActivity()!=null)
+                if (getActivity() != null)
                     Alarm(getString(R.string.noInternet));
 
             }
@@ -798,8 +848,8 @@ public class AddTrainees extends Fragment {
 
     }
 
-    public void UploadUserImage(final String token, final byte[] photo) {
-        new UserAPI().UploadUserImage(token, photo, new UniversalCallBack() {
+    public void UploadUserImage(final String token, final byte[] photo, String traineeData_id) {
+        new UserAPI().UploadUserImage(token, photo, traineeData_id, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
 

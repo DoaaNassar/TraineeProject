@@ -18,6 +18,10 @@ public class showUserLogin implements Serializable {
     int is_deleted ;
     int role_id ;
 
+    public showUserLogin(){
+
+    }
+
     public showUserLogin(int user_id, String user_name, String access_token, String email, String phone, String mobile, String password, int is_deleted, int role_id) {
         this.user_id = user_id;
         this.user_name = user_name;

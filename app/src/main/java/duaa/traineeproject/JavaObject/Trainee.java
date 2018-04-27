@@ -47,6 +47,21 @@ public class Trainee implements Serializable{
         this.user_id = user_id;
     }
 
+    public Trainee(String name, String gender, String mobileNumber, String phoneNumber, String email, String trainee_type, String hour_number, String trainee_place, String place_partment, String id_num, String role_id, String user_id) {
+        this.name = name;
+        this.gender = gender;
+        this.mobileNumber = mobileNumber;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.trainee_type = trainee_type;
+        this.hour_number = hour_number;
+        this.trainee_place = trainee_place;
+        this.place_partment = place_partment;
+        this.id_num = id_num;
+        this.role_id = role_id;
+        this.user_id = user_id;
+    }
+
     public String getName() {
         return name;
     }

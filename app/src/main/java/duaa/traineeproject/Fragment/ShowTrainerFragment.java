@@ -59,6 +59,7 @@ public class ShowTrainerFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_show_trainer, container, false);
         bindView();
         title.setText(getResources().getString(R.string.trainerPart));
+        trainer();
         return view;
     }
 
@@ -72,7 +73,7 @@ public class ShowTrainerFragment extends Fragment {
 
     public void trainer() {
 
-        new UserAPI().getAllNowTrainer(new UniversalCallBack() {
+        new UserAPI().getAllNowTrainer("1",new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
 
@@ -97,6 +98,9 @@ public class ShowTrainerFragment extends Fragment {
                 });
 
                 recyclerView.setAdapter(trainerAdapter);
+                LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+                llm.setOrientation(LinearLayoutManager.VERTICAL);
+                recyclerView.setLayoutManager(llm);
                 trainerAdapter.notifyDataSetChanged();
 
             }

@@ -50,7 +50,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (Validate())
-                    login("eng.randlulu@gmail.com", "147");
+                    login(email.getText().toString(), password.getText().toString());
                 else
                     Alarm("أرجو ادخال الايميل و كلمة المرور");
 
@@ -67,12 +67,16 @@ public class Login extends AppCompatActivity {
             public void onResponse(Object result) {
 
                 LoginModel loginModel = (LoginModel) result;
+                if (loginModel.getAuthrezed()==1){
                 Login.this.finish();
                 Intent intent = new Intent(Login.this, NavigationMenuActivity.class);
                 startActivity(intent);
 
                 ApplicationController.getInstance().userLogin(loginModel.getResult());
-                ApplicationController.getInstance().login_token(loginModel.getResult().getAccess_token());
+                ApplicationController.getInstance().login_token(loginModel.getResult().getAccess_token());}
+                else {
+
+                }
                 Alarm(loginModel.getMessage());
                 dialog.hide();
 

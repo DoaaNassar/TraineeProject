@@ -1,5 +1,6 @@
 package duaa.traineeproject.API;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -36,6 +37,7 @@ import duaa.traineeproject.Model.PlaceListModel;
 import duaa.traineeproject.Model.ResponseSuccess;
 import duaa.traineeproject.Model.ResponseTrue;
 import duaa.traineeproject.Model.SpecializationListModel;
+import duaa.traineeproject.Model.TraineeAddModel;
 import duaa.traineeproject.Model.TraineeListModel;
 import duaa.traineeproject.Model.TrainerListModel;
 import duaa.traineeproject.Model.UniversityListModel;
@@ -146,7 +148,7 @@ public class UserAPI {
                 try {
                     callBack.onFinish();
                     Gson gson = new Gson();
-                    ResponseSuccess responseObject = gson.fromJson(response.toString(), ResponseSuccess.class);
+                    TraineeAddModel responseObject = gson.fromJson(response.toString(), TraineeAddModel.class);
                     callBack.onResponse(responseObject);
                 } catch (JsonSyntaxException e) {
                     callBack.OnError("Server Connection error try again later");
@@ -199,11 +201,19 @@ public class UserAPI {
                 params.put("phone", item.getPhoneNumber());
                 params.put("gender", item.getGender());
                 params.put("id_num", item.getId_num());
-                params.put("university", item.getUniversity());
-                params.put("collage", item.getCollage());
-                params.put("specialization", item.getSpecialization());
+                if (TextUtils.isEmpty(item.getUniversity())) {
+                    params.put("university", 0 + "");
+                    params.put("collage", 0 + "");
+                    params.put("specialization", 0 + "");
+                    params.put("university_number", 0 + "");
+                } else {
+                    params.put("university", item.getUniversity());
+                    params.put("collage", item.getCollage());
+                    params.put("specialization", item.getSpecialization());
+                    params.put("university_number", item.getUniversity_number());
+                }
+
                 params.put("trainee_type", item.getTrainee_type());
-                params.put("university_number", item.getUniversity_number());
                 params.put("hour_number", item.getHour_number());
                 params.put("trainee_place", item.getTrainee_place());
                 params.put("place_partment", item.getPlace_partment());
@@ -234,8 +244,7 @@ public class UserAPI {
     }
 
 
-
-        public void AddPlace(final Place item, final UniversalCallBack callBack) {
+    public void AddPlace(final Place item, final UniversalCallBack callBack) {
         String url = Constants.ADD_PLACE;
         Log.d("AddItem: ", url);
         VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.POST,
@@ -294,8 +303,13 @@ public class UserAPI {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("place-name", item.getName());
-                int i = 0;
+                params.put("place_name", item.getName());
+                params.put("email",item.getEmail());
+                params.put("full_address",item.getFull_address());
+                params.put("mobile",item.getMobile());
+                params.put("phone",item.getPhone());
+
+//                int i = 0;
 //                for (PartObject id : item.getPart()) {
 //                    params.put("slider[]", new PartObject("image.jpg", 1));
 //
@@ -471,7 +485,7 @@ public class UserAPI {
                 int i = 0;
                 for (int id : item.getList()) {
 
-                    params.put("trainee-id[" + (i++) + "]", id+"");
+                    params.put("trainee-id[" + (i++) + "]", id + "");
 
                 }
 
@@ -558,7 +572,6 @@ public class UserAPI {
                 params.put("place_id", id_place);
 
 
-
                 return params;
             }
 
@@ -639,7 +652,6 @@ public class UserAPI {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("training_id", id_training);
-
 
 
                 return params;
@@ -745,11 +757,7 @@ public class UserAPI {
     }
 
 
-
-
-
-
-    public void getAllFaculty(final String university_id , final UniversalCallBack callBack) {
+    public void getAllFaculty(final String university_id, final UniversalCallBack callBack) {
         String url = Constants.GET_FACULTY;
         Log.d("faculty: ", url);
         VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.POST, url,
@@ -835,7 +843,7 @@ public class UserAPI {
     }
 
 
-    public void getAllSpecialization(final String collage_id , final UniversalCallBack callBack) {
+    public void getAllSpecialization(final String collage_id, final UniversalCallBack callBack) {
         String url = Constants.GET_SPECIALIZATION;
         Log.d("specii: ", url);
         VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.POST, url,
@@ -920,7 +928,7 @@ public class UserAPI {
 
     }
 
-    public void getPartPlace(final String placeID , final UniversalCallBack callBack) {
+    public void getPartPlace(final String placeID, final UniversalCallBack callBack) {
         String url = Constants.GET_PART_PLACE;
         Log.d("getPartPlace: ", url);
         VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.POST, url,
@@ -989,7 +997,8 @@ public class UserAPI {
         VolleySingleton.getInstance().addToRequestQueue(stringRequest, "");
 
     }
-    public void getPlace( final UniversalCallBack callBack) {
+
+    public void getPlace(final UniversalCallBack callBack) {
         String url = Constants.GET_PLACE;
         Log.d("getPlace: ", url);
         VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.GET, url,
@@ -1059,11 +1068,10 @@ public class UserAPI {
     }
 
 
-
-    public void getAllNowTrainer(final UniversalCallBack callBack) {
+    public void getAllNowTrainer(final String old , final UniversalCallBack callBack) {
         String url = Constants.GET_now_TRAINER;
         Log.d("trainer: ", url);
-        VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.GET, url,
+        VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -1119,6 +1127,9 @@ public class UserAPI {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                params.put("old", old);
+
+
                 return params;
             }
 
@@ -1197,10 +1208,10 @@ public class UserAPI {
     }
 
 
-    public void getAllNowTrainee(String userRole ,final UniversalCallBack callBack) {
+    public void getAllNowTrainee(String userRole, final UniversalCallBack callBack) {
         String url = Constants.GET_NOW_TRAINEE;
         Log.d("trainee: ", url);
-        VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.GET, url,
+        VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -1265,10 +1276,10 @@ public class UserAPI {
 
     }
 
-    public void getAllOldTrainee(String userRole ,final UniversalCallBack callBack) {
+    public void getTrainee(final String user_id , final String roleId , final String approve , final String deleted , final UniversalCallBack callBack) {
         String url = Constants.GET_OLD_TRAINEE;
         Log.d("trainee: ", url);
-        VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.GET, url,
+        VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -1324,6 +1335,10 @@ public class UserAPI {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                params.put("user_id", user_id);
+                params.put("role_id", roleId);
+                params.put("approve", approve);
+                params.put("deleted", deleted);
                 return params;
             }
 
@@ -1565,7 +1580,7 @@ public class UserAPI {
                 int i = 0;
                 for (String name : item.getspecializations()) {
 
-                    params.put("specalization_name[" + (i++) + "]", name+"");
+                    params.put("specalization_name[" + (i++) + "]", name + "");
 
                 }
                 return params;
@@ -1675,7 +1690,7 @@ public class UserAPI {
 
     }
 
-    public void UpdatePassword(final String oldPassword,final String newPassword, final UniversalCallBack callBack) {
+    public void UpdatePassword(final String oldPassword, final String newPassword ,final  String confirm , final UniversalCallBack callBack) {
         String url = Constants.CHANGE_PASSWORD;
         Log.d("UpdatePassword: ", url);
         VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.POST,
@@ -1734,8 +1749,10 @@ public class UserAPI {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-//                params.put("trainee-id", item.getId()+"");
-//                params.put("type-training", item.getType()+"");
+                params.put("oldPassword", oldPassword);
+                params.put("newPassword", newPassword);
+                params.put("confirmPassword", confirm);
+
 
                 return params;
             }
@@ -1758,7 +1775,7 @@ public class UserAPI {
     }
 
 
-    public void UploadUserImage(final String token, final byte[] photo, final UniversalCallBack callBack) {
+    public void UploadUserImage(final String token, final byte[] photo, final String check, final UniversalCallBack callBack) {
         String url = Constants.UPLOAD;
         Log.d("UploadImage: ", url);
 
@@ -1819,13 +1836,22 @@ public class UserAPI {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> params = new HashMap<>();
+                        if (photo != null) {
+                            if (TextUtils.isEmpty(check)) {
+                                params.put("key", "university_logo");
+                            } else {
+                                params.put("key", "book_images");
+                                params.put("trainee_data_id", check);
+                            }
+                        }
+
                         return params;
                     }
 
                     protected Map<String, DataPart> getByteData() {
                         Map<String, DataPart> params = new HashMap<>();
                         if (photo != null) {
-                            params.put("image", new DataPart("image.jpg", photo, "image/jpeg"));
+                            params.put("image_upload", new DataPart("image.jpg", photo, "image/jpeg"));
                         }
                         return params;
                     }

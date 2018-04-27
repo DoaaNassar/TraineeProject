@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -176,6 +177,7 @@ public class UniversityViewPager extends Fragment {
 
 
     }
+
     @Override
     public void onResume() {
 
@@ -186,16 +188,20 @@ public class UniversityViewPager extends Fragment {
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
+                Log.d("duaaa",isBack+"");
 
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK ) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                     if (isBack) {
-                        getActivity().getSupportFragmentManager().popBackStack("DuaaBassamNassar", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                        Log.d("duaaa","yess");
+                        return false;
                     } else {
-//
-                        int x = getFragmentManager().getBackStackEntryCount()-1;
+                        Log.d("duaaa","nooo");
+                        int x = getFragmentManager().getBackStackEntryCount() - 1;
                         for (int i = 0; i < x; i++) {
                             getFragmentManager().popBackStack();
                         }
+
                     }
                     return true;
 
@@ -204,5 +210,8 @@ public class UniversityViewPager extends Fragment {
                 return false;
             }
         });
+    }
+    public void callParentMethod(){
+        getActivity().onBackPressed();
     }
 }

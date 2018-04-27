@@ -24,10 +24,13 @@ import duaa.traineeproject.Adapter.AdapterSpinnerPartPlace;
 import duaa.traineeproject.Adapter.SpecAdapter;
 import duaa.traineeproject.Interface.CustomItemClickListener;
 import duaa.traineeproject.Interface.UniversalCallBack;
+import duaa.traineeproject.JavaObject.PartObject;
 import duaa.traineeproject.JavaObject.Place;
 import duaa.traineeproject.Model.AddFacultyModel;
+import duaa.traineeproject.Model.ResponseSuccess;
 import duaa.traineeproject.Model.ResponseTrue;
 import duaa.traineeproject.R;
+import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
 import duaa.traineeproject.view.FontTextViewRegular;
 
@@ -38,12 +41,13 @@ import static duaa.traineeproject.Page.TrainerFragment.isBack;
 public class AddPlaceFragment extends Fragment {
     View view;
     FontTextViewRegular title;
-    ArrayList<String> partList;
+    ArrayList<PartObject> partList;
     Typeface face;
     RecyclerView recyclerView;
     AdapterAddPlace adapterAddPlace;
     ImageView addPlace;
-    FontEditTextViewRegular place;
+    FontEditTextViewRegular placeName ,  email , address , phone , mobile , number;
+    FontButtonRegular save ;
 
 
     @Override
@@ -84,25 +88,42 @@ public class AddPlaceFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (!TextUtils.isEmpty(place.getText().toString())) {
-                    partList.add(place.getText().toString());
+                if (!TextUtils.isEmpty(placeName.getText().toString())&&!TextUtils.isEmpty(number.getText().toString())) {
+                    partList.add(new PartObject(placeName.getText().toString(),number.getText().toString()));
                     adapterAddPlace.notifyDataSetChanged();
                 } else {
                     Alarm("أضف القسم");
                 }
             }
         });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Validate()){
 
+                    AddItem(new Place(placeName.getText().toString(),partList,email.getText().toString()
+                            ,mobile.getText().toString(),phone.getText().toString(),address.getText().toString()));
+                }else {
 
-        // Inflate the layout for this fragment
+                }
+            }
+        });
+
         return view;
     }
 
     public void bindView() {
         title = getActivity().findViewById(R.id.title);
         recyclerView = view.findViewById(R.id.recyclerview);
-        place = view.findViewById(R.id.textPart);
+        placeName = view.findViewById(R.id.textPart);
         addPlace = view.findViewById(R.id.addPart);
+        save = view.findViewById(R.id.save);
+        email = view.findViewById(R.id.email);
+        address = view.findViewById(R.id.address);
+        phone = view.findViewById(R.id.phone);
+        mobile  = view.findViewById(R.id.mobile);
+        number = view.findViewById(R.id.number);
+
     }
 
 
@@ -118,24 +139,23 @@ public class AddPlaceFragment extends Fragment {
     }
 
     public void AddItem(final Place item) {
-
         isBack = true;
         new UserAPI().AddPlace(item, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
-                ResponseTrue responseItem = (ResponseTrue) result;
+                ResponseSuccess responseItem = (ResponseSuccess) result;
 
-//                if (responseItem.isStatus()) {
+                if (responseItem.isStatus()) {
                 if (getActivity() != null)
                     Alarm(responseItem.getMessage());
 
-//                }
+                }
             }
 
             @Override
             public void onFailure(Object result) {
                 if (result != null) {
-                    Alarm("لا يوجد انترنت");
+                    Alarm(getResources().getString(R.string.noAdd));
 
                 }
             }
@@ -148,11 +168,21 @@ public class AddPlaceFragment extends Fragment {
             @Override
             public void OnError(String message) {
                 if (getActivity() != null) {
-                    Alarm("لا يوجد انترنت");
+                    Alarm(getResources().getString(R.string.noInternet));
 
                 }
             }
         });
+    }
+
+    public boolean Validate() {
+
+        if (TextUtils.isEmpty(placeName.getText().toString())){
+            return false;
+        } else if (partList.size()==0) {
+            return false;
+        }
+        return true;
     }
 
 }

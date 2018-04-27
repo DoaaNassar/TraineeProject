@@ -27,6 +27,9 @@
                 android:text="تسجيل مشرف جديد "
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="14sp"
+                android:drawableEnd="@drawable/user_new"
+                android:gravity="center_vertical"
+                android:drawablePadding="8dp"
                 android:textStyle="bold" />
 
 

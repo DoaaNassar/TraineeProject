@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 import duaa.traineeproject.Interface.CustomItemClickListener;
+import duaa.traineeproject.JavaObject.PartObject;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
 
@@ -19,7 +20,7 @@ import duaa.traineeproject.view.FontTextViewRegular;
 
 public class AdapterAddPlace  extends RecyclerView.Adapter<AdapterAddPlace.MyViewHolder> {
 
-    private List<String> place;
+    private List<PartObject> place;
     CustomItemClickListener listener;
     Context context;
     AdapterAddPlace.MyRecyclerViewListener myRecyclerViewListener;
@@ -41,8 +42,8 @@ public class AdapterAddPlace  extends RecyclerView.Adapter<AdapterAddPlace.MyVie
 
     }
 
-    public AdapterAddPlace(Context context, List<String> place, CustomItemClickListener listener,
-                       AdapterAddPlace.MyRecyclerViewListener myRecyclerViewListener) {
+    public AdapterAddPlace(Context context, List<PartObject> place, CustomItemClickListener listener,
+                           AdapterAddPlace.MyRecyclerViewListener myRecyclerViewListener) {
         this.context = context;
         this.place = place;
         this.listener = listener;
@@ -50,7 +51,7 @@ public class AdapterAddPlace  extends RecyclerView.Adapter<AdapterAddPlace.MyVie
 
     }
 
-    public List<String> getItems() {
+    public List<PartObject> getItems() {
         return place;
     }
 
@@ -76,7 +77,7 @@ public class AdapterAddPlace  extends RecyclerView.Adapter<AdapterAddPlace.MyVie
 
     @Override
     public void onBindViewHolder(AdapterAddPlace.MyViewHolder holder, final int position) {
-        String item = place.get(position);
+        PartObject item = place.get(position);
 
         holder.remove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +85,7 @@ public class AdapterAddPlace  extends RecyclerView.Adapter<AdapterAddPlace.MyVie
                 myRecyclerViewListener.RemoveImage(v,position);
             }
         });
-        holder.name.setText(item);
+        holder.name.setText(item.getPartment_name());
     }
 
     @Override

@@ -10,10 +10,12 @@ import java.util.List;
 public class LoginModel implements Serializable {
    showUserLogin result;
     String message;
+    int authrezed ;
 
-    public LoginModel(showUserLogin result, String message) {
+    public LoginModel(showUserLogin result, String message , int authrezed) {
         this.result = result;
         this.message = message;
+        this.authrezed =authrezed ;
     }
 
     public String getMessage() {
@@ -30,5 +32,13 @@ public class LoginModel implements Serializable {
 
     public void setResult(showUserLogin result) {
         this.result = result;
+    }
+
+    public int getAuthrezed() {
+        return authrezed;
+    }
+
+    public void setAuthrezed(int authrezed) {
+        this.authrezed = authrezed;
     }
 }

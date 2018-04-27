@@ -77,8 +77,8 @@ public class AdapterNewTrainee extends RecyclerView.Adapter<AdapterNewTrainee.My
 
         TraineeModel item = traineeList.get(position);
 
-        holder.name.setText(item.getName());
-        holder.number.setText(item.getMobileNumber());
+        holder.name.setText(item.getTrainee_name());
+        holder.number.setText(item.getMobile());
 
         holder.end.setOnClickListener(new View.OnClickListener() {
             @Override
