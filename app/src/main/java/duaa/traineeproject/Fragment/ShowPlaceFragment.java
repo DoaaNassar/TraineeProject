@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -46,6 +47,7 @@ public class ShowPlaceFragment extends Fragment {
     ArrayList<PlaceModel> arrayList;
     Typeface face;
     LinearLayout loading, noInternet;
+    ImageView search ;
 
 
 
@@ -67,6 +69,7 @@ public class ShowPlaceFragment extends Fragment {
         title.setText(getResources().getString(R.string.placePart));
 
         getAllplace();
+        search.setVisibility(View.VISIBLE);
 
 
         // Inflate the layout for this fragment
@@ -77,6 +80,8 @@ public class ShowPlaceFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
         title = getActivity().findViewById(R.id.title);
         loading = view.findViewById(R.id.loading);
+        search = getActivity().findViewById(R.id.search);
+
 
     }
 

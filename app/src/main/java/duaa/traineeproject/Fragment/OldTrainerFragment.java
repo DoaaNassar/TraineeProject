@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.tapadoo.alerter.Alerter;
 
@@ -45,6 +46,7 @@ public class OldTrainerFragment extends Fragment {
     OldTrainerAdapter oldTrainerAdapter;
     ArrayList<Trainer> arrayList;
     Typeface face;
+    ImageView search ;
 
 
 
@@ -64,6 +66,7 @@ public class OldTrainerFragment extends Fragment {
         title.setText(getString(R.string.trainerPart));
 
         trainer();
+        search.setVisibility(View.VISIBLE);
         // Inflate the layout for this fragment
         return view;
     }
@@ -71,6 +74,8 @@ public class OldTrainerFragment extends Fragment {
     public void bindView() {
         title = getActivity().findViewById(R.id.title);
         recyclerView = view.findViewById(R.id.recyclerview);
+        search = getActivity().findViewById(R.id.search);
+
     }
 
     public void trainer() {

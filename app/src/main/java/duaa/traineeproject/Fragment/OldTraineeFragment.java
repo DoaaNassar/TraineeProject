@@ -112,6 +112,7 @@ public class OldTraineeFragment extends Fragment {
     Uri SelectedImage;
 
     private static final int REQUEST_CODE_CHOOSE = 500;
+    ImageView search ;
 
 
 
@@ -137,6 +138,8 @@ public class OldTraineeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_old_trainee, container, false);
         bindView();
         title.setText(getResources().getString(R.string.traineePart));
+        search.setVisibility(View.VISIBLE);
+
         ShowTrainee();
         arrayListType.clear();
         arrayListType.add("تدريب جامعي");
@@ -175,6 +178,8 @@ public class OldTraineeFragment extends Fragment {
         title = getActivity().findViewById(R.id.title);
         recyclerView = view.findViewById(R.id.recyclerview);
         loading = view.findViewById(R.id.loading);
+        search = getActivity().findViewById(R.id.search);
+
 
     }
 

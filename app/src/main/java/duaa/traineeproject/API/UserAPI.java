@@ -1844,7 +1844,6 @@ public class UserAPI {
                                 params.put("trainee_data_id", check);
                             }
                         }
-
                         return params;
                     }
 

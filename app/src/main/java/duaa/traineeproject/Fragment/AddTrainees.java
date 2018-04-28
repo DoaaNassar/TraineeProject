@@ -1,5 +1,7 @@
 package duaa.traineeproject.Fragment;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.app.NativeActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +16,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -114,6 +118,9 @@ public class AddTrainees extends Fragment {
 
     int universityNum, facultyNum, typeNum, specializationNum, placeNum, partPlaceNum;
     String idTrainee;
+    ImageView search;
+    FrameLayout loadingLayout;
+    Dialog dialog;
 
 
     @Override
@@ -138,12 +145,15 @@ public class AddTrainees extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_add_trainees, container, false);
         bindView();
+
         arrayListType.clear();
         arrayListType.add("تدريب جامعي");
         arrayListType.add("تطوع");
 
 
         title.setText(getString(R.string.traineePart));
+        search.setVisibility(View.GONE);
+
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -466,6 +476,8 @@ public class AddTrainees extends Fragment {
         save = view.findViewById(R.id.save);
 
         title = getActivity().findViewById(R.id.title);
+        search = getActivity().findViewById(R.id.search);
+        loadingLayout = getActivity().findViewById(R.id.loadingLayout);
 
 
     }
@@ -763,6 +775,9 @@ public class AddTrainees extends Fragment {
 
     public void AddItem(final Trainee item) {
 
+        loadingLayout.setVisibility(View.VISIBLE);
+        showDialog(getActivity());
+
         new UserAPI().AddTrainee(item, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
@@ -772,10 +787,15 @@ public class AddTrainees extends Fragment {
                     Alarm(responseItem.getMessage());
                     Toasty.success(getActivity(), responseItem.getMessage(), Toast.LENGTH_SHORT, true).show();
                     idTrainee = responseItem.getTrainee_data_id();
-                    UploadImage(SelectedImage);
-
+                    if (!TextUtils.isEmpty(SelectedImage + "")) {
+                        UploadImage(SelectedImage);
+                    } else {
+                        dialog.hide();
+                        loadingLayout.setVisibility(View.GONE);
+                    }
                 }
                 Alarm(responseItem.getMessage());
+
 
             }
 
@@ -783,6 +803,8 @@ public class AddTrainees extends Fragment {
             public void onFailure(Object result) {
                 if (result != null) {
                     Alarm(getString(R.string.noAdd));
+                    dialog.hide();
+                    loadingLayout.setVisibility(View.GONE);
                 }
             }
 
@@ -795,6 +817,8 @@ public class AddTrainees extends Fragment {
             public void OnError(String message) {
                 if (getActivity() != null)
                     Alarm(getString(R.string.noInternet));
+                dialog.hide();
+                loadingLayout.setVisibility(View.GONE);
 
             }
         });
@@ -852,6 +876,8 @@ public class AddTrainees extends Fragment {
         new UserAPI().UploadUserImage(token, photo, traineeData_id, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
+                dialog.hide();
+                loadingLayout.setVisibility(View.GONE);
 
             }
 
@@ -859,18 +885,34 @@ public class AddTrainees extends Fragment {
             public void onFailure(Object result) {
                 if (result != null) {
                     ResponseError responseError = (ResponseError) result;
+                    dialog.hide();
+                    loadingLayout.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onFinish() {
+                dialog.hide();
+                loadingLayout.setVisibility(View.GONE);
 
             }
 
             @Override
             public void OnError(String message) {
+                dialog.hide();
+                loadingLayout.setVisibility(View.GONE);
             }
         });
     }
 
+    public void showDialog(Activity activity) {
+        dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setContentView(R.layout.diii);
+        dialog.setCancelable(false);
+
+        dialog.show();
+
+    }
 }

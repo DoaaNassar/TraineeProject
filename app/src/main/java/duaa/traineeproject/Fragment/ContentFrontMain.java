@@ -34,6 +34,7 @@ public class ContentFrontMain extends Fragment {
 
     FontTextViewRegular title;
     View view ;
+    ImageView search ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,9 @@ public class ContentFrontMain extends Fragment {
        view =inflater.inflate(R.layout.fragment_content_front_main, container, false);
        title = getActivity().findViewById(R.id.title);
        title.setText(getString(R.string.app_name));
+       bindView();
+        search.setVisibility(View.GONE);
+
         ////Trainee layout
         LinearLayout  addTraineeBtn = view.findViewById(R.id.addTrainee);
         LinearLayout  showNowTraineeBtn = view.findViewById(R.id.showTrainee);
@@ -211,6 +215,8 @@ public class ContentFrontMain extends Fragment {
     public void bindView (){
 
         title = getActivity().findViewById(R.id.title);
+        search = getActivity().findViewById(R.id.search);
+
 
     }
     @Override

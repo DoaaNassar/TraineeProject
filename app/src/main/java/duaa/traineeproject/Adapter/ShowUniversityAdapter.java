@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import duaa.traineeproject.Interface.CustomItemClickListener;
@@ -97,5 +98,10 @@ public class ShowUniversityAdapter extends RecyclerView.Adapter<ShowUniversityAd
         public void RemoveImage(View v, int position);
     }
 
+    public void setFilter(ArrayList<University> newList) {
+        specialization = new ArrayList<>();
+        specialization.addAll(newList);
+        notifyDataSetChanged();
 
+    }
 }

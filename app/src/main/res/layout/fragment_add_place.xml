@@ -18,7 +18,10 @@
             android:layout_marginBottom="10dp"
             android:text="تسجيل مكان جديد "
             android:textColor="@color/silver"
-            android:textSize="15sp"
+            android:textSize="14sp"
+            android:drawableEnd="@drawable/shop"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
             android:textStyle="bold" />
 
         <duaa.traineeproject.view.FontEditTextViewRegular
@@ -33,6 +36,7 @@
             android:padding="10dp"
             android:singleLine="true"
             android:textSize="13sp"
+
 
             />
 
@@ -118,6 +122,8 @@
                 android:paddingTop="10dp"
                 android:singleLine="true"
                 android:textSize="13sp"
+                android:gravity="right"
+
 
 
                 />
@@ -140,13 +146,14 @@
                     android:singleLine="true"
                     android:textSize="13sp"
                     android:inputType="number"
+                    android:gravity="right"
 
                     />
 
                 <ImageView
                     android:id="@+id/addPart"
                     android:layout_width="70dp"
-                    android:layout_height="35dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="5dp"
                     android:background="@drawable/background_buttonn"

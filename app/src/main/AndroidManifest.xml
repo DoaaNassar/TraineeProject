@@ -32,6 +32,7 @@
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
         <activity android:name=".Activity.EditTrainee"></activity>
         <activity android:name=".Activity.TrainingActivity"></activity>
+
     </application>
 
 </manifest>

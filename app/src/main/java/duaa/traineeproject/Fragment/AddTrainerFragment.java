@@ -59,10 +59,10 @@ public class AddTrainerFragment extends Fragment {
     ArrayList<Faculty> arrayListFaculty;
     ImageView imageUniversity, imageFaculty;
     Typeface face;
-    boolean isChooseUniversity = false, isChooseFaculty = false;
     FontTextViewRegular title;
     int universityNum ,facultyNum ;
     FontTextViewRegular titleSpinnerUniversity  , titleSpinnerFaculty;
+    ImageView search ;
 
 
     public static AddTrainerFragment newInstance() {
@@ -88,6 +88,8 @@ public class AddTrainerFragment extends Fragment {
         bindView();
 
         title.setText("قسم المشرفين");
+        search.setVisibility(View.GONE);
+
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -211,6 +213,8 @@ public class AddTrainerFragment extends Fragment {
         imageFaculty = view.findViewById(R.id.faculty);
 
         title = getActivity().findViewById(R.id.title);
+        search = getActivity().findViewById(R.id.search);
+
 
 
     }

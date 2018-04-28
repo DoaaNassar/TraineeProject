@@ -221,15 +221,9 @@ public class NavigationMenuActivity extends AppCompatActivity
 
     public void setData() {
         showUserLogin user = ApplicationController.getInstance().getLoginUser();
-        userName.setText(user.getUser_name());
-        userRole.setText(user.getRole_id() + "");
+//        userName.setText(user.getUser_name());
+//        userRole.setText(user.getRole_id() + "");
     }
 
-    public void Logout(final String token) {
-//        dialog.show();
-//        dialog.setCancelable(false);
-
-
-    }
 
 }

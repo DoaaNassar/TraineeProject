@@ -1,5 +1,7 @@
 package duaa.traineeproject.Fragment;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -12,6 +14,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.tapadoo.alerter.Alerter;
@@ -45,9 +49,13 @@ public class AddPlaceFragment extends Fragment {
     Typeface face;
     RecyclerView recyclerView;
     AdapterAddPlace adapterAddPlace;
-    ImageView addPlace;
+    ImageView addPlace , search;
     FontEditTextViewRegular placeName ,  email , address , phone , mobile , number;
     FontButtonRegular save ;
+    FrameLayout loadingLayout;
+    Dialog dialog ;
+
+
 
 
     @Override
@@ -66,7 +74,7 @@ public class AddPlaceFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_add_place, container, false);
         bindView();
         title.setText("قسم الأماكن");
-        bindView();
+        search.setVisibility(View.GONE);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         adapterAddPlace = new AdapterAddPlace(getActivity(), partList, new CustomItemClickListener() {
             @Override
@@ -123,6 +131,10 @@ public class AddPlaceFragment extends Fragment {
         phone = view.findViewById(R.id.phone);
         mobile  = view.findViewById(R.id.mobile);
         number = view.findViewById(R.id.number);
+        search = getActivity().findViewById(R.id.search);
+        loadingLayout = getActivity().findViewById(R.id.loadingLayout);
+
+
 
     }
 
@@ -139,23 +151,27 @@ public class AddPlaceFragment extends Fragment {
     }
 
     public void AddItem(final Place item) {
-        isBack = true;
+        showDialog(getActivity());
         new UserAPI().AddPlace(item, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
                 ResponseSuccess responseItem = (ResponseSuccess) result;
 
                 if (responseItem.isStatus()) {
-                if (getActivity() != null)
-                    Alarm(responseItem.getMessage());
-
                 }
+                Alarm(responseItem.getMessage());
+                dialog.hide();
+                loadingLayout.setVisibility(View.GONE);
+
+
             }
 
             @Override
             public void onFailure(Object result) {
                 if (result != null) {
                     Alarm(getResources().getString(R.string.noAdd));
+                    loadingLayout.setVisibility(View.GONE);
+
 
                 }
             }
@@ -171,6 +187,8 @@ public class AddPlaceFragment extends Fragment {
                     Alarm(getResources().getString(R.string.noInternet));
 
                 }
+                loadingLayout.setVisibility(View.GONE);
+
             }
         });
     }
@@ -183,6 +201,17 @@ public class AddPlaceFragment extends Fragment {
             return false;
         }
         return true;
+    }
+
+    public void showDialog(Activity activity) {
+        dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setContentView(R.layout.diii);
+        dialog.setCancelable(false);
+
+        dialog.show();
+
     }
 
 }

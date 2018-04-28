@@ -1,7 +1,5 @@
 package duaa.traineeproject.Fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,13 +10,13 @@ import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
 
 
-public class addUniversityFragment extends Fragment {
+public class AddUniversityFragment extends Fragment {
 
     View view;
     FontTextViewRegular title ;
 
-    public static addUniversityFragment newInstance(String param1, String param2) {
-        addUniversityFragment fragment = new addUniversityFragment();
+    public static AddUniversityFragment newInstance(String param1, String param2) {
+        AddUniversityFragment fragment = new AddUniversityFragment();
 
         return fragment;
     }

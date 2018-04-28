@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.tapadoo.alerter.Alerter;
@@ -41,6 +42,7 @@ public class ShowTrainerFragment extends Fragment {
     FontTextViewRegular title;
     LinearLayout loading;
     Typeface face ;
+    ImageView search ;
 
 
 
@@ -60,6 +62,7 @@ public class ShowTrainerFragment extends Fragment {
         bindView();
         title.setText(getResources().getString(R.string.trainerPart));
         trainer();
+        search.setVisibility(View.VISIBLE);
         return view;
     }
 
@@ -67,6 +70,8 @@ public class ShowTrainerFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
         title = getActivity().findViewById(R.id.title);
         loading = view.findViewById(R.id.loading);
+        search = getActivity().findViewById(R.id.search);
+
 
 
     }

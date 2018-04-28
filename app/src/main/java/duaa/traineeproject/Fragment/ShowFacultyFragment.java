@@ -51,6 +51,7 @@ public class ShowFacultyFragment extends Fragment {
     FacultyAdapter facultyAdapter;
     LinearLayout loading;
     FontTextViewRegular facultyText;
+    ImageView search ;
 
 
     @Override
@@ -71,6 +72,7 @@ public class ShowFacultyFragment extends Fragment {
         title.setText(getString(R.string.universityPart));
 
         FacultyItems();
+        search.setVisibility(View.VISIBLE);
 
         return view;
     }
@@ -81,6 +83,8 @@ public class ShowFacultyFragment extends Fragment {
         title = getActivity().findViewById(R.id.title);
         loading = view.findViewById(R.id.loading);
         facultyText = getActivity().findViewById(R.id.faculty);
+        search = getActivity().findViewById(R.id.search);
+
 
     }
 

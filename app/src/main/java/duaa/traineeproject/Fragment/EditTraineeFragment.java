@@ -7,12 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import duaa.traineeproject.R;
 
 
 public class EditTraineeFragment extends Fragment {
     View view;
+    ImageView search ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class EditTraineeFragment extends Fragment {
 
     }
     public void bindView (){
+        search = getActivity().findViewById(R.id.search);
 
 
     }

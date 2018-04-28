@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -60,6 +61,7 @@ public class ShowTrainees extends Fragment {
     int positionList;
     Typeface face;
     LinearLayout loading;
+    ImageView search ;
 
 
 
@@ -82,6 +84,7 @@ public class ShowTrainees extends Fragment {
         bindView();
         title.setText(getResources().getString(R.string.traineePart));
         ShowTrainee();
+        search.setVisibility(View.VISIBLE);
 
         return view;
     }
@@ -90,6 +93,8 @@ public class ShowTrainees extends Fragment {
         title = getActivity().findViewById(R.id.title);
         recyclerView = view.findViewById(R.id.listUserShow);
         loading = view.findViewById(R.id.loading);
+        search = getActivity().findViewById(R.id.search);
+
 
     }
 

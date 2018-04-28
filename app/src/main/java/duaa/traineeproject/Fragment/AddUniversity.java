@@ -1,5 +1,8 @@
 package duaa.traineeproject.Fragment;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
@@ -12,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,11 +28,18 @@ import com.tapadoo.alerter.Alerter;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import duaa.traineeproject.API.ResponseError;
 import duaa.traineeproject.API.UserAPI;
+import duaa.traineeproject.Application.ApplicationController;
 import duaa.traineeproject.Interface.UniversalCallBack;
 import duaa.traineeproject.Model.AddUniversityObject;
 import duaa.traineeproject.Model.ResponseTrue;
 import duaa.traineeproject.R;
+import duaa.traineeproject.Units.Utility;
 import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
 import duaa.traineeproject.view.FontTextViewRegular;
@@ -48,11 +59,12 @@ public class AddUniversity extends Fragment {
     FontButtonRegular save ;
     FontTextViewRegular title ;
     Typeface face;
+    Dialog dialog ;
 
 
     private static final int REQUEST_CODE_CHOOSE = 600;
     FrameLayout loadingLayout;
-    LinearLayout contentLayout;
+    ImageView search ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +81,8 @@ public class AddUniversity extends Fragment {
         view = inflater.inflate(R.layout.fragment_add_university, container, false);
         bindView();
         title.setText(getString(R.string.universityPart));
+        search.setVisibility(View.GONE);
+
 
 
         upload.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +135,8 @@ public class AddUniversity extends Fragment {
 //        contentLayout = getActivity().findViewById(R.id.contentLayout);
         loadingLayout = getActivity().findViewById(R.id.loadingLayout);
         title = getActivity().findViewById(R.id.title);
+        search = getActivity().findViewById(R.id.search);
+
 
 
     }
@@ -155,8 +171,8 @@ public class AddUniversity extends Fragment {
 
     public void AddItem(final AddUniversityObject item) {
         loadingLayout.setVisibility(View.VISIBLE);
-        isBack = true ;
-//        contentLayout.setEnabled(false);
+        showDialog(getActivity());
+
         new UserAPI().AddUniversity(item, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
@@ -164,7 +180,6 @@ public class AddUniversity extends Fragment {
                 String message = responseItem.getMessage();
 
                 loadingLayout.setVisibility(View.GONE);
-                isBack = false ;
 
 //                contentLayout.setEnabled(true);
                 Toast.makeText(getActivity(), message+"", Toast.LENGTH_SHORT).show();
@@ -179,8 +194,10 @@ public class AddUniversity extends Fragment {
             @Override
             public void onFailure(Object result) {
                 if (result != null) {
-                    isBack = false ;
                     loadingLayout.setVisibility(View.GONE);
+                    dialog.hide();
+
+
                 }
 
             }
@@ -188,8 +205,7 @@ public class AddUniversity extends Fragment {
             @Override
             public void onFinish() {
                 loadingLayout.setVisibility(View.GONE);
-                isBack = false ;
-
+                dialog.hide();
             }
 
             @Override
@@ -197,14 +213,52 @@ public class AddUniversity extends Fragment {
 //
                 if(getActivity()!= null){
                     Alarm(getResources().getString(R.string.noInternet));
-                    isBack = false ;
+                    dialog.hide();
 
                 }
             }
         });
     }
 
+    private void UploadImage(Uri SelectedImage) {
+        InputStream iStream = null;
+        try {
+            Context applicationContext = getActivity().getApplicationContext();
+            iStream = applicationContext.getContentResolver().openInputStream(SelectedImage);
+            byte[] image = Utility.getBytes(iStream);
+            UploadUserImage(ApplicationController.getInstance().token(),
+                    image);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void UploadUserImage(final String token, final byte[] photo) {
+        new UserAPI().UploadUserImage(token, photo, "", new UniversalCallBack() {
+            @Override
+            public void onResponse(Object result) {
+
+            }
+
+            @Override
+            public void onFailure(Object result) {
+                if (result != null) {
+                    ResponseError responseError = (ResponseError) result;
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void OnError(String message) {
+            }
+        });
+    }
     public boolean Validate() {
 
         if (TextUtils.isEmpty(nameUniversity.getText().toString())) {
@@ -226,4 +280,18 @@ public class AddUniversity extends Fragment {
                 .show();
 
     }
+
+
+    public void showDialog(Activity activity) {
+        dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setContentView(R.layout.diii);
+        dialog.setCancelable(false);
+
+        dialog.show();
+
+    }
+
+
 }

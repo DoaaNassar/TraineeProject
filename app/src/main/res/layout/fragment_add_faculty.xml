@@ -21,7 +21,7 @@
             android:textColor="@color/silver"
             android:text="تسجيل كلية جديد "
             android:textStyle="bold"
-            android:textSize="15sp"
+            android:textSize="14sp"
             />
 
 
@@ -35,7 +35,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/border"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:singleLine="true"
             android:gravity="right"
 
@@ -56,11 +56,12 @@
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 android:paddingLeft="75dp"
                 android:hint="التخصص"
                 android:singleLine="true"
                 android:gravity="right"
+
 
 
                 />
@@ -68,7 +69,7 @@
             <ImageView
                 android:id="@+id/addSpec"
                 android:layout_width="70dp"
-                android:layout_height="35dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
                 android:textColor="@color/white"

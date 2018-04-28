@@ -1,5 +1,12 @@
 package duaa.traineeproject.Fragment;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProviderInfo;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +18,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.tapadoo.alerter.Alerter;
@@ -52,6 +61,11 @@ public class AddFacultyFragment extends Fragment {
     FontEditTextViewRegular spec, facultyName;
     FontTextViewRegular title;
     Typeface face;
+    FrameLayout loadingLayout;
+    ImageView search ;
+    Dialog dialog ;
+
+
 
 
     @Override
@@ -70,6 +84,7 @@ public class AddFacultyFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_add_faculty, container, false);
         bindView();
         title.setText("قسم الجامعات والكليات");
+        search.setVisibility(View.GONE);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         specAdapter = new SpecAdapter(getActivity(), specializationList, new CustomItemClickListener() {
@@ -130,17 +145,23 @@ public class AddFacultyFragment extends Fragment {
         title = getActivity().findViewById(R.id.title);
         save = view.findViewById(R.id.save);
         facultyName = view.findViewById(R.id.nameFaculty);
+        search = getActivity().findViewById(R.id.search);
+        loadingLayout = getActivity().findViewById(R.id.loadingLayout);
+
+
 
     }
 
     public void AddItem(final AddFacultyModel item) {
+        loadingLayout.setVisibility(View.VISIBLE);
+        showDialog(getActivity());
 
-        isBack = true;
         new UserAPI().AddFaculty(item, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
                 ResponseTrue responseItem = (ResponseTrue) result;
-
+                loadingLayout.setVisibility(View.GONE);
+                dialog.hide();
 //                if (responseItem.isStatus()) {
                     Alarm(responseItem.getMessage());
 
@@ -150,19 +171,27 @@ public class AddFacultyFragment extends Fragment {
             @Override
             public void onFailure(Object result) {
                 if (result != null) {
-                    Alarm("لا يوجد انترنت");
+                    Alarm(getResources().getString(R.string.noAdd));
+                    loadingLayout.setVisibility(View.GONE);
+                    dialog.hide();
+
+
 
                 }
             }
 
             @Override
             public void onFinish() {
+                loadingLayout.setVisibility(View.GONE);
+                dialog.hide();
 
             }
 
             @Override
             public void OnError(String message) {
                 Alarm("لا يوجد انترنت");
+                loadingLayout.setVisibility(View.GONE);
+                dialog.hide();
 
             }
         });
@@ -179,6 +208,15 @@ public class AddFacultyFragment extends Fragment {
 
     }
 
+    public void showDialog(Activity activity) {
+        dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setContentView(R.layout.diii);
+        dialog.setCancelable(false);
 
+        dialog.show();
+
+    }
 
 }
