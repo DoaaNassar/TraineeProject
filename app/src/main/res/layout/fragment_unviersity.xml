@@ -40,5 +40,12 @@
 
             />
     </LinearLayout>
-
+    <duaa.traineeproject.view.FontTextViewRegular
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/noData"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        />
 </FrameLayout>

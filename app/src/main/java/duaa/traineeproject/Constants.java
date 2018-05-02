@@ -23,14 +23,12 @@ public class Constants {
     public static final String GET_SPECIALIZATION = baseUrl +"api/get-all-spesalizations";
 
 
-
-
     public static final String GET_now_TRAINER = baseUrl +"api/get-traiers";
-    public static final String GET_OLD_TRAINER = baseUrl +"";
+    public static final String UPDATE_TRAINER = baseUrl +"";
     public static final String ADD_TRAINER= baseUrl +"api/add-trainer";
+    public static final String DELETE_TRAINER = baseUrl +"";
 
 
-    public static final String GET_NOW_TRAINEE = baseUrl +"api/get-trainee";
     public static final String GET_OLD_TRAINEE = baseUrl +"api/get-trainee";
     public static final String ADD_TRAINEE = baseUrl +"api/add-trainee";
     public static final String END_TRAINING_TRAINEE = baseUrl +"";

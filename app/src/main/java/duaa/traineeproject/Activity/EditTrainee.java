@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
+import android.widget.FrameLayout;
 
 import com.tapadoo.alerter.Alerter;
 
@@ -17,6 +18,7 @@ import duaa.traineeproject.Application.ApplicationController;
 import duaa.traineeproject.Interface.UniversalCallBack;
 import duaa.traineeproject.JavaObject.Place;
 import duaa.traineeproject.Model.ResponseSuccess;
+import duaa.traineeproject.Model.UpdateUser;
 import duaa.traineeproject.Model.showUserLogin;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontEditTextViewRegular;
@@ -31,6 +33,9 @@ public class EditTrainee extends AppCompatActivity {
     FontEditTextViewRegular userName, email, address, phoneNumber, mobileNumber;
     FontEditTextViewRegular oldPassword, newPassword, conform;
     Typeface face;
+    Dialog dialogWait ;
+    FrameLayout loadingLayout;
+
 
 
     @Override
@@ -46,6 +51,25 @@ public class EditTrainee extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showDialog(EditTrainee.this);
+            }
+        });
+
+        findViewById(R.id.save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ValidateProfile())
+                 UpdateProfile(new UpdateUser(userName.getText().toString(),email.getText().toString(),phoneNumber.getText().toString(),mobileNumber.getText().toString()));
+
+                else{
+                    Alarm("يوجد مشكلة في تعديل البيانات ");
+                }
+            }
+        });
+
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditTrainee.this.finish();
             }
         });
     }
@@ -96,6 +120,8 @@ public class EditTrainee extends AppCompatActivity {
         address = findViewById(R.id.address);
         mobileNumber = findViewById(R.id.mobileNumber);
         phoneNumber = findViewById(R.id.phoneNumber);
+        loadingLayout = findViewById(R.id.loadingLayout);
+
     }
 
     public void setData() {
@@ -117,8 +143,19 @@ public class EditTrainee extends AppCompatActivity {
         return true;
     }
 
+    public boolean ValidateProfile() {
+        if (TextUtils.isEmpty(userName.getText().toString()))
+            return false;
+        else if (TextUtils.isEmpty(email.getText().toString()))
+            return false;
+        else if (TextUtils.isEmpty(phoneNumber.getText().toString()))
+            return false;
+
+        return true;
+    }
+
     public void ChangePassword(final String oldPassword, String newPassword, String confirmPassword) {
-        isBack = true;
+
         new UserAPI().UpdatePassword(oldPassword, newPassword, confirmPassword, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
@@ -156,6 +193,54 @@ public class EditTrainee extends AppCompatActivity {
         });
     }
 
+    public void UpdateProfile(UpdateUser updateUser) {
+
+        showDialogWaiting(EditTrainee.this);
+        loadingLayout.setVisibility(View.VISIBLE);
+
+        new UserAPI().UpdateProfile(updateUser , new UniversalCallBack() {
+            @Override
+            public void onResponse(Object result) {
+                ResponseSuccess responseItem = (ResponseSuccess) result;
+
+                if (responseItem.isStatus()) {
+                    Toasty.success(EditTrainee.this, ((ResponseSuccess) result).getMessage()).show();
+
+                } else {
+                    Toasty.error(EditTrainee.this, ((ResponseSuccess) result).getMessage()).show();
+
+                }
+                dialogWait.hide();
+                loadingLayout.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onFailure(Object result) {
+                if (result != null) {
+                    Alarm(getResources().getString(R.string.noAdd));
+                    dialogWait.hide();
+                    loadingLayout.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                dialogWait.hide();
+                loadingLayout.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void OnError(String message) {
+                if (EditTrainee.this != null) {
+                    Alarm(getResources().getString(R.string.noInternet));
+                    dialogWait.hide();
+
+                }
+            }
+        });
+    }
+
     public void Alarm(String message) {
         Alerter.create(EditTrainee.this)
                 .setText(message)
@@ -166,4 +251,16 @@ public class EditTrainee extends AppCompatActivity {
                 .show();
 
     }
+
+    public void showDialogWaiting(Activity activity) {
+        dialogWait = new Dialog(activity);
+        dialogWait.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogWait.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialogWait.setContentView(R.layout.diii);
+        dialogWait.setCancelable(false);
+
+        dialogWait.show();
+
+    }
+
 }

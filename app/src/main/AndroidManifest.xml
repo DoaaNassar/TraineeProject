@@ -30,9 +30,9 @@
             android:label="@string/title_activity_navigation_menu"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
-        <activity android:name=".Activity.EditTrainee"></activity>
-        <activity android:name=".Activity.TrainingActivity"></activity>
-
+        <activity android:name=".Activity.EditTrainee" />
+        <activity android:name=".Activity.TrainingActivity" />
+        <activity android:name=".Activity.Notification"></activity>
     </application>
 
 </manifest>

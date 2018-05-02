@@ -51,7 +51,7 @@ public class NavigationMenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_navigation_menu);
         getSupportFragmentManager().beginTransaction().addToBackStack(null).
                 replace(R.id.containerLayout, new ContentFrontMain()).commit();
-        dialog = new SpotsDialog(this, R.style.Custom);
+        dialog = new SpotsDialog(this, R.style.CustomOut);
         bindView();
         setData();
 
@@ -63,6 +63,8 @@ public class NavigationMenuActivity extends AppCompatActivity
         LinearLayout out = findViewById(R.id.out);
         LinearLayout place = findViewById(R.id.place);
         LinearLayout home = findViewById(R.id.home);
+        LinearLayout notification = findViewById(R.id.notification);
+
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
@@ -123,6 +125,16 @@ public class NavigationMenuActivity extends AppCompatActivity
                 fragment = new ContentFrontMain();
                 Fragment(fragment);
                 drawer.closeDrawer(GravityCompat.END);
+
+            }
+        });
+
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawer(GravityCompat.END);
+                Intent intent = new Intent(NavigationMenuActivity.this,Notification.class);
+                startActivity(intent);
 
             }
         });

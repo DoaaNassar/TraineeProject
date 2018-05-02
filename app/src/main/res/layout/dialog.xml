@@ -29,10 +29,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginRight="5dp"
+                android:drawableEnd="@drawable/user_new"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
                 android:text="تدريب جديد "
                 android:textColor="@color/silver"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/text_big" />
+
 
             <duaa.traineeproject.view.FontEditTextViewRegular
                 android:id="@+id/hourNumber"

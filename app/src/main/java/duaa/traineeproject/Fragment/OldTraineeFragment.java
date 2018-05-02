@@ -850,8 +850,8 @@ public class OldTraineeFragment extends Fragment {
 //            UploadImage(SelectedImage);
 
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.placeholder(R.drawable.add_user);
-            requestOptions.error(R.drawable.delete_user);
+            requestOptions.placeholder(R.drawable.user_new);
+            requestOptions.error(R.drawable.user_new);
             requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
 
             Log.d("selectAll", SelectedImage + "");

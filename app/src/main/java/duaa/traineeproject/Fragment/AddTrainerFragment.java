@@ -1,5 +1,7 @@
 package duaa.traineeproject.Fragment;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -50,8 +53,6 @@ public class AddTrainerFragment extends Fragment {
     FontEditTextViewRegular name, email, phoneNumber, mobileNumber;
     LinearLayout chooseUniversity, chooseFaculty;
     FontButtonRegular save;
-    FrameLayout loadingLayout;
-    LinearLayout contentLayout;
     int height = 0;
     LinearLayout listUniversityLayout, listFacultyLayout;
     ListView universityList, facultyList;
@@ -63,6 +64,9 @@ public class AddTrainerFragment extends Fragment {
     int universityNum ,facultyNum ;
     FontTextViewRegular titleSpinnerUniversity  , titleSpinnerFaculty;
     ImageView search ;
+    FrameLayout loadingLayout;
+    Dialog dialog;
+
 
 
     public static AddTrainerFragment newInstance() {
@@ -102,8 +106,8 @@ public class AddTrainerFragment extends Fragment {
                     String phoneTxt = phoneNumber.getText().toString();
                     String mobileTxt = mobileNumber.getText().toString();
 
-                    AddItem(new TrainerObject(nameTxt, emailTxt, mobileTxt, "5", "1"
-                            , phoneTxt, "15"));
+                    AddItem(new TrainerObject(nameTxt, emailTxt, mobileTxt, "5", arrayListUniversity.get(universityNum-1).getUniversiy_id()+""
+                            , phoneTxt, arrayListFaculty.get(facultyNum-1).getCollage_id()+""));
 
                 } else {
 
@@ -132,7 +136,7 @@ public class AddTrainerFragment extends Fragment {
 
                 if (universityNum > 0) {
                     if (listFacultyLayout.getVisibility() == View.GONE) {
-                        Log.d("duaaa", arrayListUniversity.get(universityNum - 1).getUniversiy_id() + "");
+
                         FacultyItems(arrayListUniversity.get(universityNum - 1).getUniversiy_id() + "");
                     }
                     SpinnerAnimation(listFacultyLayout, imageFaculty);
@@ -197,7 +201,6 @@ public class AddTrainerFragment extends Fragment {
         chooseUniversity = view.findViewById(R.id.chooseUniversity);
         chooseFaculty = view.findViewById(R.id.chooseFaculty);
         save = view.findViewById(R.id.save);
-        contentLayout = view.findViewById(R.id.contentLayout);
         loadingLayout = getActivity().findViewById(R.id.loadingLayout);
 
         listUniversityLayout = view.findViewById(R.id.universitySpinnerLayout);
@@ -248,7 +251,6 @@ public class AddTrainerFragment extends Fragment {
 //                if (responseCategories.isStatus()) {
                 arrayListUniversity.clear();
                 arrayListUniversity.addAll(responseCategories.getResult());
-                Log.d("duaabassam", arrayListUniversity.get(0).getUniversiy_name() + "hhhh");
                 final AdapterSpinner adapter = new AdapterSpinner(getActivity(), arrayListUniversity);
 
 
@@ -328,8 +330,7 @@ public class AddTrainerFragment extends Fragment {
     public void AddItem(final TrainerObject item) {
 
         loadingLayout.setVisibility(View.VISIBLE);
-        contentLayout.setEnabled(false);
-        isBack = true;
+        showDialog(getActivity());
 
         new UserAPI().AddTrainer(item, new UniversalCallBack() {
             @Override
@@ -340,7 +341,7 @@ public class AddTrainerFragment extends Fragment {
 
                     Alarm(responseItem.getMessage());
                     loadingLayout.setVisibility(View.GONE);
-                    contentLayout.setEnabled(true);
+                    dialog.hide();
                 }
             }
 
@@ -350,7 +351,7 @@ public class AddTrainerFragment extends Fragment {
                     if (getActivity() != null) {
                         Alarm(getResources().getString(R.string.noAdd));
                         loadingLayout.setVisibility(View.GONE);
-                        contentLayout.setEnabled(true);
+                        dialog.hide();
                     }
                 }
             }
@@ -365,7 +366,7 @@ public class AddTrainerFragment extends Fragment {
                 if (getActivity() != null) {
                     Alarm(getResources().getString(R.string.noInternet));
                     loadingLayout.setVisibility(View.GONE);
-                    contentLayout.setEnabled(true);
+                    dialog.hide();
                 }
 
             }
@@ -390,5 +391,14 @@ public class AddTrainerFragment extends Fragment {
         imageView.setBackgroundResource(R.drawable.ic_arrow_drop_down_black_24dp);
 
     }
+    public void showDialog(Activity activity) {
+        dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setContentView(R.layout.diii);
+        dialog.setCancelable(false);
 
+        dialog.show();
+
+    }
 }

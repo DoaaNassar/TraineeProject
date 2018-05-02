@@ -18,6 +18,8 @@
     <string name="please_wait">الرجاء الانتظار</string>
     <string name="noInternet">لا يوجد اتصال بالانترنت</string>
     <string name="noAdd">لم تتم عملية الإضافة</string>
+    <string name="out">تسجيل الخروج</string>
+    <string name="noData">لا يوجد بينات لعرضاها</string>
 
 
 </resources>

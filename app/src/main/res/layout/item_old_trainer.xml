@@ -63,7 +63,7 @@
                 />
 
             <duaa.traineeproject.view.FontTextViewRegular
-                android:id="@+id/delete"
+                android:id="@+id/enable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

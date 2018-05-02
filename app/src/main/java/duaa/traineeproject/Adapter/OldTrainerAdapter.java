@@ -27,7 +27,7 @@ public class OldTrainerAdapter extends RecyclerView.Adapter<OldTrainerAdapter.My
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        FontTextViewRegular name , email;
+        FontTextViewRegular name , email ,enable,edit;
 
 
 
@@ -35,6 +35,9 @@ public class OldTrainerAdapter extends RecyclerView.Adapter<OldTrainerAdapter.My
             super(view);
             name = itemView.findViewById(R.id.name);
             email=itemView.findViewById(R.id.email);
+            enable = itemView.findViewById(R.id.enable);
+            edit = itemView.findViewById(R.id.edit);
+
         }
 
 
@@ -81,13 +84,20 @@ public class OldTrainerAdapter extends RecyclerView.Adapter<OldTrainerAdapter.My
         holder.name.setText(item.getTrainer_name());
         holder.email.setText(item.getEmail());
 
-//        holder.remove.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                myRecyclerViewListener.RemoveImage(v,position);
-//            }
-//        });
-//        holder.name.setText(item.getUniversiy_name());
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myRecyclerViewListener.Edit(v,position);
+            }
+        });
+
+        holder.enable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myRecyclerViewListener.Enable(v,position);
+            }
+        });
+
     }
 
     @Override
@@ -97,7 +107,10 @@ public class OldTrainerAdapter extends RecyclerView.Adapter<OldTrainerAdapter.My
 
 
     public interface MyRecyclerViewListener {
-        public void RemoveImage(View v, int position);
+        public void Enable(View v, int position);
+        public void Edit(View v, int position);
+
+
     }
 
 }

@@ -46,7 +46,7 @@
                     android:background="@drawable/border"
                     android:padding="10dp"
                     android:singleLine="true"
-                    android:text="دعاء نصار"
+                    android:text="دعاء بسام نصار"
                     android:textColor="@color/silver"
                     android:textSize="13sp"
                     android:gravity="right"
@@ -176,7 +176,7 @@
                     android:layout_marginBottom="30dp">
 
                     <duaa.traineeproject.view.FontButtonRegular
-                        android:id="@+id/backData"
+                        android:id="@+id/back"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="30dp"
@@ -192,7 +192,7 @@
                         />
 
                     <duaa.traineeproject.view.FontButtonRegular
-                        android:id="@+id/saveUpdate"
+                        android:id="@+id/save"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="30dp"
@@ -215,7 +215,6 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#A0000000"
         android:id="@+id/loadingLayout"
         android:visibility="gone"
 
@@ -234,4 +233,5 @@
 
             />
     </FrameLayout>
+
 </FrameLayout>
