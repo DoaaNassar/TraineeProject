@@ -18,6 +18,7 @@ import com.google.gson.JsonSyntaxException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import duaa.traineeproject.Constants;
@@ -1820,4 +1821,90 @@ public class UserAPI {
 
     }
 
+
+    public void Notification(final List<Integer> item , final int enable, final UniversalCallBack callBack) {
+        String url = Constants.NOTIFICATION;
+        Log.d("Notification: ", url);
+        VolleyStringRequest stringRequest = new VolleyStringRequest(Request.Method.POST,
+                url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("Notification: ", response);
+
+                try {
+                    callBack.onFinish();
+                    Gson gson = new Gson();
+                    ResponseSuccess responseObject = gson.fromJson(response.toString(), ResponseSuccess.class);
+                    callBack.onResponse(responseObject);
+                } catch (JsonSyntaxException e) {
+                    callBack.OnError("Server Connection error try again later");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                callBack.onFinish();
+                String message = null;
+                Log.d("onErrorResponse", error.toString() + "");
+                String json = null;
+                Log.d("error.getMessage()", error.getMessage() + "");
+                if (error instanceof NetworkError) {
+                    message = "Cannot connect to Internet...Please check your connection!";
+                    callBack.OnError(message);
+                } else if (error instanceof ServerError) {
+                    message = "The server could not be found. Please try again after some time!!";
+                    callBack.OnError(message);
+                } else if (error instanceof AuthFailureError) {
+                    message = "Cannot connect to Internet...Please check your connection!";
+                    callBack.OnError(message);
+                } else if (error instanceof ParseError) {
+                    message = "Parsing error! Please try again after some time!!";
+                    callBack.OnError(message);
+                } else if (error instanceof NoConnectionError) {
+                    message = "Cannot connect to Internet...Please check your connection!";
+                    callBack.OnError(message);
+                } else if (error instanceof TimeoutError) {
+                    message = "Connection TimeOut! Please check your internet connection.";
+                    callBack.OnError(message);
+                } else {
+                    try {
+                        Gson gson = new Gson();
+                        ResponseError ErrorMsg = gson.fromJson(error.getMessage(), ResponseError.class);
+                        callBack.onFailure(ErrorMsg);
+                    } catch (JsonSyntaxException e) {
+                        callBack.OnError("Server Connection error try again later");
+                    }
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                int i = 0;
+                for (int id : item) {
+                    params.put("trainee-data-id[" + (i++) + "]", id + "");
+                }
+                params.put("approve",enable+"");
+
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+//                String bearer = "Bearer ".concat(token);
+                Map<String, String> headersSys = super.getHeaders();
+                Map<String, String> headers = new HashMap<String, String>();
+                headersSys.remove("Authorization");
+                headers.put("Accept", "application/json");
+//                headers.put("Authorization", bearer);
+                headers.putAll(headersSys);
+                return headers;
+            }
+        };
+
+        VolleySingleton.getInstance().addToRequestQueue(stringRequest, "");
+
+    }
 }

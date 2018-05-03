@@ -12,6 +12,8 @@ public class Constants {
     public static final String LOGIN= baseUrl +"api/login";
     public static final String CHANGE_PASSWORD = baseUrl +"api/change-password";
     public static final String UPDATE_PROFILE = baseUrl +"";
+    public static final String NOTIFICATION = baseUrl +"";
+
 
 
     public static final String PHOTO_PATH = baseUrl +"uploads/book_images/";

@@ -7,10 +7,12 @@ import java.io.Serializable;
  */
 
 public class NotificationModel implements Serializable {
-String name ;
-String date ;
+    int id;
+    String name;
+    String date;
 
-    public NotificationModel(String name, String date) {
+    public NotificationModel(int id, String name, String date) {
+        this.id = id;
         this.name = name;
         this.date = date;
     }
@@ -29,5 +31,13 @@ String date ;
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -1,25 +1,11 @@
 package duaa.traineeproject.Application;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.multidex.MultiDex;
-import android.support.v4.content.ContextCompat;
-
 import com.google.gson.Gson;
-
-import java.io.ByteArrayOutputStream;
-import java.util.Locale;
-
 import duaa.traineeproject.API.SharedPrefSingleton;
 import duaa.traineeproject.API.VolleySingleton;
-import duaa.traineeproject.Activity.Login;
-import duaa.traineeproject.Model.UserDataResponse;
 import duaa.traineeproject.Model.showUserLogin;
 
 /**
@@ -30,7 +16,6 @@ public class  ApplicationController extends Application {
 
     private static ApplicationController mInstance;
     private static Context context;
-    Locale myLocale;
     SharedPreferences sharedPreferences ;
 
 
@@ -44,7 +29,6 @@ public class  ApplicationController extends Application {
         SharedPrefSingleton.init(this);
         VolleySingleton.getInstance();
 
-//        loadLocale();
 
     }
 
@@ -62,74 +46,6 @@ public class  ApplicationController extends Application {
     }
 
 
-    public static byte[] getFileDataFromDrawable(Context context, int id) {
-        Drawable drawable = ContextCompat.getDrawable(context, id);
-        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
-    }
-
-//    /**
-//     * Turn drawable into byte array.
-//     *
-//     * @param drawable data
-//     * @return byte array
-//     */
-//    public static byte[] getFileDataFromDrawable(Context context, Drawable drawable) {
-//        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
-//        return byteArrayOutputStream.toByteArray();
-//    }
-
-
-//    public static byte[] getStringFromInputStream(InputStream is) {
-//        BufferedReader br = null;
-//        StringBuilder sb = new StringBuilder();
-//        byte[] bReturn = new byte[0];
-//
-//        String line;
-//        try {
-//
-//            br = new BufferedReader(new InputStreamReader(is, "Big5"));
-//            while ((line = br.readLine()) != null) {
-//                sb.append(line);
-//            }
-//            String sContent = sb.toString();
-//            bReturn = sContent.getBytes();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (br != null) {
-//                try {
-//                    br.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//        return bReturn;
-//    }
-
-    //    public static byte[] readBytes(Uri uri) throws IOException {
-//        // this dynamically extends to take the bytes you read
-//        InputStream inputStream = getAppContext().getContentResolver().openInputStream(uri);
-//        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
-//
-//        // this is storage overwritten on each iteration with bytes
-//        int bufferSize = 1024;
-//        byte[] buffer = new byte[bufferSize];
-//
-//        // we need to know how may bytes were read to write them to the byteBuffer
-//        int len = 0;
-//        while ((len = inputStream.read(buffer)) != -1) {
-//            byteBuffer.write(buffer, 0, len);
-//        }
-//
-//        // and then we can return your byte array.
-//        return byteBuffer.toByteArray();
-//    }
     public static Context getAppContext() {
         return ApplicationController.context;
     }
@@ -170,54 +86,6 @@ public class  ApplicationController extends Application {
         showUserLogin user =gson.fromJson(response ,showUserLogin.class);
 
         return user;
-    }
-
-
-
-//    public boolean IsUserLoggedIn() {
-//        if (Realm.getDefaultInstance().where(User.class).findFirst() == null) {
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
-
-
-
-    public void Logout() {
-//        logout();
-        Intent intent = new Intent(this, Login.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
-
-    public void loadLocale() {
-        String langPref = "Language";
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
-                Activity.MODE_PRIVATE);
-        String language = prefs.getString(langPref, "ar");
-        changeLang(language);
-    }
-
-    public void changeLang(String lang) {
-        if (lang.equalsIgnoreCase(""))
-            return;
-        myLocale = new Locale(lang);
-        saveLocale(lang);
-        Locale.setDefault(myLocale);
-        android.content.res.Configuration config = new android.content.res.Configuration();
-        config.locale = myLocale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-
-    }
-
-    public void saveLocale(String lang) {
-        String langPref = "Language";
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
-                Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(langPref, lang);
-        editor.commit();
     }
 
 }
