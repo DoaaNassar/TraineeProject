@@ -16,7 +16,6 @@ import com.tapadoo.alerter.Alerter;
 import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.Application.ApplicationController;
 import duaa.traineeproject.Interface.UniversalCallBack;
-import duaa.traineeproject.JavaObject.Place;
 import duaa.traineeproject.Model.ResponseSuccess;
 import duaa.traineeproject.Model.UpdateUser;
 import duaa.traineeproject.Model.showUserLogin;
@@ -26,9 +25,8 @@ import duaa.traineeproject.view.FontTextViewRegular;
 import es.dmoral.toasty.Toasty;
 
 import static duaa.traineeproject.Constants.FONTS_APP;
-import static duaa.traineeproject.Page.TrainerFragment.isBack;
 
-public class EditTrainee extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity {
 
     FontEditTextViewRegular userName, email, address, phoneNumber, mobileNumber;
     FontEditTextViewRegular oldPassword, newPassword, conform;
@@ -41,16 +39,16 @@ public class EditTrainee extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_trainee);
+        setContentView(R.layout.activity_edit_profile);
         bindView();
         setData();
-        face = Typeface.createFromAsset(EditTrainee.this.getAssets(), FONTS_APP);
+        face = Typeface.createFromAsset(EditProfile.this.getAssets(), FONTS_APP);
 
 
         findViewById(R.id.changePassword).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog(EditTrainee.this);
+                showDialog(EditProfile.this);
             }
         });
 
@@ -69,7 +67,7 @@ public class EditTrainee extends AppCompatActivity {
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditTrainee.this.finish();
+                EditProfile.this.finish();
             }
         });
     }
@@ -162,10 +160,10 @@ public class EditTrainee extends AppCompatActivity {
                 ResponseSuccess responseItem = (ResponseSuccess) result;
 
                 if (responseItem.isStatus()) {
-                    Toasty.success(EditTrainee.this, ((ResponseSuccess) result).getMessage()).show();
+                    Toasty.success(EditProfile.this, ((ResponseSuccess) result).getMessage()).show();
 
                 } else {
-                    Toasty.error(EditTrainee.this, ((ResponseSuccess) result).getMessage()).show();
+                    Toasty.error(EditProfile.this, ((ResponseSuccess) result).getMessage()).show();
 
                 }
             }
@@ -185,7 +183,7 @@ public class EditTrainee extends AppCompatActivity {
 
             @Override
             public void OnError(String message) {
-                if (EditTrainee.this != null) {
+                if (EditProfile.this != null) {
                     Alarm(getResources().getString(R.string.noInternet));
 
                 }
@@ -195,7 +193,7 @@ public class EditTrainee extends AppCompatActivity {
 
     public void UpdateProfile(UpdateUser updateUser) {
 
-        showDialogWaiting(EditTrainee.this);
+        showDialogWaiting(EditProfile.this);
         loadingLayout.setVisibility(View.VISIBLE);
 
         new UserAPI().UpdateProfile(updateUser , new UniversalCallBack() {
@@ -204,10 +202,10 @@ public class EditTrainee extends AppCompatActivity {
                 ResponseSuccess responseItem = (ResponseSuccess) result;
 
                 if (responseItem.isStatus()) {
-                    Toasty.success(EditTrainee.this, ((ResponseSuccess) result).getMessage()).show();
+                    Toasty.success(EditProfile.this, ((ResponseSuccess) result).getMessage()).show();
 
                 } else {
-                    Toasty.error(EditTrainee.this, ((ResponseSuccess) result).getMessage()).show();
+                    Toasty.error(EditProfile.this, ((ResponseSuccess) result).getMessage()).show();
 
                 }
                 dialogWait.hide();
@@ -232,7 +230,7 @@ public class EditTrainee extends AppCompatActivity {
 
             @Override
             public void OnError(String message) {
-                if (EditTrainee.this != null) {
+                if (EditProfile.this != null) {
                     Alarm(getResources().getString(R.string.noInternet));
                     dialogWait.hide();
 
@@ -242,7 +240,7 @@ public class EditTrainee extends AppCompatActivity {
     }
 
     public void Alarm(String message) {
-        Alerter.create(EditTrainee.this)
+        Alerter.create(EditProfile.this)
                 .setText(message)
                 .hideIcon()
                 .setContentGravity(GravityCompat.END)

@@ -2,9 +2,7 @@ package duaa.traineeproject.Fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -34,17 +32,10 @@ import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.Adapter.AdapterSpinner;
 import duaa.traineeproject.Adapter.AdapterSpinnerFaculty;
 import duaa.traineeproject.Adapter.OldTrainerAdapter;
-import duaa.traineeproject.Adapter.PlaceAdapter;
-import duaa.traineeproject.Adapter.TrainerAdapter;
-import duaa.traineeproject.Adapter.UniversityAdapter;
 import duaa.traineeproject.Interface.CustomItemClickListener;
 import duaa.traineeproject.Interface.UniversalCallBack;
-import duaa.traineeproject.JavaObject.Trainee;
-import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.Model.Faculty;
 import duaa.traineeproject.Model.FacultyListModel;
-import duaa.traineeproject.Model.OldTrainerListModel;
-import duaa.traineeproject.Model.PlaceModel;
 import duaa.traineeproject.Model.Trainer;
 import duaa.traineeproject.Model.TrainerListModel;
 import duaa.traineeproject.Model.University;
@@ -203,7 +194,7 @@ public class OldTrainerFragment extends Fragment {
         dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        dialog.setContentView(R.layout.dialog_edit);
+        dialog.setContentView(R.layout.dialog_trainer_edit);
 
         name = dialog.findViewById(R.id.name);
         email = dialog.findViewById(R.id.email);

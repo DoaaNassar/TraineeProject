@@ -87,7 +87,7 @@ public class ShowPlaceFragment extends Fragment {
 
     public void getAllplace() {
 
-        new UserAPI().getAllFaculty("", new UniversalCallBack() {
+        new UserAPI().getPlace( new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
 
@@ -95,7 +95,6 @@ public class ShowPlaceFragment extends Fragment {
 
 //                if (responseCategories.isStatus()) {
                 loading.setVisibility(View.GONE);
-//                facultyText.setEnabled(true);
 
                 arrayList.clear();
                 arrayList.addAll(placeListModel.getResult());

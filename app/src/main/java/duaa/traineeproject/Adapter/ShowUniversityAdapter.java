@@ -12,10 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import duaa.traineeproject.Interface.CustomItemClickListener;
-import duaa.traineeproject.JavaObject.specialization;
 import duaa.traineeproject.Model.University;
 import duaa.traineeproject.R;
-import duaa.traineeproject.view.FontTextViewRegular;
 
 /**
  * Created by AL-Qema on 18/03/18.

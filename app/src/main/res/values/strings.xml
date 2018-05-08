@@ -44,7 +44,7 @@
     <string name="noInternet">لا يوجد اتصال بالانترنت</string>
     <string name="noAdd">لم يتم الاتصال بالسيرفر</string>
     <string name="out">تسجيل الخروج</string>
-    <string name="noData">لا يوجد بينات لعرضاها</string>
+    <string name="noData">لا يوجد بيانات لعرضاها</string>
 
 
 </resources>

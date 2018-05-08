@@ -3,7 +3,6 @@ package duaa.traineeproject.Model;
 import java.io.Serializable;
 import java.util.List;
 
-import duaa.traineeproject.JavaObject.specialization;
 
 /**
  * Created by AL-Qema on 13/04/18.

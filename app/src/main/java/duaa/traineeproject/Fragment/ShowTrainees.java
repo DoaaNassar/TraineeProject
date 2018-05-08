@@ -9,18 +9,14 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import com.tapadoo.alerter.Alerter;
 
@@ -28,23 +24,15 @@ import java.util.ArrayList;
 
 import duaa.traineeproject.API.ResponseError;
 import duaa.traineeproject.API.UserAPI;
-import duaa.traineeproject.Activity.EditTrainee;
-import duaa.traineeproject.Activity.NavigationMenuActivity;
+import duaa.traineeproject.Activity.EditProfile;
 import duaa.traineeproject.Adapter.AdapterNewTrainee;
-import duaa.traineeproject.Adapter.AdapterOldTrainee;
-import duaa.traineeproject.Adapter.AdapterSpinnerFaculty;
-import duaa.traineeproject.Adapter.FacultyAdapter;
-import duaa.traineeproject.Adapter.ListTraineeAdapter;
 import duaa.traineeproject.Application.ApplicationController;
 import duaa.traineeproject.Interface.CustomItemClickListener;
 import duaa.traineeproject.Interface.UniversalCallBack;
-import duaa.traineeproject.JavaObject.TrainerObject;
-import duaa.traineeproject.Model.FacultyListModel;
 import duaa.traineeproject.Model.ResponseSuccess;
 import duaa.traineeproject.Model.TraineeListModel;
 import duaa.traineeproject.Model.TraineeModel;
 import duaa.traineeproject.R;
-import duaa.traineeproject.Units.UIUtils;
 import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontTextViewRegular;
 
@@ -197,7 +185,7 @@ public class ShowTrainees extends Fragment {
 
                     @Override
                     public void Edit(View v, int position) {
-                        Intent refresh = new Intent(getContext(), EditTrainee.class);
+                        Intent refresh = new Intent(getContext(), EditProfile.class);
                         startActivity(refresh);
 
                     }

@@ -30,7 +30,6 @@ import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.Adapter.AdapterSpinner;
 import duaa.traineeproject.Adapter.AdapterSpinnerFaculty;
 import duaa.traineeproject.Interface.UniversalCallBack;
-import duaa.traineeproject.JavaObject.specialization;
 import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.Model.Faculty;
 import duaa.traineeproject.Model.FacultyListModel;

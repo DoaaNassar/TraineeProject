@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -41,18 +42,17 @@ import static duaa.traineeproject.Constants.FONTS_APP;
 
 public class Notification extends AppCompatActivity {
 
-    ArrayList<TraineeModel> arrayList ,checkArray ;
-    List<Integer>checkList ;
+    ArrayList<TraineeModel> arrayList, checkArray;
+    List<Integer> checkList;
     AdapterNotification adapter;
     RecyclerView recyclerView;
-    FontTextViewRegular approve , disapprove;
+    FontTextViewRegular approve, disapprove;
     FrameLayout loadingLayout;
-    Dialog dialog ;
+    Dialog dialog;
     Typeface face;
-    LinearLayout loading ;
-    FontTextViewRegular noData ;
-
-
+    LinearLayout loading;
+    FontTextViewRegular noData;
+    CheckBox selectAll ;
 
 
     @Override
@@ -66,6 +66,7 @@ public class Notification extends AppCompatActivity {
         loadingLayout = findViewById(R.id.loadingLayout);
         loading = findViewById(R.id.loading);
         noData = findViewById(R.id.noData);
+        selectAll = findViewById(R.id.checkAll);
         face = Typeface.createFromAsset(Notification.this.getAssets(), FONTS_APP);
         checkList = new ArrayList<>();
 
@@ -73,27 +74,26 @@ public class Notification extends AppCompatActivity {
         checkArray = new ArrayList<>();
 
         arrayList.clear();
-        arrayList.add(new TraineeModel(1,1, "دعاء","دعاء" ,"دعاء",
-                "دعاء","123456",1,1,1,1,"دعاء"));
-        arrayList.add(new TraineeModel(1,1, "دعاء","دعاء" ,"دعاء",
-                "دعاء","123456",1,1,1,1,"دعاء"));
-        arrayList.add(new TraineeModel(1,1, "دعاء","دعاء" ,"دعاء",
-                "دعاء","123456",1,1,1,1,"دعاء"));
-        arrayList.add(new TraineeModel(1,1, "دعاء","دعاء" ,"دعاء",
-                "دعاء","123456",1,1,1,1,"دعاء"));
-        arrayList.add(new TraineeModel(1,1, "دعاء","دعاء" ,"دعاء",
-                "دعاء","123456",1,1,1,1,"دعاء"));
-        arrayList.add(new TraineeModel(1,1, "دعاء","دعاء" ,"دعاء",
-                "دعاء","123456",1,1,1,1,"دعاء"));
-        arrayList.add(new TraineeModel(1,1, "دعاء","دعاء" ,"دعاء",
-                "دعاء","123456",1,1,1,1,"دعاء"));
-        arrayList.add(new TraineeModel(1,1, "دعاء","دعاء" ,"دعاء",
-                "دعاء","123456",1,1,1,1,"دعاء"));
-        arrayList.add(new TraineeModel(1,1, "دعاء","دعاء" ,"دعاء",
-                "دعاء","123456",1,1,1,1,"دعاء"));
-        arrayList.add(new TraineeModel(1,1, "دعاء","دعاء" ,"دعاء",
-                "دعاء","123456",1,1,1,1,"دعاء"));
-
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
+                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
+                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
+                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
+                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
+                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
+                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
+                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
+                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
+                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
+                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
 
 
         adapter = new AdapterNotification(Notification.this, arrayList,
@@ -106,8 +106,21 @@ public class Notification extends AppCompatActivity {
 
 
             @Override
-            public void check(NotificationModel v, boolean check, int position) {
+            public void Approve(TraineeModel v, int position) {
+                checkList.clear();
+                checkList.add(v.getTrainee_id());
+                ApproveNotification(checkList,1);
+
             }
+
+            @Override
+            public void Disapprove(TraineeModel v, int position) {
+                checkList.clear();
+                checkList.add(v.getTrainee_id());
+                ApproveNotification(checkList,0);
+
+            }
+
         });
 
         LinearLayoutManager llm = new LinearLayoutManager(Notification.this);
@@ -116,53 +129,67 @@ public class Notification extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-//        ShowNotification();
+        ShowNotification();
 
         approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkArray.addAll(adapter.getData().values());
-                if (checkArray.size()!=0){
-                for (int i = 0 ; i <checkArray.size() ; i++){
-                    checkList.add(checkArray.get(i).getTrainee_id());
+                checkList.clear();
+                if (checkArray.size() != 0) {
+                    for (int i = 0; i < checkArray.size(); i++) {
+                        checkList.add(checkArray.get(i).getTrainee_id());
+                    }
+                    ApproveNotification(checkList, 1);
+                    Log.d("adaptersize", "" + adapter.getData().size());
+                } else {
+                    Alarm("لا تحدد عناصر :)");
                 }
-
-                ApproveNotification(checkList,1);
-                Log.d("adaptersize", "" + adapter.getData().size());
-            }else {
-                Alarm("لا تحدد عناصر :)");
-            }}
+            }
         });
 
         disapprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkArray.addAll(adapter.getData().values());
-                if (checkArray.size()!=0){
-                for (int i = 0 ; i <checkArray.size() ; i++){
-                    checkList.add(checkArray.get(i).getTrainee_id());
-                }
-                ApproveNotification(checkList,0);
-                Log.d("adaptersize", "" + adapter.getData().size());
-            }else {
-                Alarm("لم تحدد عناصر :)");
+                checkList.clear();
+                if (checkArray.size() != 0) {
+                    for (int i = 0; i < checkArray.size(); i++) {
+                        checkList.add(checkArray.get(i).getTrainee_id());
+                    }
+                    ApproveNotification(checkList, 0);
+                    Log.d("adaptersize", "" + adapter.getData().size());
+                } else {
+                    Alarm("لم تحدد عناصر :)");
                 }
             }
         });
 
 
     }
-    public void ApproveNotification(final List<Integer> item , int approve) {
+
+    public void ApproveNotification(final List<Integer> item, int approve) {
         loadingLayout.setVisibility(View.VISIBLE);
         showDialog(Notification.this);
 
-        new UserAPI().Notification(item,approve, new UniversalCallBack() {
+        new UserAPI().Notification(item, approve, new UniversalCallBack() {
             @Override
             public void onResponse(Object result) {
                 ResponseTrue responseItem = (ResponseTrue) result;
                 loadingLayout.setVisibility(View.GONE);
                 dialog.hide();
-//                if (responseItem.isStatus()) {
+
+                for (int i = 0; i < arrayList.size(); i++) {
+                    if (checkList.contains(arrayList.get(i).getTrainee_id())) {
+                        arrayList.remove(i);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+                if (arrayList.size() == 0) {
+                    noData.setVisibility(View.VISIBLE);
+                }
+
+                //                if (responseItem.isStatus()) {
                 Alarm(responseItem.getMessage());
 
 //                }
@@ -198,8 +225,8 @@ public class Notification extends AppCompatActivity {
 
     public void ShowNotification() {
 
-        new UserAPI().getTrainee(ApplicationController.getInstance().getLoginUser().getUser_id()+"",
-                ApplicationController.getInstance().getLoginUser().getRole_id()+"","0","",
+        new UserAPI().getTrainee(ApplicationController.getInstance().getLoginUser().getUser_id() + "",
+                ApplicationController.getInstance().getLoginUser().getRole_id() + "", "0", "",
                 new UniversalCallBack() {
                     @Override
                     public void onResponse(Object result) {
@@ -211,7 +238,7 @@ public class Notification extends AppCompatActivity {
 
                         arrayList.clear();
                         arrayList.addAll(traineeListModel.getResult());
-                        if (arrayList.size()!=0) {
+                        if (arrayList.size() != 0) {
                             adapter = new AdapterNotification(Notification.this, arrayList, new CustomItemClickListener() {
                                 @Override
                                 public void onItemClick(View v, int position) {
@@ -220,7 +247,15 @@ public class Notification extends AppCompatActivity {
                             }, new AdapterNotification.MyRecyclerViewListener() {
 
                                 @Override
-                                public void check(NotificationModel v, boolean check, int position) {
+                                public void Approve(TraineeModel v, int position) {
+                                    arrayList.remove(v);
+                                    adapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void Disapprove(TraineeModel v, int position) {
+                                    arrayList.remove(v);
+                                    adapter.notifyDataSetChanged();
 
                                 }
                             });
@@ -229,13 +264,23 @@ public class Notification extends AppCompatActivity {
                             recyclerView.setLayoutManager(llm);
                             recyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
-                        }
-                        else {
+                        } else {
                             noData.setVisibility(View.VISIBLE);
 
                         }
 
+
                         //                }
+
+                        selectAll.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                adapter.selectAll();
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+
+
                     }
 
                     @Override

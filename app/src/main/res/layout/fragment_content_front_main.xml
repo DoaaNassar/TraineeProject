@@ -211,86 +211,6 @@
 
             </LinearLayout>
 
-            <!--<duaa.traineeproject.view.FontTextViewRegular-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="45dp"-->
-            <!--android:background="@color/colorAccent"-->
-            <!--android:paddingRight="10dp"-->
-            <!--android:text="المستخدمين"-->
-            <!--android:textColor="#FFF"-->
-            <!--android:textSize="17sp"-->
-
-            <!--/>-->
-
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="15dp"-->
-            <!--android:orientation="vertical"-->
-
-
-            <!--&gt;-->
-
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal"-->
-
-
-            <!--&gt;-->
-
-            <!--<duaa.traineeproject.view.FontTextViewRegular-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginRight="20dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="right"-->
-            <!--android:text="إضافة مستخدمين"-->
-            <!--android:textSize="15sp" />-->
-
-
-            <!--<ImageView-->
-            <!--android:id="@+id/addUserImage"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:background="@drawable/add_user" />-->
-            <!--</LinearLayout>-->
-
-
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal"-->
-
-            <!--&gt;-->
-
-
-            <!--<duaa.traineeproject.view.FontTextViewRegular-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginRight="20dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="right"-->
-            <!--android:text="المستخدمين الحالين"-->
-            <!--android:textSize="15sp" />-->
-
-
-            <!--<ImageView-->
-            <!--android:id="@+id/showUserImage"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:background="@drawable/showuser" />-->
-
-
-            <!--</LinearLayout>-->
-
-
-            <!--</LinearLayout>-->
-
             <duaa.traineeproject.view.FontTextViewRegular
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -334,7 +254,7 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/trainer"
+                        android:background="@drawable/super_"
 
                         />
 
@@ -395,7 +315,7 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/trainer" />
+                        android:background="@drawable/super_" />
 
                 </LinearLayout>
 

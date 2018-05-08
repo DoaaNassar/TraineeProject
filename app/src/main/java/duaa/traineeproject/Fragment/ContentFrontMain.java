@@ -2,30 +2,24 @@ package duaa.traineeproject.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import duaa.traineeproject.Activity.EditTrainee;
+import duaa.traineeproject.Activity.EditProfile;
 import duaa.traineeproject.Page.PlaceFragmentPager;
 import duaa.traineeproject.Page.TraineeViewPager;
 import duaa.traineeproject.Page.TrainerFragment;
 import duaa.traineeproject.Page.UniversityViewPager;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
-
-import static duaa.traineeproject.Page.TrainerFragment.isBack;
 
 
 public class ContentFrontMain extends Fragment {
@@ -84,7 +78,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new TraineeViewPager();
-                Fragment(2,fragment ,"TraineeViewPager");
+                Fragment(0,fragment ,"TraineeViewPager");
 
             }});
 
@@ -103,7 +97,7 @@ public class ContentFrontMain extends Fragment {
             public void onClick(View v) {
 
                 fragment = new TraineeViewPager();
-                Fragment(0,fragment,"TraineeViewPager");
+                Fragment(2,fragment,"TraineeViewPager");
 
             }});
 
@@ -192,7 +186,7 @@ public class ContentFrontMain extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(), EditTrainee.class);
+                Intent intent = new Intent(getActivity(), EditProfile.class);
                 startActivity(intent);
             }
         });

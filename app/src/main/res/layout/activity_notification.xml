@@ -152,6 +152,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:text="@string/noData"
+                    android:textSize="@dimen/text_medium"
                     android:visibility="gone" />
             </FrameLayout>
 

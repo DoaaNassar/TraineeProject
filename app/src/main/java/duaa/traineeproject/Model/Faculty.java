@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-import duaa.traineeproject.JavaObject.specialization;
 
 /**
  * Created by AL-Qema on 12/04/18.

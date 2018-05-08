@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import java.util.List;
 
 import duaa.traineeproject.Interface.CustomItemClickListener;
-import duaa.traineeproject.JavaObject.specialization;
 import duaa.traineeproject.R;
 import duaa.traineeproject.view.FontTextViewRegular;
 

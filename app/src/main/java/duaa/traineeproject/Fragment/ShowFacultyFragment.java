@@ -89,7 +89,6 @@ public class ShowFacultyFragment extends Fragment {
     }
 
     public void FacultyItems() {
-        facultyText.setEnabled(false);
 
         new UserAPI().getAllFaculty("", new UniversalCallBack() {
             @Override
@@ -131,7 +130,6 @@ public class ShowFacultyFragment extends Fragment {
 
                         Alarm(getString(R.string.noAdd));
                         loading.setVisibility(View.GONE);
-                        facultyText.setEnabled(true);
                     }
 
 
@@ -141,7 +139,6 @@ public class ShowFacultyFragment extends Fragment {
             @Override
             public void onFinish() {
                 loading.setVisibility(View.GONE);
-                facultyText.setEnabled(true);
 
 
             }
@@ -152,7 +149,6 @@ public class ShowFacultyFragment extends Fragment {
                 if (getActivity() != null) {
                     Alarm(getString(R.string.noInternet));
                     loading.setVisibility(View.GONE);
-                    facultyText.setEnabled(true);
                 }
 
 

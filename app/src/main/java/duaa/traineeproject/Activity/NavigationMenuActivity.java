@@ -65,6 +65,10 @@ public class NavigationMenuActivity extends AppCompatActivity
         LinearLayout home = findViewById(R.id.home);
         LinearLayout notification = findViewById(R.id.notification);
 
+        FontTextViewRegular about = findViewById(R.id.aboutApp);
+        FontTextViewRegular contact = findViewById(R.id.contact);
+
+
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         findViewById(R.id.menu).setOnClickListener(new View.OnClickListener() {
@@ -134,6 +138,26 @@ public class NavigationMenuActivity extends AppCompatActivity
             public void onClick(View v) {
                 drawer.closeDrawer(GravityCompat.END);
                 Intent intent = new Intent(NavigationMenuActivity.this,Notification.class);
+                startActivity(intent);
+
+            }
+        });
+
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawer(GravityCompat.END);
+                Intent intent = new Intent(NavigationMenuActivity.this,About1Activity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawer(GravityCompat.END);
+                Intent intent = new Intent(NavigationMenuActivity.this,AboutActivity.class);
                 startActivity(intent);
 
             }

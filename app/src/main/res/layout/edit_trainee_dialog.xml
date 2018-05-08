@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    app:cardCornerRadius="10dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="duaa.traineeproject.Fragment.AddTrainees"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <duaa.traineeproject.view.FontTextViewRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="تعديل بيانات المتدرب "
+                android:textColor="@color/silver"
+                android:textSize="@dimen/text_medium"
+                android:drawableEnd="@drawable/user_new"
+                android:gravity="center_vertical"
+                android:drawablePadding="8dp"
+                android:textStyle="bold" />
+
+
+            <duaa.traineeproject.view.FontEditTextViewRegular
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border"
+                android:hint="اسم المتدرب"
+                android:padding="10dp"
+                android:textSize="@dimen/text_small"
+                android:singleLine="true"
+                android:gravity="right"
+
+                />
+
+            <duaa.traineeproject.view.FontEditTextViewRegular
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:hint="@string/email"
+                android:padding="10dp"
+                android:textSize="@dimen/text_small"
+                android:singleLine="true"
+                android:gravity="right"
+
+
+                />
+            <duaa.traineeproject.view.FontEditTextViewRegular
+                android:id="@+id/idNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:hint="@string/IDPersonNumber"
+                android:padding="10dp"
+                android:textSize="@dimen/text_small"
+                android:singleLine="true"
+                android:gravity="right"
+
+
+                />
+
+            <duaa.traineeproject.view.FontEditTextViewRegular
+                android:id="@+id/mobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:hint="@string/phoneNumber"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textSize="@dimen/text_small"
+                android:singleLine="true"
+                android:gravity="right"
+
+
+
+                />
+
+
+            <duaa.traineeproject.view.FontEditTextViewRegular
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:hint="@string/mobileNumber"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textSize="@dimen/text_small"
+                android:gravity="right"
+
+                />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <duaa.traineeproject.view.FontButtonRegular
+                    android:id="@+id/save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/background_button"
+                    android:text="@string/save"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</android.support.v7.widget.CardView>

@@ -113,6 +113,20 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
             }
         });
 
+        holder.approve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myRecyclerViewListener.Approve(item,position);
+            }
+        });
+
+        holder.disapprove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myRecyclerViewListener.Disapprove(item,position);
+            }
+        });
+
 //
     }
 
@@ -123,7 +137,9 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
 
 
     public interface MyRecyclerViewListener {
-        public void check(NotificationModel v, boolean check, int position);
+        public void Approve(TraineeModel v,  int position);
+        public void Disapprove(TraineeModel v,  int position);
+
 
     }
 
@@ -131,6 +147,13 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
         notifyDataSetChanged();
         return checkList;
 
+    }
+
+    public void selectAll(){
+        checkList.clear();
+        for (TraineeModel traineeModel : notificationList)
+        checkList.put(traineeModel,traineeModel);
+        notifyDataSetChanged();
     }
 
 

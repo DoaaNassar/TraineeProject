@@ -6,7 +6,8 @@ import java.io.Serializable;
  * Created by AL-Qema on 14/04/18.
  */
 
-public class AntherTraining implements Serializable {
+public class
+AntherTraining implements Serializable {
 
     String trainee_id;
     String university;

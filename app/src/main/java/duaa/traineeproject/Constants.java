@@ -7,7 +7,7 @@ package duaa.traineeproject;
 public class Constants {
 
     public static final String FONTS_APP = "fonts/din-next-lt-arabic-medium.ttf";
-    public static final String baseUrl ="http://192.168.1.108/trainee_project/public/";
+    public static final String baseUrl ="http://192.168.1.105/trainee_project/public/";
 
     public static final String LOGIN= baseUrl +"api/login";
     public static final String CHANGE_PASSWORD = baseUrl +"api/change-password";

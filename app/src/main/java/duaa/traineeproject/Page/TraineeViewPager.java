@@ -42,7 +42,7 @@ public class TraineeViewPager extends Fragment {
         bindView();
 
 
-        if (number == 0) {
+        if (number == 2) {
             oldTrainee();
             Fragment con = new OldTraineeFragment();
             FragmentManager fm = getActivity().getSupportFragmentManager();

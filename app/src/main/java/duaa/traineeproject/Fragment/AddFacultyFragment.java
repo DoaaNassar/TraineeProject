@@ -27,27 +27,20 @@ import com.tapadoo.alerter.Alerter;
 import java.util.ArrayList;
 import java.util.List;
 
-import duaa.traineeproject.Adapter.ShowUniversityAdapter;
 import duaa.traineeproject.Adapter.SpecAdapter;
 import duaa.traineeproject.Interface.CustomItemClickListener;
 import duaa.traineeproject.Interface.UniversalCallBack;
-import duaa.traineeproject.JavaObject.specialization;
-import duaa.traineeproject.JavaObject.TrainerObject;
 import duaa.traineeproject.Model.AddFacultyModel;
-import duaa.traineeproject.Model.Faculty;
-import duaa.traineeproject.Model.ResponseSuccess;
+
 import duaa.traineeproject.Model.ResponseTrue;
 import duaa.traineeproject.Model.University;
-import duaa.traineeproject.Model.UniversityListModel;
 import duaa.traineeproject.R;
-import duaa.traineeproject.API.ResponseError;
 import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.view.FontButtonRegular;
 import duaa.traineeproject.view.FontEditTextViewRegular;
 import duaa.traineeproject.view.FontTextViewRegular;
 
 import static duaa.traineeproject.Constants.FONTS_APP;
-import static duaa.traineeproject.Page.TrainerFragment.isBack;
 
 
 public class AddFacultyFragment extends Fragment {

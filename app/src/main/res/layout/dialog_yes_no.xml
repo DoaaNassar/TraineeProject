@@ -24,7 +24,7 @@
                 android:layout_marginRight="5dp"
                 android:text="هل انت متأكد ؟ "
                 android:textColor="@color/silver"
-                android:textSize="15sp"
+                android:textSize="@dimen/text_medium"
                 android:textStyle="bold" />
 
 
