@@ -8,12 +8,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,6 +34,7 @@ import java.util.ArrayList;
 import duaa.traineeproject.API.ResponseError;
 import duaa.traineeproject.API.UserAPI;
 import duaa.traineeproject.Activity.MainActivity;
+import duaa.traineeproject.Activity.NavigationMenuActivity;
 import duaa.traineeproject.Adapter.ShowUniversityAdapter;
 import duaa.traineeproject.Adapter.UniversityAdapter;
 import duaa.traineeproject.Interface.CustomItemClickListener;
@@ -62,6 +65,8 @@ public class Unviersity extends Fragment {
         super.onCreate(savedInstanceState);
         universityList = new ArrayList<>();
         face = Typeface.createFromAsset(getActivity().getAssets(), FONTS_APP);
+        setHasOptionsMenu(true);
+
 
 
     }
@@ -72,11 +77,11 @@ public class Unviersity extends Fragment {
         // Inflate the layout for this fragment
 
         view = inflater.inflate(R.layout.fragment_unviersity, container, false);
+
         bindView();
         title.setText(getResources().getString(R.string.universityPart));
         university();
-        setHasOptionsMenu(true);
-        search.setVisibility(View.VISIBLE);
+        search.setVisibility(View.GONE);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,27 +180,25 @@ public class Unviersity extends Fragment {
 
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        setHasOptionsMenu(true);
+
+//
+        @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.search_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+        final MenuItem item = menu.findItem(R.id.search);
+         SearchView searchView = new SearchView(((NavigationMenuActivity) getActivity()).getSupportActionBar().getThemedContext());
+//         searchView.setMenuItem(item);
     }
 
-    //    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.search_menu, menu);
-//        super.onCreateOptionsMenu(menu, inflater);
-//        final MenuItem item = menu.findItem(R.id.action_search);
-////        searchView.setMenuItem(item);
-//    }
 
 //    @Override
 //    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 //        super.onCreateOptionsMenu(menu, inflater);
 //        menu.clear();
 //        inflater.inflate(R.menu.search_menu, menu);
-//        MenuItem item = menu.findItem(R.id.action_search);
-//        SearchView searchView = new SearchView(((NativeActivity) getActivity()).getSupportActionBar().getThemedContext());
+//        MenuItem item = menu.findItem(R.id.search);
+//        SearchView searchView = (SearchView)item.getActionView();
 //        MenuItemCompat.setShowAsAction(item, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
 //        MenuItemCompat.setActionView(item, searchView);
 //        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -239,22 +242,27 @@ public class Unviersity extends Fragment {
 //        });
 //
 //    }
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search_menu, menu);
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.search_menu, menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // handle item selection
+//        switch (item.getItemId()) {
+//            case R.id.action_search:
+//
+//                //       onCall();   //your logic
+//
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+
+
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // handle item selection
-        switch (item.getItemId()) {
-            case R.id.action_search:
 
-                //       onCall();   //your logic
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-}

@@ -108,6 +108,9 @@ public class ShowPlaceFragment extends Fragment {
                     public void RemoveImage(View v, int position) {
                     }
                 });
+                LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+                llm.setOrientation(LinearLayoutManager.VERTICAL);
+                recyclerView.setLayoutManager(llm);
                 recyclerView.setAdapter(placeAdapter);
                 placeAdapter.notifyDataSetChanged();
 

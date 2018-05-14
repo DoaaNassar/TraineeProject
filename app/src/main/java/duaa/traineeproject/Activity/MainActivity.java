@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     finish();
-                    Intent intent = new Intent(MainActivity.this, NavigationMenuActivity.class);
+                    Intent intent = new Intent(MainActivity.this, Login.class);
                     startActivity(intent);
                 }
 

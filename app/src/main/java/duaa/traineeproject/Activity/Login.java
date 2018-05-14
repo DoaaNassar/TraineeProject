@@ -71,7 +71,6 @@ public class Login extends AppCompatActivity {
                 Login.this.finish();
                 Intent intent = new Intent(Login.this, NavigationMenuActivity.class);
                 startActivity(intent);
-
                 ApplicationController.getInstance().userLogin(loginModel.getResult());
                 ApplicationController.getInstance().login_token(loginModel.getResult().getAccess_token());}
                 else {

@@ -69,6 +69,7 @@ public class OldTrainerFragment extends Fragment {
     ArrayList<University> arrayListUniversity;
     ArrayList<Faculty> arrayListFaculty;
     ImageView imageUniversity, imageFaculty;
+    LinearLayout loading;
 
     int universityNum ,facultyNum ;
     FontTextViewRegular titleSpinnerUniversity  , titleSpinnerFaculty;
@@ -104,6 +105,8 @@ public class OldTrainerFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
         search = getActivity().findViewById(R.id.search);
         loadingLayout = getActivity().findViewById(R.id.loadingLayout);
+        loading = view.findViewById(R.id.loading);
+
 
 
     }
@@ -117,7 +120,7 @@ public class OldTrainerFragment extends Fragment {
                 TrainerListModel response = (TrainerListModel) result;
 
 //                if (responseCategories.isStatus()) {
-//                loading.setVisibility(View.GONE);
+                loading.setVisibility(View.GONE);
                 arrayList.clear();
                 arrayList.addAll(response.getResult());
                 recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
@@ -154,7 +157,7 @@ public class OldTrainerFragment extends Fragment {
             public void onFailure(Object result) {
                 if (result != null) {
                     ResponseError responseError = (ResponseError) result;
-                    loadingLayout.setVisibility(View.GONE);
+                    loading.setVisibility(View.GONE);
 
                     if (getActivity() != null)
                         Alarm(getResources().getString(R.string.noAdd));
@@ -163,13 +166,13 @@ public class OldTrainerFragment extends Fragment {
 
             @Override
             public void onFinish() {
-                loadingLayout.setVisibility(View.GONE);
+                loading.setVisibility(View.GONE);
 
             }
 
             @Override
             public void OnError(String message) {
-                loadingLayout.setVisibility(View.GONE);
+                loading.setVisibility(View.GONE);
                 if (getActivity() != null)
                     Alarm(getResources().getString(R.string.noInternet));
 

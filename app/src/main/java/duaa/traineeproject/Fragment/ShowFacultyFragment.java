@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -115,7 +116,9 @@ public class ShowFacultyFragment extends Fragment {
 
                     }
                 });
-
+                LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+                llm.setOrientation(LinearLayoutManager.VERTICAL);
+                recyclerView.setLayoutManager(llm);
                 recyclerView.setAdapter(facultyAdapter);
                 facultyAdapter.notifyDataSetChanged();
 

@@ -21,5 +21,7 @@
     <string name="out">تسجيل الخروج</string>
     <string name="noData">لا يوجد بيانات لعرضاها</string>
 
+    <string name="title"></string>
+
 
 </resources>

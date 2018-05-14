@@ -45,6 +45,8 @@
     <string name="noAdd">لم يتم الاتصال بالسيرفر</string>
     <string name="out">تسجيل الخروج</string>
     <string name="noData">لا يوجد بيانات لعرضاها</string>
+    <string name="title"></string>
+
 
 
 </resources>

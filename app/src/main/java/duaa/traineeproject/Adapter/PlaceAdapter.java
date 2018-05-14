@@ -26,14 +26,17 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        FontTextViewRegular name , number;
+        FontTextViewRegular name  ,delete , edit ,address ;
 
 
 
         public MyViewHolder(View view) {
             super(view);
             name = itemView.findViewById(R.id.name);
-            number=itemView.findViewById(R.id.number);
+            delete = itemView.findViewById(R.id.delete);
+            edit= itemView.findViewById(R.id.edit);
+            address = itemView.findViewById(R.id.address);
+
         }
 
 
@@ -78,15 +81,15 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.MyViewHolder
         PlaceModel item = placeList.get(position);
 
         holder.name.setText(item.getPlace_name());
-        holder.number.setText(item.getPhone());
+        holder.address.setText(item.getAddress());
 
-//        holder.remove.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                myRecyclerViewListener.RemoveImage(v,position);
-//            }
-//        });
-//        holder.name.setText(item.getUniversiy_name());
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myRecyclerViewListener.RemoveImage(v,position);
+            }
+        });
     }
 
     @Override

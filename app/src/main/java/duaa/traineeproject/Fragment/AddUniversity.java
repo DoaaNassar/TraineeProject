@@ -112,6 +112,7 @@ public class AddUniversity extends Fragment {
                     String phoneNumberTxt = phoneNumber.getText().toString();
                     String emailTxt = email.getText().toString();
                     AddItem(new AddUniversityObject(nameUniversityTxt, emailTxt, mobileNumberTxt, phoneNumberTxt, addressTxt));
+
                 }else {
 
                     Alarm("يرجى تعبئة جميع البيانات اللازمة :)");
@@ -179,15 +180,20 @@ public class AddUniversity extends Fragment {
                 ResponseTrue responseItem = (ResponseTrue) result;
                 String message = responseItem.getMessage();
 
-                loadingLayout.setVisibility(View.GONE);
-
 //                contentLayout.setEnabled(true);
-                Toast.makeText(getActivity(), message+"", Toast.LENGTH_SHORT).show();
 //                if (responseItem.isStatus()) {
 //                    loadingLayout.setVisibility(View.VISIBLE);
 //                    contentLayout.setEnabled(false);
 //
 //                }
+
+                if (!TextUtils.isEmpty(SelectedImage + "")) {
+                    UploadImage(SelectedImage);
+                }
+                    dialog.hide();
+                    loadingLayout.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), message+"", Toast.LENGTH_SHORT).show();
+
 
             }
 

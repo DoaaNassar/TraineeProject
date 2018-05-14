@@ -3,6 +3,7 @@ package duaa.traineeproject.Adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,17 +35,19 @@ public class UniversityAdapter  extends RecyclerView.Adapter<UniversityAdapter.M
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        FontTextViewRegular remove,name ,email ,phone ;
+        FontTextViewRegular remove,name ,email ,phone ,address,mobile,edit;
         CircleImageView image ;
 
 
 
         public MyViewHolder(View view) {
             super(view);
-//            edit = itemView.findViewById(R.id.edit);
-//            remove=itemView.findViewById(R.id.delete);
-            email= view.findViewById(R.id.emailTraineeCard);
-            name = view.findViewById(R.id.nameTraineeCard);
+            edit = itemView.findViewById(R.id.edit);
+            remove=itemView.findViewById(R.id.delete);
+            email= view.findViewById(R.id.email);
+            name = view.findViewById(R.id.name);
+            address = view.findViewById(R.id.address);
+            mobile= view.findViewById(R.id.mobileNumber);
             phone = view.findViewById(R.id.idNumber);
             image = view.findViewById(R.id.circleView);
         }
@@ -89,23 +92,25 @@ public class UniversityAdapter  extends RecyclerView.Adapter<UniversityAdapter.M
     public void onBindViewHolder(UniversityAdapter.MyViewHolder holder, final int position) {
         University item = specialization.get(position);
         holder.name.setText(item.getUniversiy_name());
-        holder.email.setText(item.getAddress());
+//        holder.email.setText(item.getAddress());
+        holder.address.setText(item.getAddress());
+
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.drawable.error_image);
-        requestOptions.error(R.drawable.error_image);
+        requestOptions.placeholder(R.drawable.placeholdertest);
+        requestOptions.error(R.drawable.placeholdertest);
         requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
 
             Glide.with(holder.image.getContext())
                     .setDefaultRequestOptions(requestOptions)
                     .load(Constants.PHOTO_PATH+item.getLogo()).thumbnail(.1f).into(holder.image);
 
-//        holder.remove.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                myRecyclerViewListener.RemoveImage(v,position);
-//            }
-//        });
-//        holder.name.setText(item.getUniversiy_name());
+
+        holder.remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myRecyclerViewListener.RemoveImage(v,position);
+            }
+        });
     }
 
     @Override

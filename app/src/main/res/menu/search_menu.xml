@@ -6,8 +6,9 @@
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/search"
-        android:title="@string/app_name"
+        android:title="@string/title"
         app:showAsAction="collapseActionView|ifRoom"
+
 
         />
 </menu>

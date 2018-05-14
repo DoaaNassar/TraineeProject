@@ -74,24 +74,24 @@ public class Notification extends AppCompatActivity {
         checkArray = new ArrayList<>();
 
         arrayList.clear();
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "اسراء", "دعاء",
+                "إسراء", "123456", 1, 1, 1, 1, "دعاء"));
         arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
                 "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
-        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
-                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
-        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
-                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
-        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
-                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
-        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
-                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
-        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
-                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
-        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
-                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
-        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
-                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
-        arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
-                "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "حنان", "دعاء",
+                "حنان", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "أمل", "دعاء",
+                "أمل", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "إسلام", "دعاء",
+                "إسلام", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "منة", "دعاء",
+                "منة", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "ريم", "دعاء",
+                "ريم", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "نور", "دعاء",
+                "نور", "123456", 1, 1, 1, 1, "دعاء"));
+        arrayList.add(new TraineeModel(1, 1, "دعاء", "رغد", "دعاء",
+                "رغد", "123456", 1, 1, 1, 1, "دعاء"));
         arrayList.add(new TraineeModel(1, 1, "دعاء", "دعاء", "دعاء",
                 "دعاء", "123456", 1, 1, 1, 1, "دعاء"));
 

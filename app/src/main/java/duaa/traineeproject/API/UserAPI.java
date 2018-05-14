@@ -1703,6 +1703,7 @@ public class UserAPI {
                         if (photo != null) {
                             if (TextUtils.isEmpty(check)) {
                                 params.put("key", "university_logo");
+                                Log.d("duaaaa","duaaaa");
                             } else {
                                 params.put("key", "book_images");
                                 params.put("trainee_data_id", check);

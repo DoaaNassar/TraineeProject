@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -55,8 +56,10 @@ public class NavigationMenuActivity extends AppCompatActivity
         bindView();
         setData();
 
-        //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //     setSupportActionBar(toolbar);
+//          Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//             setSupportActionBar(toolbar);
+//             setTitle(R.string.title);
+
         LinearLayout trainee = findViewById(R.id.trainee);
         LinearLayout trainer = findViewById(R.id.trainer);
         LinearLayout university = findViewById(R.id.university);

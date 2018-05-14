@@ -29,7 +29,7 @@ public class AdapterAddPlace  extends RecyclerView.Adapter<AdapterAddPlace.MyVie
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView remove;
-        public FontTextViewRegular name;
+        public FontTextViewRegular name , number;
 
 
 
@@ -37,6 +37,7 @@ public class AdapterAddPlace  extends RecyclerView.Adapter<AdapterAddPlace.MyVie
             super(view);
             name = itemView.findViewById(R.id.name);
             remove  = itemView.findViewById(R.id.remove);
+            number = itemView.findViewById(R.id.number);
         }
 
 
@@ -59,7 +60,7 @@ public class AdapterAddPlace  extends RecyclerView.Adapter<AdapterAddPlace.MyVie
     public AdapterAddPlace.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.spec_layout, parent, false);
+                .inflate(R.layout.place_layout, parent, false);
 
         final AdapterAddPlace.MyViewHolder mViewHolder = new AdapterAddPlace.MyViewHolder(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +87,7 @@ public class AdapterAddPlace  extends RecyclerView.Adapter<AdapterAddPlace.MyVie
             }
         });
         holder.name.setText(item.getPartment_name());
+        holder.number.setText(item.getNum());
     }
 
     @Override

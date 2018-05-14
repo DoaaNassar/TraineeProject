@@ -144,6 +144,7 @@ public class ShowTrainerFragment extends Fragment {
         Alerter.create(getActivity())
                 .setText(message)
                 .hideIcon()
+                .enableSwipeToDismiss()
                 .setContentGravity(GravityCompat.END)
                 .setTextTypeface(face)
                 .setBackgroundColorRes(R.color.cardview_dark_background)

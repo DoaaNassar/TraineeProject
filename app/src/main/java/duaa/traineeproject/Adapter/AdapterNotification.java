@@ -91,6 +91,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
     public void onBindViewHolder(final AdapterNotification.MyViewHolder holder, final int position) {
 
         final TraineeModel item = notificationList.get(position);
+        holder.name.setText(item.getTrainee_name());
         if (checkList.containsKey(item)) {
             holder.checkBox.setChecked(true);
         } else
